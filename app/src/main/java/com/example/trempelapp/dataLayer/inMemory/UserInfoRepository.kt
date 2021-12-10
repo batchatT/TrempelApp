@@ -1,4 +1,4 @@
-package com.example.trempelapp.dataLayer
+package com.example.trempelapp.dataLayer.inMemory
 
 interface UserInfoRepository {
 

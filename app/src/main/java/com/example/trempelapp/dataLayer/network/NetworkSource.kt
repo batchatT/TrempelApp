@@ -1,4 +1,5 @@
-package com.example.trempelapp.dataLayer.networkSource
+package com.example.trempelapp.dataLayer.network
 
-class NetworkSource {
+interface NetworkSource {
+
 }

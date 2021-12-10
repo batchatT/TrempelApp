@@ -1,6 +1,6 @@
 package com.example.trempelapp.dataLayer.inMemory
 
-interface SharedPreferences {
+interface SharedPreferencesManager {
 
     fun getToken()
 

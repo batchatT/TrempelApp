@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">TrempelApp</string>
+    <string name="login">Login</string>
+    <string name="password">Password</string>
+    <string name="log_in_title">Login to your Account</string>
 </resources>

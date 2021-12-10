@@ -1,6 +1,6 @@
 package com.example.trempelapp.dataLayer.inMemory
 
-class SharedPreferenciesManagerImpl: SharedPreferencesManager {
+class SharedPreferencesManagerImpl: SharedPreferencesManager {
 
     override fun getToken() {
         TODO("Not yet implemented")

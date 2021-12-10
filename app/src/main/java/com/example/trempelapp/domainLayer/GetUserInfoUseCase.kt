@@ -1,4 +1,7 @@
 package com.example.trempelapp.domainLayer
 
-class GetUserInfoUseCase {
+interface GetUserInfoUseCase {
+
+    operator fun invoke()
+
 }
