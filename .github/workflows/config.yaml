@@ -18,6 +18,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
+      - name: KtLintCheck
+        run: ./gradlew ktlintCheck
+
       - name: AssembleDebug
         run: ./gradlew assembleDebug
 
