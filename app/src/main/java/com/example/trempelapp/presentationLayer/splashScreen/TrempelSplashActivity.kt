@@ -6,13 +6,14 @@ import android.os.PersistableBundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import com.example.trempelapp.BaseActivity
 import com.example.trempelapp.R
 import com.example.trempelapp.TrempelApplication
 import com.example.trempelapp.databinding.SplashActivityBinding
 import javax.inject.Inject
 
 @SuppressLint("CustomSplashScreen")
-class TrempelSplashActivity : AppCompatActivity() {
+class TrempelSplashActivity : BaseActivity() {
 
     @Inject
     lateinit var trempelSplashViewModelFactory: TrempelSplashViewModelFactory
@@ -29,9 +30,6 @@ class TrempelSplashActivity : AppCompatActivity() {
         (application as TrempelApplication).trempelApp.inject(this)
         super.onCreate(savedInstanceState)
         supportActionBar?.hide()
-
-
-
         setContentView(binding.root)
     }
 

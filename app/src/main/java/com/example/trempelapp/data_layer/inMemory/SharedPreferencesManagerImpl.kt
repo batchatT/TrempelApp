@@ -1,4 +1,4 @@
-package com.example.trempelapp.dataLayer.inMemory
+package com.example.trempelapp.data_layer.inMemory
 
 class SharedPreferencesManagerImpl: SharedPreferencesManager {
 

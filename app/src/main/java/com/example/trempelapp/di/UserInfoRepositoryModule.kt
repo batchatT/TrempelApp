@@ -1,7 +1,7 @@
-package com.example.trempelapp.domainLayer
+package com.example.trempelapp.di
 
-import com.example.trempelapp.dataLayer.inMemory.UserInfoRepositoryImpl
-import com.example.trempelapp.dataLayer.inMemory.UserInfoRepository
+import com.example.trempelapp.data_layer.UserInfoRepositoryImpl
+import com.example.trempelapp.data_layer.UserInfoRepository
 import dagger.Binds
 import dagger.Module
 
