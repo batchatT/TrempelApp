@@ -1,6 +1,5 @@
 package com.example.trempelapp.presentationLayer.homeScreen
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.trempelapp.BaseActivity
 import com.example.trempelapp.R
