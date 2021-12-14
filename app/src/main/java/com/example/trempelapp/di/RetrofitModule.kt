@@ -10,7 +10,7 @@ import dagger.Provides
 class RetrofitModule {
 
     @Provides
-    fun provideNetwork(retrofit: Retrofit): UserService{
+    fun provideNetwork(retrofit: Retrofit): UserService {
         return retrofit.provideService(UserService::class.java)
     }
 

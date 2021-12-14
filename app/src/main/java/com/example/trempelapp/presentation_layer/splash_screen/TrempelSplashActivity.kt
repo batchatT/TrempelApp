@@ -1,13 +1,9 @@
-package com.example.trempelapp.presentationLayer.splashScreen
+package com.example.trempelapp.presentation_layer.splash_screen
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.os.PersistableBundle
-import androidx.appcompat.app.AppCompatActivity
-import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.example.trempelapp.BaseActivity
-import com.example.trempelapp.R
 import com.example.trempelapp.TrempelApplication
 import com.example.trempelapp.databinding.SplashActivityBinding
 import javax.inject.Inject
@@ -15,11 +11,8 @@ import javax.inject.Inject
 @SuppressLint("CustomSplashScreen")
 class TrempelSplashActivity : BaseActivity() {
 
-    @Inject
-    lateinit var trempelSplashViewModelFactory: TrempelSplashViewModelFactory
-
     private val trempelSplashViewModel by lazy {
-        ViewModelProvider(this, trempelSplashViewModelFactory)[TrempelSplashViewModel::class.java]
+        ViewModelProvider(this, TrempelSplashViewModelFactory())[TrempelSplashViewModel::class.java]
     }
 
     private val binding by lazy{

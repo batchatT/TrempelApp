@@ -1,4 +1,4 @@
-package com.example.trempelapp.domainLayer
+package com.example.trempelapp.domain_layer
 
 import com.example.trempelapp.data_layer.UserInfoRepository
 import com.example.trempelapp.data_layer.models.auth.UserCredentials

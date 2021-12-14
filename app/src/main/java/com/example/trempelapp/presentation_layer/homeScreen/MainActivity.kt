@@ -1,4 +1,4 @@
-package com.example.trempelapp.presentationLayer.homeScreen
+package com.example.trempelapp.presentation_layer.homeScreen
 
 import android.os.Bundle
 import com.example.trempelapp.BaseActivity
