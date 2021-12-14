@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    tools:context=".presentation_layer.logInScreen.LogInActivity">
+
+    <ImageView
+        android:id="@+id/log_in_image"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/container"
+        android:src="@drawable/ic_log_in_image"
+        app:layout_constraintVertical_chainStyle="spread"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/container"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/ic_rounded_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/log_in_image" />
+
+    <TextView
+        android:id="@+id/log_in_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin32"
+        android:layout_marginTop="@dimen/margin48"
+        android:layout_marginEnd="@dimen/margin32"
+        android:fontFamily="@font/montserrat_regular"
+        android:text="@string/log_in_title"
+        android:textColor="@color/black"
+        android:textSize="@dimen/textSize24"
+        app:layout_constraintEnd_toEndOf="@id/container"
+        app:layout_constraintStart_toStartOf="@id/container"
+        app:layout_constraintTop_toTopOf="@id/container" />
+
+    <EditText
+        android:id="@+id/log_in_edit"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin32"
+        android:layout_marginTop="@dimen/margin32"
+        android:layout_marginEnd="@dimen/margin32"
+        android:background="@drawable/ic_edit_border"
+        android:hint="@string/login"
+        android:paddingStart="@dimen/padding24"
+        android:paddingEnd="@dimen/padding24"
+        app:layout_constraintEnd_toEndOf="@id/container"
+        app:layout_constraintStart_toStartOf="@id/container"
+        app:layout_constraintTop_toBottomOf="@id/log_in_title" />
+
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin32"
+        android:layout_marginTop="@dimen/margin24"
+        android:layout_marginEnd="@dimen/margin32"
+        android:background="@drawable/ic_edit_border"
+        android:hint="@string/password"
+        android:inputType="textPassword"
+        android:paddingStart="@dimen/padding24"
+        android:paddingEnd="@dimen/padding24"
+        app:layout_constraintEnd_toEndOf="@id/container"
+        app:layout_constraintStart_toStartOf="@id/container"
+        app:layout_constraintTop_toBottomOf="@id/log_in_edit" />
+
+    <Button
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin32"
+        android:layout_marginEnd="@dimen/margin32"
+        android:background="@drawable/ic_button_border"
+        android:fontFamily="@font/montserrat_regular"
+        android:text="@string/login"
+        android:textAllCaps="false"
+        android:textSize="@dimen/textSize18"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/password" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
