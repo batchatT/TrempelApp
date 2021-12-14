@@ -5,7 +5,6 @@ import com.example.trempelapp.data_layer.network.UserService
 import dagger.Module
 import dagger.Provides
 
-
 @Module
 class RetrofitModule {
 
@@ -13,5 +12,4 @@ class RetrofitModule {
     fun provideNetwork(retrofit: Retrofit): UserService {
         return retrofit.provideService(UserService::class.java)
     }
-
 }

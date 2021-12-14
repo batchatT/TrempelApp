@@ -8,5 +8,4 @@ interface UserInfoRepository {
     fun getLoginStatusByToken()
 
     fun loginUser(): Single<LoginResponse>
-
 }

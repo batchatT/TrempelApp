@@ -8,7 +8,7 @@ import io.reactivex.Single
 import javax.inject.Inject
 import javax.inject.Named
 
-class TrempelSplashViewModel @Inject constructor(): BaseViewModel(){
+class TrempelSplashViewModel @Inject constructor() : BaseViewModel() {
 
     @Named("authUseCaseImpl")
     @Inject
@@ -21,5 +21,4 @@ class TrempelSplashViewModel @Inject constructor(): BaseViewModel(){
             .subscribe()
             .run(compositeDisposable::add)
     }
-
 }

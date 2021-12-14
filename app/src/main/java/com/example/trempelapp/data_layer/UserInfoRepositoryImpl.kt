@@ -1,6 +1,5 @@
 package com.example.trempelapp.data_layer
 
-import android.content.SharedPreferences
 import com.example.trempelapp.data_layer.inMemory.SharedPreferencesManager
 import com.example.trempelapp.data_layer.models.auth.UserCredentials
 import com.example.trempelapp.data_layer.network.LoginResponse
@@ -18,7 +17,6 @@ class UserInfoRepositoryImpl @Inject constructor(
     }
 
     override fun loginUser(): Single<LoginResponse> {
-        return userService.loginUser(UserCredentials("dsa","asd"))
+        return userService.loginUser(UserCredentials("dsa", "asd"))
     }
-
 }

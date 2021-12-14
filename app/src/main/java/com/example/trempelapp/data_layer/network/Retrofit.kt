@@ -6,9 +6,9 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Inject
 
-class Retrofit @Inject constructor() : RetrofitProvider{
+class Retrofit @Inject constructor() : RetrofitProvider {
 
-    override fun <T> provideService(service : Class<T>): T {
+    override fun <T> provideService(service: Class<T>): T {
         val retrofit = Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())

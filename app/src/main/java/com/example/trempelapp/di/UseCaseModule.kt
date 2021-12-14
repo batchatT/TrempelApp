@@ -10,14 +10,12 @@ import dagger.Provides
 import io.reactivex.Single
 import javax.inject.Named
 
-
 @Module
- class UseCaseModule {
+class UseCaseModule {
 
     @Named("authUseCaseImpl")
     @Provides
     fun provideGetUserInfoUseCase(repository: UserInfoRepository): UseCase<UserCredentials, Single<LoginResponse>> {
         return AuthUseCaseImpl(repository)
     }
-
 }

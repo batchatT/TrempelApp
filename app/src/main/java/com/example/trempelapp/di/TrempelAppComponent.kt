@@ -13,5 +13,4 @@ import dagger.Component
 interface TrempelAppComponent {
 
     fun inject(trempelSplashActivity: TrempelSplashActivity)
-
 }

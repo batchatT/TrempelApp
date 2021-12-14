@@ -7,6 +7,6 @@ import retrofit2.http.POST
 
 interface UserService {
 
-  @POST("/auth/login")
-  fun loginUser(@Body userCredentials: UserCredentials): Single<LoginResponse>
+    @POST("/auth/login")
+    fun loginUser(@Body userCredentials: UserCredentials): Single<LoginResponse>
 }

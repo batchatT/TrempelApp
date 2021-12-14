@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.trempelapp.BaseActivity
 import com.example.trempelapp.TrempelApplication
 import com.example.trempelapp.databinding.SplashActivityBinding
-import javax.inject.Inject
 
 @SuppressLint("CustomSplashScreen")
 class TrempelSplashActivity : BaseActivity() {
@@ -15,7 +14,7 @@ class TrempelSplashActivity : BaseActivity() {
         ViewModelProvider(this, TrempelSplashViewModelFactory())[TrempelSplashViewModel::class.java]
     }
 
-    private val binding by lazy{
+    private val binding by lazy {
         SplashActivityBinding.inflate(layoutInflater)
     }
 
@@ -25,5 +24,4 @@ class TrempelSplashActivity : BaseActivity() {
         supportActionBar?.hide()
         setContentView(binding.root)
     }
-
 }

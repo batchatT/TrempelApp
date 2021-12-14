@@ -7,9 +7,8 @@ import io.reactivex.Single
 import javax.inject.Inject
 
 class AuthUseCaseImpl @Inject constructor(
-     private val repository: UserInfoRepository,
-): UseCase<UserCredentials, Single<LoginResponse>>{
+    private val repository: UserInfoRepository,
+) : UseCase<UserCredentials, Single<LoginResponse>> {
 
-     override fun execute(params: UserCredentials): Single<LoginResponse> = repository.loginUser()
-
+    override fun execute(params: UserCredentials): Single<LoginResponse> = repository.loginUser()
 }
