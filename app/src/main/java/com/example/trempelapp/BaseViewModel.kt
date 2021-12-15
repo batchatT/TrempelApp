@@ -3,7 +3,6 @@ package com.example.trempelapp
 import androidx.lifecycle.ViewModel
 import com.example.trempelapp.utils.SingleLiveEvent
 import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.functions.Consumer
 
 abstract class BaseViewModel : ViewModel() {
     protected val compositeDisposable: CompositeDisposable = CompositeDisposable()

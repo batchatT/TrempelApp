@@ -12,7 +12,7 @@ private const val TOKEN = "token"
 
 class SharedPreferencesManagerImpl @Inject constructor(
     context: Context,
-): SharedPreferencesManager {
+) : SharedPreferencesManager {
 
     private val preferences: SharedPreferences =
         context.getSharedPreferences(TOKEN_PREFERENCES_FILE, Context.MODE_PRIVATE)

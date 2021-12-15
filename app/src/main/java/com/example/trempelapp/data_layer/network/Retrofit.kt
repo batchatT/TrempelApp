@@ -2,12 +2,11 @@ package com.example.trempelapp.data_layer.network
 
 import com.example.trempelapp.utils.BASE_URL
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
+import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import javax.inject.Inject
-import okhttp3.OkHttpClient
 import java.util.concurrent.TimeUnit
-
+import javax.inject.Inject
 
 class Retrofit @Inject constructor() : RetrofitProvider {
 

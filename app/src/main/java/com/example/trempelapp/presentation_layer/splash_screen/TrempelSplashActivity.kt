@@ -29,7 +29,7 @@ class TrempelSplashActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         supportActionBar?.hide()
         setContentView(binding.root)
-injectDagger()
+        injectDagger()
         setUpViewModel()
     }
 

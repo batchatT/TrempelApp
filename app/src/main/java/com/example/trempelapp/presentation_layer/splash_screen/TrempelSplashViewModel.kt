@@ -1,6 +1,5 @@
 package com.example.trempelapp.presentation_layer.splash_screen
 
-import android.util.Log
 import com.example.trempelapp.BaseViewModel
 import com.example.trempelapp.TrempelApplication
 import com.example.trempelapp.domain_layer.LoginStatusUseCaseImpl
@@ -42,6 +41,4 @@ class TrempelSplashViewModel : BaseViewModel() {
             )
             .run(compositeDisposable::add)
     }
-
-
 }

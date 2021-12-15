@@ -22,5 +22,4 @@ class ErrorDialog : DialogFragment() {
     companion object {
         const val TAG = "ErrorDialog"
     }
-
 }
