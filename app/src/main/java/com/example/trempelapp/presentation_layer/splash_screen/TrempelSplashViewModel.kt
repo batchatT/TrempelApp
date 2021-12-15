@@ -18,9 +18,9 @@ class TrempelSplashViewModel : BaseViewModel() {
     @Inject
     lateinit var userLoginStatusUseCase: LoginStatusUseCaseImpl
 
-    val isLoggedIn: SingleLiveEvent<Boolean>
-        get() = _isLoggedIn
-    private var _isLoggedIn = SingleLiveEvent<Boolean>()
+    val isLoggedInLiveData: SingleLiveEvent<Boolean>
+        get() = _isLoggedInLiveData
+    private var _isLoggedInLiveData = SingleLiveEvent<Boolean>()
 
     override fun injectDagger(application: TrempelApplication) {
         application.trempelApp.inject(this)
@@ -34,12 +34,14 @@ class TrempelSplashViewModel : BaseViewModel() {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
                 {
-                    _isLoggedIn.value = it
+                    _isLoggedInLiveData.value = it
                 },
                 {
-                    Log.e("TAG", "checkUserStatus:", it)
+                    handleError(it)
                 }
             )
             .run(compositeDisposable::add)
     }
+
+
 }

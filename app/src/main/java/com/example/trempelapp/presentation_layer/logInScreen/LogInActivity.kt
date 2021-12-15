@@ -10,4 +10,8 @@ class LogInActivity : BaseActivity() {
         supportActionBar?.hide()
         setContentView(R.layout.activity_log_in)
     }
+
+    override fun injectDagger() {
+        TODO("Not yet implemented")
+    }
 }

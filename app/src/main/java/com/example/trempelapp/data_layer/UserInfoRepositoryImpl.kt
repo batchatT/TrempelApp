@@ -8,13 +8,9 @@ import javax.inject.Inject
 class UserInfoRepositoryImpl @Inject constructor(
     private val preferences: SharedPreferencesManager,
     private val userService: UserService
-) : UserInfoRepository {
+): UserInfoRepository {
 
     override fun getLoginStatusByToken(): Single<String> {
         return preferences.getUserLoginStatus()
     }
-
-//    override fun loginUser(): Single<LoginResponse> {
-//        return userService.loginUser(UserCredentials("dsa", "asd"))
-//    }
 }

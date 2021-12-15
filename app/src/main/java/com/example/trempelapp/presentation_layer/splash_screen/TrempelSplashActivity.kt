@@ -21,19 +21,27 @@ class TrempelSplashActivity : BaseActivity() {
         SplashActivityBinding.inflate(layoutInflater)
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        (application as TrempelApplication).trempelApp.inject(this)
+    override fun injectDagger() {
         trempelSplashViewModel.injectDagger(application as TrempelApplication)
+    }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         supportActionBar?.hide()
         setContentView(binding.root)
+injectDagger()
+        setUpViewModel()
+    }
 
+    private fun setUpViewModel() {
         trempelSplashViewModel.checkUserStatus()
+        trempelSplashViewModel.errorLiveData.observe(this, {
+            handleErrors(it)
+        })
 
-        trempelSplashViewModel.isLoggedIn.observe(this, {
+        trempelSplashViewModel.isLoggedInLiveData.observe(this, {
 
-            if (trempelSplashViewModel.isLoggedIn.value == false) {
+            if (trempelSplashViewModel.isLoggedInLiveData.value == false) {
                 val intent = Intent(this, LogInActivity::class.java)
                 startActivity(intent)
                 finish()
