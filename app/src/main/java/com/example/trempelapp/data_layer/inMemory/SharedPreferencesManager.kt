@@ -1,6 +1,8 @@
 package com.example.trempelapp.data_layer.inMemory
 
+import io.reactivex.Single
+
 interface SharedPreferencesManager {
 
-    fun getToken()
+    fun getUserLoginStatus(): Single<String>
 }

@@ -6,5 +6,7 @@ import com.example.trempelapp.di.TrempelAppComponent
 
 class TrempelApplication : Application() {
 
-    val trempelApp: TrempelAppComponent = DaggerTrempelAppComponent.create()
+    val trempelApp: TrempelAppComponent by lazy {
+        DaggerTrempelAppComponent.factory().create(applicationContext)
+    }
 }
