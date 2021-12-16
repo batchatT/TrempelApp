@@ -1,24 +1,44 @@
 package com.example.trempelapp.presentation_layer.splash_screen
 
 import com.example.trempelapp.BaseViewModel
-import com.example.trempelapp.data_layer.models.auth.UserCredentials
-import com.example.trempelapp.data_layer.network.LoginResponse
-import com.example.trempelapp.domain_layer.UseCase
-import io.reactivex.Single
+import com.example.trempelapp.TrempelApplication
+import com.example.trempelapp.domain_layer.LoginStatusUseCaseImpl
+import com.example.trempelapp.domain_layer.execute
+import com.example.trempelapp.utils.SingleLiveEvent
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
+import java.util.concurrent.TimeUnit
 import javax.inject.Inject
-import javax.inject.Named
 
-class TrempelSplashViewModel @Inject constructor() : BaseViewModel() {
+private const val SPLASH_SCREEN_TIMER = 2L
 
-    @Named("authUseCaseImpl")
+class TrempelSplashViewModel : BaseViewModel() {
+
     @Inject
-    lateinit var userInfoUseCase: UseCase<UserCredentials, Single<LoginResponse>>
+    lateinit var userLoginStatusUseCase: LoginStatusUseCaseImpl
 
-    fun fetchData() {
-        userInfoUseCase
-            .execute(UserCredentials("sdf", "dsf"))
-            .map { it }
-            .subscribe()
+    val isLoggedInLiveData: SingleLiveEvent<Boolean>
+        get() = _isLoggedInLiveData
+    private var _isLoggedInLiveData = SingleLiveEvent<Boolean>()
+
+    override fun injectDagger(application: TrempelApplication) {
+        application.trempelApp.inject(this)
+    }
+
+    fun checkUserStatus() {
+        userLoginStatusUseCase
+            .execute()
+            .delay(SPLASH_SCREEN_TIMER, TimeUnit.SECONDS)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(
+                {
+                    _isLoggedInLiveData.value = it
+                },
+                {
+                    handleError(it)
+                }
+            )
             .run(compositeDisposable::add)
     }
 }

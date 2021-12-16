@@ -11,6 +11,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TrempelApp">
         <activity
+            android:name=".presentation_layer.logInScreen.LogInActivity"
+            android:exported="false" />
+        <activity
+            android:name=".presentation_layer.homeScreen.MainActivity"
+            android:exported="false" />
+        <activity
             android:name=".presentation_layer.splash_screen.TrempelSplashActivity"
             android:exported="true">
             <intent-filter>
