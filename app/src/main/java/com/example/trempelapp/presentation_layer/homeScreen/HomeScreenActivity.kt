@@ -1,14 +1,13 @@
-package com.example.trempelapp.presentation_layer.logInScreen
+package com.example.trempelapp.presentation_layer.homeScreen
 
 import android.os.Bundle
 import com.example.trempelapp.BaseActivity
 import com.example.trempelapp.R
 
-class LogInActivity : BaseActivity() {
+class HomeScreenActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        supportActionBar?.hide()
-        setContentView(R.layout.activity_log_in)
+        setContentView(R.layout.activity_main)
     }
 
     override fun injectDagger() {
