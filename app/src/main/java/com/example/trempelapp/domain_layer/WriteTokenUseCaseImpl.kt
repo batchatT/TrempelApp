@@ -11,5 +11,4 @@ class WriteTokenUseCaseImpl @Inject constructor(
         authRepository.writeTokenToSharedPreference(params)
         return ""
     }
-
 }

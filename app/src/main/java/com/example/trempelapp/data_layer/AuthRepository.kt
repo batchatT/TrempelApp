@@ -9,5 +9,4 @@ interface AuthRepository {
     fun writeTokenToSharedPreference(token: String)
 
     fun logInUser(userCredentials: UserCredentials): Single<LoginResponse>
-
 }

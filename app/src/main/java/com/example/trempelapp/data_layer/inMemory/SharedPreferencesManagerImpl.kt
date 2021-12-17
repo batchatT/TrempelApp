@@ -2,7 +2,6 @@ package com.example.trempelapp.data_layer.inMemory
 
 import android.content.Context
 import android.content.SharedPreferences
-import android.util.Log
 import com.example.trempelapp.utils.EMPTY_STRING
 import com.example.trempelapp.utils.TOKEN_PREFERENCES_FILE
 import io.reactivex.Single

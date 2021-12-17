@@ -5,10 +5,7 @@ import com.example.trempelapp.data_layer.models.auth.UserCredentials
 import com.example.trempelapp.data_layer.network.LoginResponse
 import com.example.trempelapp.data_layer.network.UserService
 import io.reactivex.Single
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
-import javax.security.auth.callback.Callback
 
 class AuthRepositoryImpl @Inject constructor(
     private val sharedPreferencesManager: SharedPreferencesManager,
