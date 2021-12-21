@@ -5,10 +5,9 @@ import javax.inject.Inject
 
 class WriteTokenUseCaseImpl @Inject constructor(
     private val authRepository: AuthRepository
-) : UseCase<String, String> {
+) : UseCase<String, Unit> {
 
-    override fun execute(params: String): String {
-        authRepository.writeTokenToSharedPreference(params)
-        return ""
+    override fun execute(params: String) {
+        authRepository.saveUserToken(params)
     }
 }

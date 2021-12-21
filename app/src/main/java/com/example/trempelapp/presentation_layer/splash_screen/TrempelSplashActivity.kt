@@ -40,16 +40,20 @@ class TrempelSplashActivity : BaseActivity() {
         })
 
         trempelSplashViewModel.isLoggedInLiveData.observe(this, {
-
-            if (trempelSplashViewModel.isLoggedInLiveData.value == false) {
-                val intent = Intent(this, TrempelLogInActivity::class.java)
-                startActivity(intent)
-                finish()
-            } else {
-                val intent = Intent(this, HomeScreenActivity::class.java)
-                startActivity(intent)
-                finish()
-            }
+            startActivityByStatus(it)
         })
+    }
+
+    private fun startActivityByStatus(isLoggedIn: Boolean) {
+        val intent: Intent = when (isLoggedIn) {
+            true -> {
+                Intent(this, HomeScreenActivity::class.java)
+            }
+            else -> {
+                Intent(this, TrempelLogInActivity::class.java)
+            }
+        }
+        startActivity(intent)
+        finish()
     }
 }

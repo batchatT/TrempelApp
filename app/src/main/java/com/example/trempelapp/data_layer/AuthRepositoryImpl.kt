@@ -12,7 +12,7 @@ class AuthRepositoryImpl @Inject constructor(
     private val userService: UserService,
 ) : AuthRepository {
 
-    override fun writeTokenToSharedPreference(token: String) {
+    override fun saveUserToken(token: String) {
         sharedPreferencesManager.writeToken(token)
     }
 

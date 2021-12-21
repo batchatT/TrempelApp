@@ -6,7 +6,7 @@ import io.reactivex.Single
 
 interface AuthRepository {
 
-    fun writeTokenToSharedPreference(token: String)
+    fun saveUserToken(token: String)
 
     fun logInUser(userCredentials: UserCredentials): Single<LoginResponse>
 }

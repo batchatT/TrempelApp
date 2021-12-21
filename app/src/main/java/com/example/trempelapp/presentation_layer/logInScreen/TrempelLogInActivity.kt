@@ -26,7 +26,6 @@ class TrempelLogInActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         supportActionBar?.hide()
         setContentView(binding.root)
-        injectDagger()
         setUpBinding()
         setUpObserves()
     }
