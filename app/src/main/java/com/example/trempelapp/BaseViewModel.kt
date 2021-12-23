@@ -7,9 +7,10 @@ import io.reactivex.disposables.CompositeDisposable
 abstract class BaseViewModel : ViewModel() {
     protected val compositeDisposable: CompositeDisposable = CompositeDisposable()
     val errorLiveData: SingleLiveEvent<String> = SingleLiveEvent()
+    val isLoadingLiveData = SingleLiveEvent<Boolean>()
 
     protected fun handleError(throwable: Throwable) {
-        errorLiveData.value = throwable.localizedMessage
+        errorLiveData.value = "Something went wrong"
     }
 
     abstract fun injectDagger(application: TrempelApplication)

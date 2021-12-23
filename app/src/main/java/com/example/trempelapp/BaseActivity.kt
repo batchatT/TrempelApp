@@ -1,7 +1,6 @@
 package com.example.trempelapp
 
 import android.os.Bundle
-import android.os.PersistableBundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.trempelapp.utils.ERROR_DIALOG_KEY
 
@@ -15,9 +14,9 @@ abstract class BaseActivity : AppCompatActivity() {
         dialog.show(supportFragmentManager, ErrorDialog.TAG)
     }
 
-    override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
+    override fun onCreate(savedInstanceState: Bundle?) {
         injectDagger()
-        super.onCreate(savedInstanceState, persistentState)
+        super.onCreate(savedInstanceState)
     }
 
     protected abstract fun injectDagger()

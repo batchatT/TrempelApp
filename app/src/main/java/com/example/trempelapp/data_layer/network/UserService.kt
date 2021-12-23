@@ -9,5 +9,5 @@ interface UserService {
 
     @POST("/auth/login")
     @FormUrlEncoded
-    fun loginUser(@Field("username")login: String, @Field("password")password: String): Single<LoginResponse>
+    fun loginUser(@Field("username") login: String, @Field("password") password: String): Single<LoginResponse>
 }

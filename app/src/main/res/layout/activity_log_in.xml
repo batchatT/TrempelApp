@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="viewModel"
             type="com.example.trempelapp.presentation_layer.logInScreen.TrempelLogInViewModel" />
@@ -41,6 +40,8 @@
         <TextView
             android:id="@+id/log_in_title"
             style="@style/TitleTextStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin32"
             android:layout_marginTop="@dimen/margin48"
             android:layout_marginEnd="@dimen/margin32"
@@ -49,41 +50,74 @@
             app:layout_constraintStart_toStartOf="@id/container"
             app:layout_constraintTop_toTopOf="@id/container" />
 
-        <EditText
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/log_in_edit"
-            style="@style/LoginEditTextStyle"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin32"
             android:layout_marginTop="@dimen/margin32"
             android:layout_marginEnd="@dimen/margin32"
-            android:hint="@string/login"
-            android:text="@={viewModel.editLoginText}"
+            app:errorText="@{viewModel.errorLoginEditLiveData}"
             app:layout_constraintEnd_toEndOf="@id/container"
             app:layout_constraintStart_toStartOf="@id/container"
-            app:layout_constraintTop_toBottomOf="@id/log_in_title" />
+            app:layout_constraintTop_toBottomOf="@id/log_in_title">
 
-        <EditText
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/login"
+                android:text="@={viewModel.editLoginTextLiveData}" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/password"
-            style="@style/LoginEditTextStyle"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin32"
             android:layout_marginTop="@dimen/margin24"
             android:layout_marginEnd="@dimen/margin32"
-            android:hint="@string/password"
-            android:inputType="textPassword"
-            android:text="@={viewModel.editPassWordText}"
+            app:errorEnabled="true"
+            app:errorText="@{viewModel.errorPasswordEditLiveData}"
             app:layout_constraintEnd_toEndOf="@id/container"
             app:layout_constraintStart_toStartOf="@id/container"
-            app:layout_constraintTop_toBottomOf="@id/log_in_edit" />
+            app:layout_constraintTop_toBottomOf="@id/log_in_edit">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/password"
+                android:inputType="textPassword"
+                android:text="@={viewModel.editPassWordTextLiveData}" />
+        </com.google.android.material.textfield.TextInputLayout>
 
         <Button
+            android:id="@+id/loginButton"
             style="@style/LoginButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin32"
             android:layout_marginEnd="@dimen/margin32"
             android:onClick="@{() -> viewModel.onClickLoginButton()}"
             android:text="@string/login"
+            android:enabled="@{!viewModel.isLoadingLiveData}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/password" />
+
+        <ProgressBar
+            android:id="@+id/progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            app:setVisibility="@{viewModel.isLoadingLiveData}"
+            app:layout_constraintTop_toTopOf="@id/container"
+            app:layout_constraintBottom_toBottomOf="@id/container"
+            app:layout_constraintStart_toStartOf="@id/container"
+            app:layout_constraintEnd_toEndOf="@id/container"
+            />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

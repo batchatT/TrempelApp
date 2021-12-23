@@ -11,6 +11,5 @@ class HomeScreenActivity : BaseActivity() {
     }
 
     override fun injectDagger() {
-        TODO("Not yet implemented")
     }
 }

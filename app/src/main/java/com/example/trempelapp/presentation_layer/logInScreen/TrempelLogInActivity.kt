@@ -45,5 +45,13 @@ class TrempelLogInActivity : BaseActivity() {
             startActivity(intent)
             finish()
         })
+
+        trempelLogInViewModel.editLoginTextLiveData.observe(this, {
+            trempelLogInViewModel.clearLoginError()
+        })
+
+        trempelLogInViewModel.editPassWordTextLiveData.observe(this, {
+            trempelLogInViewModel.clearPasswordLiveData()
+        })
     }
 }
