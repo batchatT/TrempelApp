@@ -18,8 +18,7 @@ import javax.inject.Inject
 private const val TAG = "TrempelLogInViewModel"
 
 class TrempelLogInViewModel : BaseViewModel() {
-// activity to fragment
-// disable enter in edit
+
     @Inject
     lateinit var logInUseCase: LogInUseCaseImpl
 

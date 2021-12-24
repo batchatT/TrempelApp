@@ -17,7 +17,6 @@ class SharedPreferencesManagerImpl @Inject constructor(
         context.getSharedPreferences(TOKEN_PREFERENCES_FILE, Context.MODE_PRIVATE)
 
     override fun getUserLoginStatus(): Single<String> {
-        writeToken("")
         val token = preferences.getString(TOKEN, EMPTY_STRING)
         return Single.just(token)
     }
