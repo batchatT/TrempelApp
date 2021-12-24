@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.trempelapp">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".TrempelApplication"
         android:allowBackup="true"
@@ -11,10 +13,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TrempelApp">
         <activity
-            android:name=".presentation_layer.logInScreen.LogInActivity"
+            android:name=".presentation_layer.logInScreen.TrempelLogInActivity"
             android:exported="false" />
         <activity
-            android:name=".presentation_layer.homeScreen.MainActivity"
+            android:name=".presentation_layer.homeScreen.HomeScreenActivity"
             android:exported="false" />
         <activity
             android:name=".presentation_layer.splash_screen.TrempelSplashActivity"
