@@ -9,7 +9,4 @@ class HomeScreenActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
     }
-
-    override fun injectDagger() {
-    }
 }

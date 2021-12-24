@@ -18,10 +18,8 @@
         <item name="android:fontFamily">@font/montserrat_regular</item>
     </style>
 
-    <style name="error_appearance" parent="@android:style/TextAppearance">
-        <item name="android:textColor">@color/red</item>
-        <item name="android:textSize">12sp</item>
-        <item name="android:background">@drawable/ic_edit_border_error</item>
+    <style name="EditFieldStyle">
+        <item name="android:fontFamily">@font/montserrat_regular</item>
     </style>
 
 </resources>

@@ -1,8 +1,8 @@
 package com.example.trempelapp.di
 
 import android.content.Context
-import com.example.trempelapp.presentation_layer.logInScreen.TrempelLogInActivity
 import com.example.trempelapp.presentation_layer.logInScreen.TrempelLogInViewModel
+import com.example.trempelapp.presentation_layer.logInScreen.TrempelLoginFragment
 import com.example.trempelapp.presentation_layer.splash_screen.TrempelSplashActivity
 import com.example.trempelapp.presentation_layer.splash_screen.TrempelSplashViewModel
 import dagger.BindsInstance
@@ -25,5 +25,6 @@ interface TrempelAppComponent {
     fun inject(trempelSplashActivity: TrempelSplashActivity)
 
     fun inject(viewModel: TrempelLogInViewModel)
-    fun inject(trempelLogInActivity: TrempelLogInActivity)
+
+    fun inject(trempelLogInFragment: TrempelLoginFragment)
 }

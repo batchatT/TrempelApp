@@ -40,6 +40,7 @@ dependencies {
 
     //dagger implementation
     implementation "com.google.dagger:dagger:2.40"
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     kapt "com.google.dagger:dagger-compiler:2.40"
 
     //rxJava2 implementation

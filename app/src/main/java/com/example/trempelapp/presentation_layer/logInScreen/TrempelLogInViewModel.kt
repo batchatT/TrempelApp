@@ -1,6 +1,9 @@
 package com.example.trempelapp.presentation_layer.logInScreen
 
+import android.view.View
+import androidx.lifecycle.MutableLiveData
 import com.example.trempelapp.BaseViewModel
+import com.example.trempelapp.BuildConfig
 import com.example.trempelapp.TrempelApplication
 import com.example.trempelapp.data_layer.models.auth.UserCredentials
 import com.example.trempelapp.domain_layer.LogInUseCaseImpl
@@ -15,7 +18,8 @@ import javax.inject.Inject
 private const val TAG = "TrempelLogInViewModel"
 
 class TrempelLogInViewModel : BaseViewModel() {
-
+// activity to fragment
+// disable enter in edit
     @Inject
     lateinit var logInUseCase: LogInUseCaseImpl
 
@@ -23,9 +27,9 @@ class TrempelLogInViewModel : BaseViewModel() {
     lateinit var writeTokenUseCase: WriteTokenUseCaseImpl
 
     val errorLoginEditLiveData = SingleLiveEvent<String>()
-    val editLoginTextLiveData = SingleLiveEvent<String>()
-    val editPassWordTextLiveData = SingleLiveEvent<String>()
     val errorPasswordEditLiveData = SingleLiveEvent<String>()
+    val editLoginTextLiveData = MutableLiveData<String>()
+    val editPassWordTextLiveData = MutableLiveData<String>()
 
     val tokenLiveData: SingleLiveEvent<String>
         get() = _tokenLiveData
@@ -53,8 +57,7 @@ class TrempelLogInViewModel : BaseViewModel() {
                 },
                 {
                     if (it is LoginException) {
-                        errorLoginEditLiveData.value = it.loginErrorText
-                        errorPasswordEditLiveData.value = it.passwordErrorText
+                        handleLoginError(it)
                     } else {
                         handleError(it)
                     }
@@ -63,16 +66,34 @@ class TrempelLogInViewModel : BaseViewModel() {
             .run(compositeDisposable::add)
     }
 
-    fun onClickLoginButton() {
-        val loginText =
-            if (editLoginTextLiveData.value.isNullOrEmpty()) ""
-            else editLoginTextLiveData.value!!
+    private fun handleLoginError(error: LoginException) {
+        errorLoginEditLiveData.value = error.loginErrorText
+        errorPasswordEditLiveData.value = error.passwordErrorText
+    }
 
-        val passwordText =
-            if (editPassWordTextLiveData.value.isNullOrEmpty()) ""
-            else editPassWordTextLiveData.value!!
+    fun setLoginDataForDebug(view: View) {
+        if (BuildConfig.DEBUG) {
+            editLoginTextLiveData.value = "mor_2314"
+            editPassWordTextLiveData.value = "83r5^_"
+        }
+    }
+
+    fun onClickLoginButton() {
+        normalizeLoginData()
+
+        val loginText = editLoginTextLiveData.value!!
+
+        val passwordText = editPassWordTextLiveData.value!!
 
         logInUser(loginText, passwordText)
+    }
+
+    private fun normalizeLoginData() {
+        val loginText = editLoginTextLiveData.value?.trim() ?: ""
+        val passwordText = editPassWordTextLiveData.value?.trim() ?: ""
+
+        editLoginTextLiveData.value = loginText
+        editPassWordTextLiveData.value = passwordText
     }
 
     fun clearLoginError() {
