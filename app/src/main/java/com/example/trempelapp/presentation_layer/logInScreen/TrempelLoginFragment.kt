@@ -9,7 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.trempelapp.BaseFragment
 import com.example.trempelapp.TrempelApplication
 import com.example.trempelapp.databinding.FragmentTrempelLoginBinding
-import com.example.trempelapp.presentation_layer.homeScreen.HomeScreenActivity
+import com.example.trempelapp.presentation_layer.mainScreen.HomeScreenActivity
 
 class TrempelLoginFragment : BaseFragment() {
 

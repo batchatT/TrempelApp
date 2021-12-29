@@ -16,7 +16,7 @@
             android:name=".presentation_layer.logInScreen.TrempelLogInActivity"
             android:exported="false" />
         <activity
-            android:name=".presentation_layer.homeScreen.HomeScreenActivity"
+            android:name=".presentation_layer.mainScreen.HomeScreenActivity"
             android:exported="false" />
         <activity
             android:name=".presentation_layer.splash_screen.TrempelSplashActivity"

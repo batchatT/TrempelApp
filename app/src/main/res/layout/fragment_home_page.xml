@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/margin24"
+            android:paddingTop="@dimen/margin32"
+            android:paddingEnd="@dimen/margin24"
+            android:paddingBottom="@dimen/margin32">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/search_edit"
+                style="@style/InputLayoutHomePage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_search"
+                    android:drawablePadding="@dimen/padding16"
+                    android:hint="@string/what_are_you_looking_for" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <ImageView
+                android:id="@+id/sale_banner_1"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="@dimen/margin16"
+                android:layout_marginEnd="@dimen/margin32"
+                android:scaleType="fitXY"
+                android:src="@drawable/sale_banner_1"
+                app:layout_constraintBottom_toTopOf="@id/ready_text"
+                app:layout_constraintEnd_toStartOf="@id/sale_banner_2"
+                app:layout_constraintHorizontal_weight="0.65"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/search_edit"
+                app:layout_constraintVertical_weight="0.9" />
+
+            <ImageView
+                android:id="@+id/sale_banner_2"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/sale_banner_2_height"
+                android:src="@drawable/sale_banner_2"
+                app:layout_constraintBottom_toTopOf="@id/sale_banner_3"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_weight="0.4"
+                app:layout_constraintStart_toEndOf="@id/sale_banner_1"
+                app:layout_constraintTop_toTopOf="@id/sale_banner_1" />
+
+            <ImageView
+                android:id="@+id/sale_banner_3"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/sale_banner_3_height"
+                android:layout_marginStart="@dimen/margin32"
+                android:layout_marginTop="@dimen/margin16"
+                android:layout_marginBottom="@dimen/margin16"
+                android:src="@drawable/sale_banner_3"
+                app:layout_constraintBottom_toTopOf="@id/categories_button"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/sale_banner_1"
+                app:layout_constraintTop_toBottomOf="@id/sale_banner_2" />
+
+            <TextView
+                android:id="@+id/ready_text"
+                style="@style/HomePageTextView"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="@dimen/margin13"
+                android:layout_marginEnd="@dimen/margin13"
+                android:layout_marginBottom="@dimen/margin9"
+                android:text="@string/ready_for_the_shopping"
+                app:layout_constraintBottom_toTopOf="@id/categories_button"
+                app:layout_constraintEnd_toStartOf="@id/sale_banner_3"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/sale_banner_1"
+                app:layout_constraintVertical_weight="0.08" />
+
+            <Button
+                android:id="@+id/categories_button"
+                style="@style/CategoriesButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/categories_button_height"
+                android:text="@string/visit_our_categories"
+                app:layout_constraintBottom_toTopOf="@id/sale_banner_4"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ready_text" />
+
+            <ImageView
+                android:id="@+id/sale_banner_4"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/sale_banner_4_height"
+                android:layout_marginTop="@dimen/margin16"
+                android:layout_marginEnd="@dimen/margin16"
+                android:src="@drawable/sale_banner_4"
+                app:layout_constraintEnd_toStartOf="@id/sale_banner_5"
+                app:layout_constraintHorizontal_weight="0.4"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/categories_button" />
+
+            <ImageView
+                android:id="@+id/sale_banner_5"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:src="@drawable/sale_banner_5"
+                app:layout_constraintBottom_toBottomOf="@id/sale_banner_4"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_weight="0.6"
+                app:layout_constraintStart_toEndOf="@id/sale_banner_4"
+                app:layout_constraintTop_toTopOf="@id/sale_banner_4" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>
