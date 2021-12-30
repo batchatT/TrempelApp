@@ -2,8 +2,8 @@ package com.example.trempelapp.data_layer
 
 import com.example.trempelapp.data_layer.inMemory.SharedPreferencesManager
 import com.example.trempelapp.data_layer.models.auth.UserCredentials
-import com.example.trempelapp.data_layer.network.LoginResponse
-import com.example.trempelapp.data_layer.network.UserService
+import com.example.trempelapp.data_layer.network.login.LoginResponse
+import com.example.trempelapp.data_layer.network.login.UserService
 import io.reactivex.Single
 import javax.inject.Inject
 

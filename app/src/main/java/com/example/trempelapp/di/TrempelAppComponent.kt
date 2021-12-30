@@ -3,6 +3,7 @@ package com.example.trempelapp.di
 import android.content.Context
 import com.example.trempelapp.presentation_layer.logInScreen.TrempelLogInViewModel
 import com.example.trempelapp.presentation_layer.logInScreen.TrempelLoginFragment
+import com.example.trempelapp.presentation_layer.mainScreen.home_page_fragments.HomePageFragmentViewModel
 import com.example.trempelapp.presentation_layer.splash_screen.TrempelSplashActivity
 import com.example.trempelapp.presentation_layer.splash_screen.TrempelSplashViewModel
 import dagger.BindsInstance
@@ -11,7 +12,8 @@ import dagger.Component
 @Component(
     modules = [
         RepositoryModule::class,
-        RetrofitModule::class
+        RetrofitModule::class,
+        ProductModule::class
     ]
 )
 interface TrempelAppComponent {
@@ -27,4 +29,6 @@ interface TrempelAppComponent {
     fun inject(viewModel: TrempelLogInViewModel)
 
     fun inject(trempelLogInFragment: TrempelLoginFragment)
+
+    fun inject(homePageFragmentViewModel: HomePageFragmentViewModel)
 }

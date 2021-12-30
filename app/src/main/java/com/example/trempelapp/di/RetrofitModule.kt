@@ -1,7 +1,7 @@
 package com.example.trempelapp.di
 
 import com.example.trempelapp.data_layer.network.Retrofit
-import com.example.trempelapp.data_layer.network.UserService
+import com.example.trempelapp.data_layer.network.login.UserService
 import dagger.Module
 import dagger.Provides
 
