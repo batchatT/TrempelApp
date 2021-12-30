@@ -1,4 +1,4 @@
-package com.example.trempelapp.data_layer.network
+package com.example.trempelapp.data_layer.network.login
 
 import io.reactivex.Single
 import retrofit2.http.Field
