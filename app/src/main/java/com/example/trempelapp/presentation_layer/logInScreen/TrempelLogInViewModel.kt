@@ -4,7 +4,6 @@ import android.view.View
 import androidx.lifecycle.MutableLiveData
 import com.example.trempelapp.BaseViewModel
 import com.example.trempelapp.BuildConfig
-import com.example.trempelapp.TrempelApplication
 import com.example.trempelapp.data_layer.models.auth.UserCredentials
 import com.example.trempelapp.domain_layer.LogInUseCaseImpl
 import com.example.trempelapp.domain_layer.WriteTokenUseCaseImpl
@@ -17,13 +16,10 @@ import javax.inject.Inject
 
 private const val TAG = "TrempelLogInViewModel"
 
-class TrempelLogInViewModel : BaseViewModel() {
-
-    @Inject
-    lateinit var logInUseCase: LogInUseCaseImpl
-
-    @Inject
-    lateinit var writeTokenUseCase: WriteTokenUseCaseImpl
+class TrempelLogInViewModel @Inject constructor(
+    private val logInUseCase: LogInUseCaseImpl,
+    private val writeTokenUseCase: WriteTokenUseCaseImpl,
+) : BaseViewModel() {
 
     val errorLoginEditLiveData = SingleLiveEvent<String>()
     val errorPasswordEditLiveData = SingleLiveEvent<String>()
@@ -33,10 +29,6 @@ class TrempelLogInViewModel : BaseViewModel() {
     val tokenLiveData: SingleLiveEvent<String>
         get() = _tokenLiveData
     private val _tokenLiveData = SingleLiveEvent<String>()
-
-    override fun injectDagger(application: TrempelApplication) {
-        application.trempelApp.inject(this)
-    }
 
     private fun logInUser(login: String, password: String) {
         logInUseCase

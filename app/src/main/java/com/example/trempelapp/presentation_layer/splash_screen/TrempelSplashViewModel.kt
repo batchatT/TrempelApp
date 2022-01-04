@@ -1,7 +1,6 @@
 package com.example.trempelapp.presentation_layer.splash_screen
 
 import com.example.trempelapp.BaseViewModel
-import com.example.trempelapp.TrempelApplication
 import com.example.trempelapp.domain_layer.LoginStatusUseCaseImpl
 import com.example.trempelapp.domain_layer.execute
 import com.example.trempelapp.utils.SingleLiveEvent
@@ -12,18 +11,13 @@ import javax.inject.Inject
 
 private const val SPLASH_SCREEN_TIMER = 2L
 
-class TrempelSplashViewModel : BaseViewModel() {
-
-    @Inject
-    lateinit var userLoginStatusUseCase: LoginStatusUseCaseImpl
+class TrempelSplashViewModel @Inject constructor(
+    private val userLoginStatusUseCase: LoginStatusUseCaseImpl,
+) : BaseViewModel() {
 
     val isLoggedInLiveData: SingleLiveEvent<Boolean>
         get() = _isLoggedInLiveData
     private var _isLoggedInLiveData = SingleLiveEvent<Boolean>()
-
-    override fun injectDagger(application: TrempelApplication) {
-        application.trempelApp.inject(this)
-    }
 
     fun checkUserStatus() {
         userLoginStatusUseCase

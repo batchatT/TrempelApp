@@ -13,8 +13,6 @@ abstract class BaseViewModel : ViewModel() {
         errorLiveData.value = "Something went wrong"
     }
 
-    abstract fun injectDagger(application: TrempelApplication)
-
     override fun onCleared() {
         compositeDisposable.clear()
         super.onCleared()

@@ -2,6 +2,12 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.trempelapp.presentation_layer.mainScreen.main_fragments.HomePageViewModel" />
+    </data>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -91,6 +97,7 @@
                 style="@style/CategoriesButtonStyle"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/categories_button_height"
+                android:onClick="@{() -> viewModel.onCategoriesButtonClick()}"
                 android:text="@string/visit_our_categories"
                 app:layout_constraintBottom_toTopOf="@id/sale_banner_4"
                 app:layout_constraintEnd_toEndOf="parent"
