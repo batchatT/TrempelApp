@@ -2,7 +2,11 @@ package com.example.trempelapp.di
 
 import android.content.Context
 import com.example.trempelapp.presentation_layer.logInScreen.TrempelLoginFragment
-import com.example.trempelapp.presentation_layer.mainScreen.main_fragments.*
+import com.example.trempelapp.presentation_layer.mainScreen.main_fragments.CartPageFragment
+import com.example.trempelapp.presentation_layer.mainScreen.main_fragments.CategoriesPageFragment
+import com.example.trempelapp.presentation_layer.mainScreen.main_fragments.FavouritesPageFragment
+import com.example.trempelapp.presentation_layer.mainScreen.main_fragments.HomePageFragment
+import com.example.trempelapp.presentation_layer.mainScreen.main_fragments.ProfilePageFragment
 import com.example.trempelapp.presentation_layer.splash_screen.TrempelSplashActivity
 import dagger.BindsInstance
 import dagger.Component
