@@ -32,11 +32,6 @@ class TrempelLoginFragment : BaseFragment() {
         FragmentTrempelLoginBinding.inflate(layoutInflater)
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        injectDagger()
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

@@ -26,7 +26,6 @@ class TrempelSplashActivity : BaseActivity() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        injectDagger()
         super.onCreate(savedInstanceState)
         supportActionBar?.hide()
         setContentView(binding.root)

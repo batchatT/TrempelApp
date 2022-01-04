@@ -29,11 +29,6 @@ class FavouritesPageFragment : BaseFragment() {
         (requireActivity().application as TrempelApplication).trempelApp.inject(this)
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        injectDagger()
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
