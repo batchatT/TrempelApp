@@ -14,18 +14,15 @@ import com.example.trempelapp.presentation_layer.mainScreen.HomeScreenActivity
 class TrempelSplashActivity : BaseActivity() {
 
     private val trempelSplashViewModel by lazy {
-        ViewModelProvider(this, TrempelSplashViewModelFactory())[TrempelSplashViewModel::class.java]
+        ViewModelProvider(this, viewModelProviderFactory)[TrempelSplashViewModel::class.java]
     }
 
     private val binding by lazy {
         SplashActivityBinding.inflate(layoutInflater)
     }
 
-    override fun injectDagger() {
-        trempelSplashViewModel.injectDagger(application as TrempelApplication)
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
+        (application as TrempelApplication).trempelApp.inject(this)
         super.onCreate(savedInstanceState)
         supportActionBar?.hide()
         setContentView(binding.root)

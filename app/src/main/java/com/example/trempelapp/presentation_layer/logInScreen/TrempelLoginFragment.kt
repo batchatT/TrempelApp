@@ -25,15 +25,16 @@ class TrempelLoginFragment : BaseFragment() {
     }
 
     private val trempelLogInViewModel by lazy {
-        ViewModelProvider(this, TrempelLogInViewModelFactory())[TrempelLogInViewModel::class.java]
+        ViewModelProvider(this, viewModelProviderFactory)[TrempelLogInViewModel::class.java]
     }
 
     private val binding by lazy {
         FragmentTrempelLoginBinding.inflate(layoutInflater)
     }
 
-    override fun injectDagger() {
-        trempelLogInViewModel.injectDagger(requireActivity().application as TrempelApplication)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        (requireActivity().application as TrempelApplication).trempelApp.inject(this)
+        super.onCreate(savedInstanceState)
     }
 
     override fun onCreateView(
