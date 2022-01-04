@@ -33,7 +33,7 @@ class TrempelLoginFragment : BaseFragment() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        (requireActivity().application as TrempelApplication).trempelApp.inject(this)
+        injectDagger()
         super.onCreate(savedInstanceState)
     }
 
@@ -70,5 +70,9 @@ class TrempelLoginFragment : BaseFragment() {
         trempelLogInViewModel.editPassWordTextLiveData.observe(viewLifecycleOwner, {
             trempelLogInViewModel.clearPasswordLiveData()
         })
+    }
+
+    override fun injectDagger() {
+        (requireActivity().application as TrempelApplication).trempelApp.inject(this)
     }
 }

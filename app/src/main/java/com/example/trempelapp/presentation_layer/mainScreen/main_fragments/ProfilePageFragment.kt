@@ -10,12 +10,27 @@ import com.example.trempelapp.databinding.FragmentProfilePageBinding
 
 class ProfilePageFragment : BaseFragment() {
 
+    companion object {
+        fun newInstance(): ProfilePageFragment {
+
+            val args = Bundle()
+
+            val profileLoginFragment = ProfilePageFragment()
+            profileLoginFragment.arguments = args
+            return profileLoginFragment
+        }
+    }
+
     private val binding by lazy {
         FragmentProfilePageBinding.inflate(layoutInflater)
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+    override fun injectDagger() {
         (requireActivity().application as TrempelApplication).trempelApp.inject(this)
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        injectDagger()
         super.onCreate(savedInstanceState)
     }
 

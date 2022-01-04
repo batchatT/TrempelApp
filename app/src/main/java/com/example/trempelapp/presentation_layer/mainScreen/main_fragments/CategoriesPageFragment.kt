@@ -11,6 +11,17 @@ import com.example.trempelapp.databinding.FragmentCategoriesPageBinding
 
 class CategoriesPageFragment : BaseFragment() {
 
+    companion object {
+        fun newInstance(): CategoriesPageFragment {
+
+            val args = Bundle()
+
+            val categoriesLoginFragment = CategoriesPageFragment()
+            categoriesLoginFragment.arguments = args
+            return categoriesLoginFragment
+        }
+    }
+
     private val viewModel by lazy {
         ViewModelProvider(this, viewModelProviderFactory)[CategoriesPageViewModel::class.java]
     }
@@ -19,8 +30,12 @@ class CategoriesPageFragment : BaseFragment() {
         FragmentCategoriesPageBinding.inflate(layoutInflater)
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+    override fun injectDagger() {
         (requireActivity().application as TrempelApplication).trempelApp.inject(this)
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        injectDagger()
         super.onCreate(savedInstanceState)
     }
 

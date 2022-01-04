@@ -14,4 +14,6 @@ abstract class BaseFragment : Fragment() {
             (activity as BaseActivity).handleErrors(it)
         }
     }
+
+    protected abstract fun injectDagger()
 }

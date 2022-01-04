@@ -11,6 +11,17 @@ import com.example.trempelapp.databinding.FragmentCartPageBinding
 
 class CartPageFragment : BaseFragment() {
 
+    companion object {
+        fun newInstance(): CartPageFragment {
+
+            val args = Bundle()
+
+            val cartLoginFragment = CartPageFragment()
+            cartLoginFragment.arguments = args
+            return cartLoginFragment
+        }
+    }
+
     private val binding by lazy {
         FragmentCartPageBinding.inflate(layoutInflater)
     }
@@ -19,8 +30,12 @@ class CartPageFragment : BaseFragment() {
         ViewModelProvider(this, viewModelProviderFactory)[CartPageViewModel::class.java]
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+    override fun injectDagger() {
         (requireActivity().application as TrempelApplication).trempelApp.inject(this)
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        injectDagger()
         super.onCreate(savedInstanceState)
     }
 

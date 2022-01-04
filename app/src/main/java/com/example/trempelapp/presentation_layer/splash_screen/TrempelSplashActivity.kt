@@ -13,6 +13,10 @@ import com.example.trempelapp.presentation_layer.mainScreen.HomeScreenActivity
 @SuppressLint("CustomSplashScreen")
 class TrempelSplashActivity : BaseActivity() {
 
+    override fun injectDagger() {
+        (application as TrempelApplication).trempelApp.inject(this)
+    }
+
     private val trempelSplashViewModel by lazy {
         ViewModelProvider(this, viewModelProviderFactory)[TrempelSplashViewModel::class.java]
     }
@@ -22,7 +26,7 @@ class TrempelSplashActivity : BaseActivity() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        (application as TrempelApplication).trempelApp.inject(this)
+        injectDagger()
         super.onCreate(savedInstanceState)
         supportActionBar?.hide()
         setContentView(binding.root)

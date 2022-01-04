@@ -36,4 +36,6 @@ abstract class BaseActivity : AppCompatActivity() {
             .addToBackStack(tag)
             .commit()
     }
+
+    protected open fun injectDagger() {}
 }

@@ -13,6 +13,17 @@ import com.example.trempelapp.databinding.FragmentHomePageBinding
 
 class HomePageFragment : BaseFragment() {
 
+    companion object {
+        fun newInstance(): HomePageFragment {
+
+            val args = Bundle()
+
+            val homeLoginFragment = HomePageFragment()
+            homeLoginFragment.arguments = args
+            return homeLoginFragment
+        }
+    }
+
     private val binding by lazy {
         FragmentHomePageBinding.inflate(layoutInflater)
     }
@@ -21,8 +32,12 @@ class HomePageFragment : BaseFragment() {
         ViewModelProvider(this, viewModelProviderFactory)[HomePageViewModel::class.java]
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+    override fun injectDagger() {
         (requireActivity().application as TrempelApplication).trempelApp.inject(this)
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        injectDagger()
         super.onCreate(savedInstanceState)
     }
 
