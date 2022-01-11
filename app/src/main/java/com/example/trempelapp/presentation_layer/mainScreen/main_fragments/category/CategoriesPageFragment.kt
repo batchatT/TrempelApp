@@ -61,7 +61,9 @@ class CategoriesPageFragment : BaseFragment() {
     private fun setUpObservers() {
         viewModel.onCategoryClickedLiveData.observe(this, {
             val bundle = Bundle()
-            bundle.putString(CATEGORY_TO_PRODUCT_KEY, viewModel.categoryTitleLiveData.value)
+            viewModel.categoryTitleLiveData.value?.let {
+                bundle.putString(CATEGORY_TO_PRODUCT_KEY, getString(it))
+            }
             findNavController().navigate(R.id.action_categoriesPage_to_productListFragment, bundle)
         })
 

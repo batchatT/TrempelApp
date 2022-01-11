@@ -3,6 +3,7 @@ package com.example.trempelapp.utils
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
+import androidx.annotation.StringRes
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 import com.example.trempelapp.R
@@ -39,4 +40,9 @@ fun setPrice(view: TextView, price: Float?) {
 @BindingAdapter("setFirstUpperCase")
 fun setFirstUpperCase(view: TextView, title: String) {
     title.replaceFirstChar { it.uppercaseChar() }
+}
+
+@BindingAdapter("titleResId")
+fun setTitleResId(view: TextView, @StringRes title: Int) {
+    view.setText(title)
 }

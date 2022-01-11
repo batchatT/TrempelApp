@@ -1,6 +1,11 @@
 package com.example.trempelapp.domain_layer
 
 import com.example.trempelapp.data_layer.ProductRepository
+import com.example.trempelapp.utils.CATEGORY_ALL
+import com.example.trempelapp.utils.CATEGORY_ELECTRONICS
+import com.example.trempelapp.utils.CATEGORY_JEWELERY
+import com.example.trempelapp.utils.CATEGORY_MENS
+import com.example.trempelapp.utils.CATEGORY_WOMENS
 import io.reactivex.Single
 import javax.inject.Inject
 
@@ -11,7 +16,8 @@ class FindCategoriesUseCaseImpl @Inject constructor(
     override fun execute(params: Nothing?): Single<List<Category>> {
         return repository.fetchAllCategories()
             .map { categories ->
-                categories.mapNotNull { it.toCategory() }
+                categories
+                    .mapNotNull { it.toCategory() }
                     .plus(Category.ALL)
                     .sorted()
             }
@@ -19,11 +25,11 @@ class FindCategoriesUseCaseImpl @Inject constructor(
 
     private fun String.toCategory(): Category? {
         return when (this) {
-            Category.ALL.title -> Category.ALL
-            Category.MENS_CLOTHING.title -> Category.MENS_CLOTHING
-            Category.WOMENS_CLOTHING.title -> Category.WOMENS_CLOTHING
-            Category.ELECTRONICS.title -> Category.ELECTRONICS
-            Category.JEWELERY.title -> Category.JEWELERY
+            CATEGORY_ALL -> Category.ALL
+            CATEGORY_MENS -> Category.MENS_CLOTHING
+            CATEGORY_WOMENS -> Category.WOMENS_CLOTHING
+            CATEGORY_ELECTRONICS -> Category.ELECTRONICS
+            CATEGORY_JEWELERY -> Category.JEWELERY
             else -> null
         }
     }

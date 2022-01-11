@@ -22,9 +22,9 @@ class CategoriesPageViewModel @Inject constructor(
         get() = _onCategoryClickedLiveData
     private val _onCategoryClickedLiveData = SingleLiveEvent<Boolean>()
 
-    val categoryTitleLiveData: SingleLiveEvent<String>
+    val categoryTitleLiveData: SingleLiveEvent<Int>
         get() = _categoryTitleLiveData
-    private val _categoryTitleLiveData = SingleLiveEvent<String>()
+    private val _categoryTitleLiveData = SingleLiveEvent<Int>()
 
     init {
         findCategories.execute()
@@ -49,7 +49,7 @@ class CategoriesPageViewModel @Inject constructor(
         CategoriesRecyclerAdapter().apply {
             setOnCategoryListener(object : CategoriesRecyclerAdapter.OnCategoryListener {
                 override fun onCategoryListener(category: Category) {
-                    _categoryTitleLiveData.value = category.title
+                    _categoryTitleLiveData.value = category.stringId
                     _onCategoryClickedLiveData.value = true
                 }
             })

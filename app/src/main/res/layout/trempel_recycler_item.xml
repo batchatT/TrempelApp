@@ -42,7 +42,7 @@
             android:layout_marginTop="@dimen/margin8"
             android:layout_marginBottom="@dimen/margin8"
             android:gravity="center"
-            android:text="@{category.title}"
+            app:titleResId="@{category.stringId}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
