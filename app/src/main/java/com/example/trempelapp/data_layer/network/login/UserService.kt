@@ -6,7 +6,6 @@ import retrofit2.http.FormUrlEncoded
 import retrofit2.http.POST
 
 interface UserService {
-
     @POST("/auth/login")
     @FormUrlEncoded
     fun loginUser(@Field("username") login: String, @Field("password") password: String): Single<LoginResponse>

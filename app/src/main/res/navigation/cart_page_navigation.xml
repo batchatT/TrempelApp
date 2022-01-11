@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cart_page_navigation"
+    app:startDestination="@id/cartPageFragment">
+
+    <fragment
+        android:id="@+id/cartPageFragment"
+        android:name="com.example.trempelapp.presentation_layer.mainScreen.main_fragments.CartPageFragment"
+        android:label="CartPageFragment" />
+</navigation>

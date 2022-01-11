@@ -7,10 +7,19 @@ import com.example.trempelapp.presentation_layer.ViewModelProviderFactory
 import com.example.trempelapp.utils.ERROR_DIALOG_KEY
 import javax.inject.Inject
 
-abstract class BaseActivity : AppCompatActivity() {
+abstract class BaseActivity : AppCompatActivity(), AppBarHandler {
 
     @Inject
     lateinit var viewModelProviderFactory: ViewModelProviderFactory
+
+    override fun changeTitle(title: String) {
+    }
+
+    override fun hideAppBar() {
+    }
+
+    override fun showAppBar() {
+    }
 
     internal fun handleErrors(it: String) {
         val dialog = ErrorDialog()

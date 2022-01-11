@@ -3,6 +3,7 @@ package com.example.trempelapp.di
 import com.example.trempelapp.data_layer.ProductRepository
 import com.example.trempelapp.data_layer.ProductRepositoryImpl
 import com.example.trempelapp.data_layer.network.Retrofit
+import com.example.trempelapp.data_layer.network.category.CategoryService
 import com.example.trempelapp.data_layer.network.product.ProductService
 import dagger.Module
 import dagger.Provides
@@ -16,7 +17,12 @@ class ProductModule {
     }
 
     @Provides
-    fun provideRetrofit(retrofit: Retrofit): ProductService {
+    fun provideProductRetrofit(retrofit: Retrofit): ProductService {
         return retrofit.provideService(ProductService::class.java)
+    }
+
+    @Provides
+    fun provideCategoriesRetrofit(retrofit: Retrofit): CategoryService {
+        return retrofit.provideService(CategoryService::class.java)
     }
 }
