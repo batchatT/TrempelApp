@@ -16,10 +16,11 @@
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
-                style="@style/toolBarStyle"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:paddingStart="16dp"
+                android:background="@color/white"
+                app:titleTextAppearance="@style/toolBarStyle"
                 tools:ignore="RtlSymmetry" />
 
         </com.google.android.material.appbar.AppBarLayout>
