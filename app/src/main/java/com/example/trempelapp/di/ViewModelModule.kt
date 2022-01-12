@@ -5,10 +5,11 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.trempelapp.presentation_layer.ViewModelProviderFactory
 import com.example.trempelapp.presentation_layer.logInScreen.TrempelLogInViewModel
 import com.example.trempelapp.presentation_layer.mainScreen.main_fragments.CartPageViewModel
-import com.example.trempelapp.presentation_layer.mainScreen.main_fragments.CategoriesPageViewModel
 import com.example.trempelapp.presentation_layer.mainScreen.main_fragments.FavouritesPageViewModel
 import com.example.trempelapp.presentation_layer.mainScreen.main_fragments.HomePageViewModel
 import com.example.trempelapp.presentation_layer.mainScreen.main_fragments.ProfilePageViewModel
+import com.example.trempelapp.presentation_layer.mainScreen.main_fragments.category.CategoriesPageViewModel
+import com.example.trempelapp.presentation_layer.mainScreen.main_fragments.product.ProductListViewModel
 import com.example.trempelapp.presentation_layer.splash_screen.TrempelSplashViewModel
 import dagger.Binds
 import dagger.Module
@@ -54,4 +55,9 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(TrempelSplashViewModel::class)
     abstract fun splashViewModel(viewModel: TrempelSplashViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(ProductListViewModel::class)
+    abstract fun productListViewModel(viewModel: ProductListViewModel): ViewModel
 }

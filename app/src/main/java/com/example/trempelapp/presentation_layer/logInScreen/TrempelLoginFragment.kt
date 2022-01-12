@@ -37,6 +37,7 @@ class TrempelLoginFragment : BaseFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        super.onCreateView(inflater, container, savedInstanceState)
         setUpBinding()
         setUpObserves()
         return binding.root

@@ -24,6 +24,10 @@ class HomePageFragment : BaseFragment() {
         }
     }
 
+    override fun configureAppBar() {
+        hideAppBar()
+    }
+
     private val binding by lazy {
         FragmentHomePageBinding.inflate(layoutInflater)
     }
@@ -41,12 +45,11 @@ class HomePageFragment : BaseFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        super.onCreateView(inflater, container, savedInstanceState)
         setUpBinding()
-
         viewModel.moveToCategoriesLiveData.observe(this, {
             findNavController().navigate(R.id.action_homePage_to_categoriesPage)
         })
-
         return binding.root
     }
 

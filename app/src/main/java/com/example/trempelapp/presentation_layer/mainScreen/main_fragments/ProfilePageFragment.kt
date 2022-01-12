@@ -34,6 +34,7 @@ class ProfilePageFragment : BaseFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        super.onCreateView(inflater, container, savedInstanceState)
         return binding.root
     }
 }
