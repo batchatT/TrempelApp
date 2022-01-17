@@ -13,7 +13,6 @@ import com.example.trempelapp.databinding.FragmentProductListBinding
 import com.example.trempelapp.utils.CATEGORY_TO_PRODUCT_KEY
 import com.example.trempelapp.utils.PRODUCT_TO_DETAILS_KEY
 
-
 class ProductListFragment : BaseFragment() {
 
     companion object {
@@ -83,7 +82,7 @@ class ProductListFragment : BaseFragment() {
         viewModel.productListLiveData.observe(this, {
             viewModel.adapter.updateItems(it)
         })
-        
+
         viewModel.onProductClickedLiveData.observe(this) {
             val bundle = Bundle()
             bundle.putParcelable(PRODUCT_TO_DETAILS_KEY, viewModel.productItem)

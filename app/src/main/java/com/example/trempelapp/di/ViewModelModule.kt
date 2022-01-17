@@ -4,13 +4,13 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.trempelapp.presentation_layer.ViewModelProviderFactory
 import com.example.trempelapp.presentation_layer.logInScreen.TrempelLogInViewModel
-import com.example.trempelapp.presentation_layer.mainScreen.main_fragments.pdp.ProductDetailsPageViewModel
 import com.example.trempelapp.presentation_layer.mainScreen.main_fragments.cart.CartPageViewModel
+import com.example.trempelapp.presentation_layer.mainScreen.main_fragments.category.CategoriesPageViewModel
 import com.example.trempelapp.presentation_layer.mainScreen.main_fragments.favourites.FavouritesPageViewModel
 import com.example.trempelapp.presentation_layer.mainScreen.main_fragments.home.HomePageViewModel
-import com.example.trempelapp.presentation_layer.mainScreen.main_fragments.profile.ProfilePageViewModel
-import com.example.trempelapp.presentation_layer.mainScreen.main_fragments.category.CategoriesPageViewModel
+import com.example.trempelapp.presentation_layer.mainScreen.main_fragments.pdp.ProductDetailsPageViewModel
 import com.example.trempelapp.presentation_layer.mainScreen.main_fragments.product.ProductListViewModel
+import com.example.trempelapp.presentation_layer.mainScreen.main_fragments.profile.ProfilePageViewModel
 import com.example.trempelapp.presentation_layer.splash_screen.TrempelSplashViewModel
 import dagger.Binds
 import dagger.Module

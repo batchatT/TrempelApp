@@ -2,7 +2,6 @@ package com.example.trempelapp.di
 
 import android.content.Context
 import com.example.trempelapp.presentation_layer.logInScreen.TrempelLoginFragment
-import com.example.trempelapp.presentation_layer.mainScreen.main_fragments.*
 import com.example.trempelapp.presentation_layer.mainScreen.main_fragments.cart.CartPageFragment
 import com.example.trempelapp.presentation_layer.mainScreen.main_fragments.category.CategoriesPageFragment
 import com.example.trempelapp.presentation_layer.mainScreen.main_fragments.favourites.FavouritesPageFragment

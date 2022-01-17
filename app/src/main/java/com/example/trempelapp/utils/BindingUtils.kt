@@ -1,17 +1,12 @@
 package com.example.trempelapp.utils
 
-import android.text.method.MovementMethod
 import android.text.method.ScrollingMovementMethod
 import android.util.Log
-import android.view.MotionEvent
-import android.view.View
 import android.widget.ImageView
 import android.widget.ProgressBar
-import android.widget.ScrollView
 import android.widget.TextView
 import androidx.annotation.StringRes
 import androidx.databinding.BindingAdapter
-import com.bumptech.glide.Glide
 import com.example.trempelapp.R
 import com.google.android.material.textfield.TextInputLayout
 import com.squareup.picasso.Picasso
@@ -70,7 +65,7 @@ fun setTitleResId(view: TextView, @StringRes title: Int) {
 
 @BindingAdapter("scrollable")
 fun setScrollable(view: TextView, scrollable: Boolean) {
-   if(scrollable) {
-       view.movementMethod = ScrollingMovementMethod()
-   }
+    if (scrollable) {
+        view.movementMethod = ScrollingMovementMethod()
+    }
 }

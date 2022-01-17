@@ -17,7 +17,7 @@ class ProductListViewModel @Inject constructor(
     private val _productListLiveData = SingleLiveEvent<List<Product>>()
 
     val onProductClickedLiveData: SingleLiveEvent<Boolean>
-    get() = _onProductClickedLiveData
+        get() = _onProductClickedLiveData
     private val _onProductClickedLiveData = SingleLiveEvent<Boolean>()
 
     fun fetchProductsByCategory(categoryTitle: String) {

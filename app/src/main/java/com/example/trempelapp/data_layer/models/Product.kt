@@ -29,4 +29,4 @@ data class Rating(
     @SerializedName("count")
     val commentsCount: Int
 
-): Parcelable
+) : Parcelable

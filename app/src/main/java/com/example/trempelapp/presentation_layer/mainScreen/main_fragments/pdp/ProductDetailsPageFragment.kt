@@ -47,11 +47,12 @@ class ProductDetailsPageFragment : BaseFragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         super.onCreateView(inflater, container, savedInstanceState)
-setUpBinding()
+        setUpBinding()
         return binding.root
     }
 
