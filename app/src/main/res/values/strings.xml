@@ -15,4 +15,6 @@
     <string name="jewelery">jewelery</string>
     <string name="price">$%.2f</string>
     <string name="categories">Categories</string>
+    <string name="add_to_cart">Add to Cart</string>
+    <string name="reviews_count">(%d reviews)</string>
 </resources>

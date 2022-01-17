@@ -3,9 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <variable
             name="viewModel"
-            type="com.example.trempelapp.presentation_layer.mainScreen.main_fragments.HomePageViewModel" />
+            type="com.example.trempelapp.presentation_layer.mainScreen.main_fragments.home.HomePageViewModel" />
     </data>
 
     <ScrollView

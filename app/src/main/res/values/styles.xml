@@ -77,4 +77,49 @@
         <item name="fontFamily">@font/montserrat_regular</item>
     </style>
 
+    <style name="descriptionText">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">16sp</item>
+        <item name="fontFamily">@font/montserrat_regular</item>
+        <item name="android:lineSpacingExtra">@dimen/line_spacing_extra_8</item>
+    </style>
+
+    <style name="reviewText">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">16sp</item>
+        <item name="fontFamily">@font/montserrat_light</item>
+    </style>
+
+    <style name="priceText">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">24sp</item>
+        <item name="fontFamily">@font/montserrat_light</item>
+    </style>
+
+    <style name="ratingText">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">16sp</item>
+        <item name="fontFamily">@font/montserrat_medium</item>
+    </style>
+
+    <style name="productTitleText">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">18sp</item>
+        <item name="fontFamily">@font/montserrat_regular</item>
+    </style>
+
+    <style name="addToCartButtonStyle">
+        <item name="android:background">@drawable/ic_add_to_cart_button</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">18sp</item>
+        <item name="textAllCaps">false</item>
+        <item name="fontFamily">@font/montserrat_regular</item>
+    </style>
+
+    <style name="customRatingBar" parent="android:style/Widget.Material.RatingBar.Indicator">
+        <item name="colorControlNormal">@color/gray</item>
+        <item name="colorControlActivated">@color/Gold</item>
+    </style>
+
+
 </resources>

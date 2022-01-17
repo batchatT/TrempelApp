@@ -1,28 +1,33 @@
-package com.example.trempelapp.presentation_layer.mainScreen.main_fragments
+package com.example.trempelapp.presentation_layer.mainScreen.main_fragments.cart
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
 import com.example.trempelapp.BaseFragment
 import com.example.trempelapp.TrempelApplication
-import com.example.trempelapp.databinding.FragmentFavouritesPageBinding
+import com.example.trempelapp.databinding.FragmentCartPageBinding
 
-class FavouritesPageFragment : BaseFragment() {
+class CartPageFragment : BaseFragment() {
 
     companion object {
-        fun newInstance(): FavouritesPageFragment {
+        fun newInstance(): CartPageFragment {
 
             val args = Bundle()
 
-            val favouritesLoginFragment = FavouritesPageFragment()
-            favouritesLoginFragment.arguments = args
-            return favouritesLoginFragment
+            val cartLoginFragment = CartPageFragment()
+            cartLoginFragment.arguments = args
+            return cartLoginFragment
         }
     }
 
     private val binding by lazy {
-        FragmentFavouritesPageBinding.inflate(layoutInflater)
+        FragmentCartPageBinding.inflate(layoutInflater)
+    }
+
+    private val viewModel by lazy {
+        ViewModelProvider(this, viewModelProviderFactory)[CartPageViewModel::class.java]
     }
 
     override fun injectDagger() {

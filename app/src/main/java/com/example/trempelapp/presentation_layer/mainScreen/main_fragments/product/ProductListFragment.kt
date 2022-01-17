@@ -5,10 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.example.trempelapp.BaseFragment
+import com.example.trempelapp.R
 import com.example.trempelapp.TrempelApplication
 import com.example.trempelapp.databinding.FragmentProductListBinding
 import com.example.trempelapp.utils.CATEGORY_TO_PRODUCT_KEY
+import com.example.trempelapp.utils.PRODUCT_TO_DETAILS_KEY
+
 
 class ProductListFragment : BaseFragment() {
 
@@ -79,5 +83,14 @@ class ProductListFragment : BaseFragment() {
         viewModel.productListLiveData.observe(this, {
             viewModel.adapter.updateItems(it)
         })
+        
+        viewModel.onProductClickedLiveData.observe(this) {
+            val bundle = Bundle()
+            bundle.putParcelable(PRODUCT_TO_DETAILS_KEY, viewModel.productItem)
+            findNavController().navigate(
+                R.id.action_productListFragment_to_productDetailsPageFragment,
+                bundle
+            )
+        }
     }
 }

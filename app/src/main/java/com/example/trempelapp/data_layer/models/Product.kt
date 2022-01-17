@@ -18,4 +18,15 @@ data class Product(
     val category: String,
     @SerializedName("image")
     val imageURL: String,
+    @SerializedName("rating")
+    val rating: Rating
 ) : Parcelable
+
+@Parcelize
+data class Rating(
+    @SerializedName("rate")
+    val rate: Float,
+    @SerializedName("count")
+    val commentsCount: Int
+
+): Parcelable

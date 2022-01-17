@@ -1,6 +1,5 @@
 package com.example.trempelapp.presentation_layer.mainScreen.main_fragments.product
 
-import android.util.Log
 import com.example.trempelapp.BaseViewModel
 import com.example.trempelapp.data_layer.models.Product
 import com.example.trempelapp.domain_layer.FindProductsByCategoryUseCaseImpl
@@ -16,6 +15,10 @@ class ProductListViewModel @Inject constructor(
     val productListLiveData: SingleLiveEvent<List<Product>>
         get() = _productListLiveData
     private val _productListLiveData = SingleLiveEvent<List<Product>>()
+
+    val onProductClickedLiveData: SingleLiveEvent<Boolean>
+    get() = _onProductClickedLiveData
+    private val _onProductClickedLiveData = SingleLiveEvent<Boolean>()
 
     fun fetchProductsByCategory(categoryTitle: String) {
         if (!_productListLiveData.value.isNullOrEmpty()) {
@@ -40,11 +43,14 @@ class ProductListViewModel @Inject constructor(
             .run(compositeDisposable::add)
     }
 
+    lateinit var productItem: Product
+
     val adapter by lazy {
         ProductRecyclerAdapter().apply {
             setOnProductListener(object : ProductRecyclerAdapter.OnProductListener {
                 override fun onCategoryListener(product: Product) {
-                    Log.d("recycler", "item clicked")
+                    productItem = product
+                    _onProductClickedLiveData.value = true
                 }
             })
         }

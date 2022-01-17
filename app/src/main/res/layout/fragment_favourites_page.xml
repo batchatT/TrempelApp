@@ -6,7 +6,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".presentation_layer.mainScreen.main_fragments.FavouritesPageFragment">
+        tools:context=".presentation_layer.mainScreen.main_fragments.favourites.FavouritesPageFragment">
 
         <TextView
             android:layout_width="wrap_content"

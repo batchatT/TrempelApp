@@ -6,6 +6,6 @@
 
     <fragment
         android:id="@+id/profilePageFragment"
-        android:name="com.example.trempelapp.presentation_layer.mainScreen.main_fragments.ProfilePageFragment"
+        android:name="com.example.trempelapp.presentation_layer.mainScreen.main_fragments.profile.ProfilePageFragment"
         android:label="ProfilePageFragment" />
 </navigation>
