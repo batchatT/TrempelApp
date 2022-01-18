@@ -121,5 +121,10 @@
         <item name="colorControlActivated">@color/Gold</item>
     </style>
 
+    <style name="ratingBarStyle" parent="@style/Widget.AppCompat.RatingBar.Small">
+        <item name="android:stepSize">0.1</item>
+        <item name="android:numStars">5</item>
+    </style>
+
 
 </resources>

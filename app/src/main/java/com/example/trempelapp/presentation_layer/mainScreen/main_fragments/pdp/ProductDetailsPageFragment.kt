@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import com.example.trempelapp.BaseFragment
 import com.example.trempelapp.TrempelApplication
+import com.example.trempelapp.data_layer.models.Product
 import com.example.trempelapp.databinding.FragmentProductDetailsPageBinding
 import com.example.trempelapp.utils.PRODUCT_TO_DETAILS_KEY
 
@@ -34,7 +35,9 @@ class ProductDetailsPageFragment : BaseFragment() {
     override fun handleArguments() {
         super.handleArguments()
         arguments?.let {
-            viewModel.product = it.getParcelable(PRODUCT_TO_DETAILS_KEY)!!
+            it.getParcelable<Product>(PRODUCT_TO_DETAILS_KEY)?.let {
+                viewModel.product = it
+            }
         }
     }
 

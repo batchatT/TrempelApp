@@ -1,15 +1,14 @@
 package com.example.trempelapp.utils
 
 import android.text.method.ScrollingMovementMethod
-import android.util.Log
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.annotation.StringRes
 import androidx.databinding.BindingAdapter
+import com.bumptech.glide.Glide
 import com.example.trempelapp.R
 import com.google.android.material.textfield.TextInputLayout
-import com.squareup.picasso.Picasso
 
 @BindingAdapter("errorText")
 fun setError(textInputLayout: TextInputLayout, errorText: String?) {
@@ -28,19 +27,11 @@ fun setVisibility(progressBar: ProgressBar, isVisible: Boolean) {
 private const val TAG = "IMAGE"
 @BindingAdapter("imageUrl")
 fun loadImage(view: ImageView, url: String?) {
-//    Glide
-//        .with(view.context)
-//        .load(url)
-//        .placeholder(R.drawable.ic_splash_activity_image)
-//        .into(view)
-
-    Picasso
+    Glide
         .with(view.context)
         .load(url)
         .placeholder(R.drawable.ic_splash_activity_image)
         .into(view)
-
-    Log.d(TAG, "loadImage: setting image")
 }
 
 @BindingAdapter("setPrice")

@@ -16,9 +16,9 @@ class ProductListViewModel @Inject constructor(
         get() = _productListLiveData
     private val _productListLiveData = SingleLiveEvent<List<Product>>()
 
-    val onProductClickedLiveData: SingleLiveEvent<Boolean>
+    val onProductClickedLiveData: SingleLiveEvent<Void>
         get() = _onProductClickedLiveData
-    private val _onProductClickedLiveData = SingleLiveEvent<Boolean>()
+    private val _onProductClickedLiveData = SingleLiveEvent<Void>()
 
     fun fetchProductsByCategory(categoryTitle: String) {
         if (!_productListLiveData.value.isNullOrEmpty()) {
@@ -50,7 +50,7 @@ class ProductListViewModel @Inject constructor(
             setOnProductListener(object : ProductRecyclerAdapter.OnProductListener {
                 override fun onCategoryListener(product: Product) {
                     productItem = product
-                    _onProductClickedLiveData.value = true
+                    _onProductClickedLiveData.call()
                 }
             })
         }
