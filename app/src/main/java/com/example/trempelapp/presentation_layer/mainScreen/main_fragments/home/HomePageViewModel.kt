@@ -1,4 +1,4 @@
-package com.example.trempelapp.presentation_layer.mainScreen.main_fragments
+package com.example.trempelapp.presentation_layer.mainScreen.main_fragments.home
 
 import com.example.trempelapp.BaseViewModel
 import com.example.trempelapp.domain_layer.FindProductsUseCaseImpl

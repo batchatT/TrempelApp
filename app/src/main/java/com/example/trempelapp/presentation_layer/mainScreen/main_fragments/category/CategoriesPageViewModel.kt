@@ -18,9 +18,9 @@ class CategoriesPageViewModel @Inject constructor(
         get() = _categoryListLiveData
     private val _categoryListLiveData = SingleLiveEvent<List<Category>>()
 
-    val onCategoryClickedLiveData: SingleLiveEvent<Boolean>
+    val onCategoryClickedLiveData: SingleLiveEvent<Void>
         get() = _onCategoryClickedLiveData
-    private val _onCategoryClickedLiveData = SingleLiveEvent<Boolean>()
+    private val _onCategoryClickedLiveData = SingleLiveEvent<Void>()
 
     val categoryTitleLiveData: SingleLiveEvent<Int>
         get() = _categoryTitleLiveData
@@ -50,7 +50,7 @@ class CategoriesPageViewModel @Inject constructor(
             setOnCategoryListener(object : CategoriesRecyclerAdapter.OnCategoryListener {
                 override fun onCategoryListener(category: Category) {
                     _categoryTitleLiveData.value = category.stringId
-                    _onCategoryClickedLiveData.value = true
+                    _onCategoryClickedLiveData.call()
                 }
             })
         }

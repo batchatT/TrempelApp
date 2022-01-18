@@ -1,5 +1,6 @@
 package com.example.trempelapp.utils
 
+import android.text.method.ScrollingMovementMethod
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
@@ -23,6 +24,7 @@ fun setVisibility(progressBar: ProgressBar, isVisible: Boolean) {
     }
 }
 
+private const val TAG = "IMAGE"
 @BindingAdapter("imageUrl")
 fun loadImage(view: ImageView, url: String?) {
     Glide
@@ -37,6 +39,11 @@ fun setPrice(view: TextView, price: Float?) {
     view.text = view.context.getString(R.string.price, price)
 }
 
+@BindingAdapter("setRating")
+fun setRating(view: TextView, rating: Float?) {
+    view.text = rating.toString()
+}
+
 @BindingAdapter("setFirstUpperCase")
 fun setFirstUpperCase(view: TextView, title: String) {
     title.replaceFirstChar { it.uppercaseChar() }
@@ -45,4 +52,11 @@ fun setFirstUpperCase(view: TextView, title: String) {
 @BindingAdapter("titleResId")
 fun setTitleResId(view: TextView, @StringRes title: Int) {
     view.setText(title)
+}
+
+@BindingAdapter("scrollable")
+fun setScrollable(view: TextView, scrollable: Boolean) {
+    if (scrollable) {
+        view.movementMethod = ScrollingMovementMethod()
+    }
 }

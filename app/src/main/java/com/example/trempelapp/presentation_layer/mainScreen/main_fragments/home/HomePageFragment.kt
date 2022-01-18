@@ -1,4 +1,4 @@
-package com.example.trempelapp.presentation_layer.mainScreen.main_fragments
+package com.example.trempelapp.presentation_layer.mainScreen.main_fragments.home
 
 import android.os.Bundle
 import android.view.LayoutInflater

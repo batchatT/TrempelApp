@@ -3,6 +3,7 @@
 
     <dimen name="margin8">8dp</dimen>
     <dimen name="margin9">9dp</dimen>
+    <dimen name="margin12">12dp</dimen>
     <dimen name="margin13">13dp</dimen>
     <dimen name="margin14">14dp</dimen>
     <dimen name="margin16">16dp</dimen>
@@ -15,7 +16,9 @@
     <dimen name="margin40">40dp</dimen>
     <dimen name="margin41">41dp</dimen>
     <dimen name="margin48">48dp</dimen>
+    <dimen name="margin56">56dp</dimen>
     <dimen name="margin72">72dp</dimen>
+    <dimen name="margin76">76dp</dimen>
     <dimen name="margin94">94dp</dimen>
     <dimen name="margin136">136dp</dimen>
 
@@ -33,5 +36,7 @@
     <dimen name="sale_banner_3_height">151dp</dimen>
     <dimen name="sale_banner_2_height">181dp</dimen>
     <dimen name="sale_banner_4_height">252dp</dimen>
+
+    <dimen name="line_spacing_extra_8">8dp</dimen>
 
 </resources>

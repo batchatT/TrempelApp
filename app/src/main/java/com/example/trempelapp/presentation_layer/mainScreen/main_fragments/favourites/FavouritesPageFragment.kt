@@ -1,4 +1,4 @@
-package com.example.trempelapp.presentation_layer.mainScreen.main_fragments
+package com.example.trempelapp.presentation_layer.mainScreen.main_fragments.favourites
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,23 +6,23 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.trempelapp.BaseFragment
 import com.example.trempelapp.TrempelApplication
-import com.example.trempelapp.databinding.FragmentProfilePageBinding
+import com.example.trempelapp.databinding.FragmentFavouritesPageBinding
 
-class ProfilePageFragment : BaseFragment() {
+class FavouritesPageFragment : BaseFragment() {
 
     companion object {
-        fun newInstance(): ProfilePageFragment {
+        fun newInstance(): FavouritesPageFragment {
 
             val args = Bundle()
 
-            val profileLoginFragment = ProfilePageFragment()
-            profileLoginFragment.arguments = args
-            return profileLoginFragment
+            val favouritesLoginFragment = FavouritesPageFragment()
+            favouritesLoginFragment.arguments = args
+            return favouritesLoginFragment
         }
     }
 
     private val binding by lazy {
-        FragmentProfilePageBinding.inflate(layoutInflater)
+        FragmentFavouritesPageBinding.inflate(layoutInflater)
     }
 
     override fun injectDagger() {

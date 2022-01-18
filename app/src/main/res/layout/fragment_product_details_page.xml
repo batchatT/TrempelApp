@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.trempelapp.presentation_layer.mainScreen.main_fragments.pdp.ProductDetailsPageViewModel" />
+    </data>
+
+    <androidx.constraintlayout.motion.widget.MotionLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:animateLayoutChanges="true"
+        app:layoutDescription="@xml/fragment_product_details_page_scene"
+        tools:context=".presentation_layer.mainScreen.main_fragments.pdp.ProductDetailsPageFragment">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/product_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@{null}"
+            app:imageUrl="@{viewModel.product.imageURL}" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/add_to_cart_button"
+            style="@style/addToCartButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin32"
+            android:layout_marginEnd="@dimen/margin32"
+            android:layout_marginBottom="@dimen/margin32"
+            android:text="@string/add_to_cart"
+            app:layout_constraintBottom_toBottomOf="@id/product_view"
+            app:layout_constraintEnd_toEndOf="@id/product_view"
+            app:layout_constraintStart_toStartOf="@id/product_view" />
+
+        <View
+            android:id="@+id/product_view"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/product_details_view" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/price_text"
+            style="@style/priceText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin32"
+            android:layout_marginEnd="@dimen/margin32"
+            app:layout_constraintEnd_toEndOf="@id/product_view"
+            app:layout_constraintTop_toTopOf="@id/product_view"
+            app:setPrice="@{viewModel.product.price}" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/title_text"
+            style="@style/productTitleText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin32"
+            android:layout_marginTop="@dimen/margin32"
+            android:layout_marginEnd="@dimen/margin23"
+            android:text="@{viewModel.product.title}"
+            app:layout_constraintEnd_toStartOf="@id/price_text"
+            app:layout_constraintStart_toStartOf="@id/product_view"
+            app:layout_constraintTop_toTopOf="@id/product_view" />
+
+        <androidx.appcompat.widget.AppCompatRatingBar
+            android:id="@+id/rating_bar"
+            style="@style/ratingBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin32"
+            android:layout_marginTop="@dimen/margin12"
+            android:rating="@{viewModel.product.rating.rate}"
+            android:theme="@style/customRatingBar"
+            app:layout_constraintStart_toStartOf="@id/product_view"
+            app:layout_constraintTop_toBottomOf="@id/title_text" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/rating_text"
+            style="@style/ratingText"
+            setRating="@{viewModel.product.rating.rate}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin8"
+            app:layout_constraintBottom_toBottomOf="@id/rating_bar"
+            app:layout_constraintStart_toEndOf="@id/rating_bar"
+            app:layout_constraintTop_toTopOf="@id/rating_bar" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/review_count"
+            style="@style/reviewText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin8"
+            android:text="@{@string/reviews_count(viewModel.product.rating.commentsCount)}"
+            app:layout_constraintBottom_toBottomOf="@id/rating_text"
+            app:layout_constraintStart_toEndOf="@id/rating_text"
+            app:layout_constraintTop_toTopOf="@id/rating_text" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/description_text_scroll"
+            style="@style/descriptionText"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:isScrollContainer="true"
+            android:scrollbars="none"
+            android:text="@{viewModel.product.description}"
+            app:scrollable="@{true}" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/description_text"
+            style="@style/descriptionText"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/montserrat_regular"
+            android:text="@{viewModel.product.description}" />
+
+
+    </androidx.constraintlayout.motion.widget.MotionLayout>
+</layout>

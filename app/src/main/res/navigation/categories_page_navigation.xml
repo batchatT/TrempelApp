@@ -18,5 +18,14 @@
         android:id="@+id/productListFragment"
         android:name="com.example.trempelapp.presentation_layer.mainScreen.main_fragments.product.ProductListFragment"
         android:label="ProductListFragment"
-        tools:layout="@layout/fragment_product_list"/>
+        tools:layout="@layout/fragment_product_list">
+        <action
+            android:id="@+id/action_productListFragment_to_productDetailsPageFragment"
+            app:destination="@id/productDetailsPageFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/productDetailsPageFragment"
+        android:name="com.example.trempelapp.presentation_layer.mainScreen.main_fragments.pdp.ProductDetailsPageFragment"
+        android:label="ProductDetailsPageFragment"
+        tools:layout="@layout/fragment_product_details_page"/>
 </navigation>

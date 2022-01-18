@@ -6,6 +6,6 @@
 
     <fragment
         android:id="@+id/cartPageFragment"
-        android:name="com.example.trempelapp.presentation_layer.mainScreen.main_fragments.CartPageFragment"
+        android:name="com.example.trempelapp.presentation_layer.mainScreen.main_fragments.cart.CartPageFragment"
         android:label="CartPageFragment" />
 </navigation>
