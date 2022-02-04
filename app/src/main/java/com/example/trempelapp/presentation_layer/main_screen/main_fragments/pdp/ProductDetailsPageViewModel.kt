@@ -3,7 +3,11 @@ package com.example.trempelapp.presentation_layer.main_screen.main_fragments.pdp
 import com.example.trempelapp.BaseViewModel
 import com.example.trempelapp.data_layer.in_memory.data_bases.recently_products_data_base.RecentlyProduct
 import com.example.trempelapp.data_layer.models.Product
-import com.example.trempelapp.domain_layer.*
+import com.example.trempelapp.domain_layer.FindProductByIdUseCaseImpl
+import com.example.trempelapp.domain_layer.GetAllRecentlyProductsUseCaseImpl
+import com.example.trempelapp.domain_layer.InsertFavouriteUseCaseImpl
+import com.example.trempelapp.domain_layer.InsertRecentlyProductUseCaseImpl
+import com.example.trempelapp.domain_layer.DeleteFavouriteFromPDPUseCaseImpl
 import com.example.trempelapp.utils.SingleLiveEvent
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
