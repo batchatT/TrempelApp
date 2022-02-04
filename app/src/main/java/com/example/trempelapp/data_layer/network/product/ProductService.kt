@@ -11,4 +11,7 @@ interface ProductService {
 
     @GET("/products/category/{categoryTitle}")
     fun fetchProductsByCategory(@Path("categoryTitle") category: String): Single<List<Product>>
+
+    @GET("/products/{id}")
+    fun fetchProductsById(@Path("id") id: Int): Single<Product>
 }

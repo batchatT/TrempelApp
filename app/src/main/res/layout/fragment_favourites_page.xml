@@ -3,19 +3,41 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.trempelapp.presentation_layer.main_screen.main_fragments.favourites.FavouritesPageViewModel" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraint_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".presentation_layer.mainScreen.main_fragments.favourites.FavouritesPageFragment">
+        tools:context=".presentation_layer.main_screen.main_fragments.favourites.FavouritesPageFragment">
 
-        <TextView
-            android:layout_width="wrap_content"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/favourites_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:adapter="@{viewModel.adapter}"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toTopOf="@id/add_to_cart_button"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/add_to_cart_button"
+            style="@style/addToCartButtonStyle"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Favourites"
+            android:layout_marginStart="@dimen/margin24"
+            android:layout_marginEnd="@dimen/margin24"
+            android:layout_marginBottom="@dimen/margin24"
+            android:text="@string/add_to_cart"
+            app:setEnabled="@{viewModel.isAddToCartButtonEnabled}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

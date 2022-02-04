@@ -6,7 +6,7 @@
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".presentation_layer.mainScreen.main_fragments.profile.ProfilePageFragment">
+        tools:context=".presentation_layer.main_screen.main_fragments.profile.ProfilePageFragment">
 
         <TextView
             android:layout_width="match_parent"

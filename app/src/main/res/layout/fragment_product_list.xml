@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.example.trempelapp.presentation_layer.mainScreen.main_fragments.product.ProductListViewModel" />
+            type="com.example.trempelapp.presentation_layer.main_screen.main_fragments.product.ProductListViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

@@ -6,6 +6,6 @@
 
     <fragment
         android:id="@+id/favouritesPageFragment"
-        android:name="com.example.trempelapp.presentation_layer.mainScreen.main_fragments.favourites.FavouritesPageFragment"
+        android:name="com.example.trempelapp.presentation_layer.main_screen.main_fragments.favourites.FavouritesPageFragment"
         android:label="FavouritesPageFragment" />
 </navigation>

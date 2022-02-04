@@ -1,6 +1,6 @@
 package com.example.trempelapp.domain_layer
 
-import com.example.trempelapp.data_layer.UserInfoRepository
+import com.example.trempelapp.data_layer.repositories.UserInfoRepository
 import io.reactivex.Single
 import javax.inject.Inject
 

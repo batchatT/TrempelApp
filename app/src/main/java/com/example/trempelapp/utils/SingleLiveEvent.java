@@ -27,6 +27,14 @@ public class SingleLiveEvent<T> extends androidx.lifecycle.MutableLiveData<T> {
 
     private final AtomicBoolean mPending = new AtomicBoolean(false);
 
+    public SingleLiveEvent(T value) {
+        super(value);
+    }
+
+    public SingleLiveEvent() {
+        super();
+    }
+
     @MainThread
     public void observe(@NonNull LifecycleOwner owner, @NonNull final Observer<? super T> observer) {
 

@@ -1,6 +1,6 @@
 package com.example.trempelapp.domain_layer
 
-import com.example.trempelapp.data_layer.ProductRepository
+import com.example.trempelapp.data_layer.repositories.ProductRepository
 import com.example.trempelapp.utils.CATEGORY_ALL
 import com.example.trempelapp.utils.CATEGORY_ELECTRONICS
 import com.example.trempelapp.utils.CATEGORY_JEWELERY

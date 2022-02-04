@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="favourite"
+            type="com.example.trempelapp.presentation_layer.main_screen.main_fragments.favourites.FavouriteRecyclerItem" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_128"
+        android:layout_marginTop="@dimen/margin20">
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/margin26"
+            android:layout_marginTop="@dimen/margin20"
+            android:layout_marginEnd="@dimen/margin26"
+            android:background="@drawable/favourite_item_background" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/image"
+            android:layout_width="@dimen/width_62"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/margin16"
+            android:layout_marginTop="@dimen/margin14"
+            android:layout_marginBottom="@dimen/margin14"
+            app:imageUrl="@{favourite.favouriteDB.imageURL}"
+            app:layout_constraintBottom_toBottomOf="@id/view"
+            app:layout_constraintEnd_toStartOf="@id/title"
+            app:layout_constraintStart_toStartOf="@id/view"
+            app:layout_constraintTop_toTopOf="@id/view"
+            tools:src="@drawable/womens_clothing" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/title"
+            style="@style/favouriteTitleStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin16"
+            android:layout_marginTop="@dimen/margin16"
+            android:layout_marginEnd="@dimen/margin18"
+            android:text="@{favourite.favouriteDB.title}"
+            app:layout_constraintBottom_toTopOf="@id/price"
+            app:layout_constraintEnd_toEndOf="@id/view"
+            app:layout_constraintHorizontal_chainStyle="spread"
+            app:layout_constraintStart_toEndOf="@id/image"
+            app:layout_constraintTop_toTopOf="@id/view"
+            tools:text="Mens Casual Slim Fit" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/price"
+            style="@style/favouritePriceStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin16"
+            android:layout_marginEnd="@dimen/margin18"
+            app:layout_constraintEnd_toEndOf="@id/view"
+            app:layout_constraintStart_toEndOf="@id/image"
+            app:layout_constraintTop_toBottomOf="@id/title"
+            app:setPrice="@{favourite.favouriteDB.price}" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/increase_counter"
+            android:layout_width="@dimen/width_24"
+            android:layout_height="@dimen/height_24"
+            android:layout_marginStart="@dimen/margin19"
+            android:layout_marginEnd="@dimen/margin13"
+            android:layout_marginBottom="@dimen/margin13"
+            android:background="@drawable/ic_increase_counter"
+            android:enabled="@{favourite.isIncreasableLiveData()}"
+            android:onClick="@{() -> favourite.increaseQuantity()}"
+            app:layout_constraintBottom_toBottomOf="@id/view"
+            app:layout_constraintEnd_toEndOf="@id/view" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/decrease_counter"
+            android:layout_width="@dimen/width_24"
+            android:layout_height="@dimen/height_24"
+            android:layout_marginEnd="@dimen/margin14"
+            android:layout_marginBottom="@dimen/margin13"
+            android:background="@drawable/ic_decrease_counter"
+            android:enabled="@{favourite.isDecreasableLiveData()}"
+            android:onClick="@{() -> favourite.decreaseQuantity()}"
+            app:layout_constraintBottom_toBottomOf="@id/view"
+            app:layout_constraintEnd_toStartOf="@id/counter_text" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/counter_text"
+            style="@style/counterTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/margin13"
+            android:layout_marginBottom="@dimen/margin13"
+            android:inputType="numberDecimal"
+            android:text="@={favourite.quantityLiveData}"
+            app:layout_constraintBottom_toBottomOf="@id/view"
+            app:layout_constraintEnd_toStartOf="@id/increase_counter"
+            tools:text="1" />
+
+        <androidx.appcompat.widget.AppCompatCheckBox
+            android:layout_width="@dimen/width_24"
+            android:layout_height="@dimen/height_24"
+            android:button="@drawable/ic_add_to_cart_checkbox"
+            android:onClick="@{() -> favourite.onAddToCartClick()}"
+            app:layout_constraintBottom_toTopOf="@id/view"
+            app:layout_constraintEnd_toEndOf="@id/view"
+            app:layout_constraintStart_toEndOf="@id/view"
+            app:layout_constraintTop_toTopOf="@id/view" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

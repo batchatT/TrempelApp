@@ -6,14 +6,14 @@
     <data>
         <variable
             name="viewModel"
-            type="com.example.trempelapp.presentation_layer.logInScreen.TrempelLogInViewModel" />
+            type="com.example.trempelapp.presentation_layer.logIn_screen.TrempelLogInViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/black"
-        tools:context=".presentation_layer.logInScreen.TrempelLogInActivity">
+        tools:context=".presentation_layer.logIn_screen.TrempelLogInActivity">
 
         <ImageView
             android:id="@+id/log_in_image"

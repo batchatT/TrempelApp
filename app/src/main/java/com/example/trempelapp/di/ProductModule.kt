@@ -1,10 +1,10 @@
 package com.example.trempelapp.di
 
-import com.example.trempelapp.data_layer.ProductRepository
-import com.example.trempelapp.data_layer.ProductRepositoryImpl
 import com.example.trempelapp.data_layer.network.Retrofit
 import com.example.trempelapp.data_layer.network.category.CategoryService
 import com.example.trempelapp.data_layer.network.product.ProductService
+import com.example.trempelapp.data_layer.repositories.ProductRepository
+import com.example.trempelapp.data_layer.repositories.ProductRepositoryImpl
 import dagger.Module
 import dagger.Provides
 

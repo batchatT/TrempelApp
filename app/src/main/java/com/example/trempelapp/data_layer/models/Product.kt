@@ -14,12 +14,11 @@ data class Product(
     val price: Float,
     @SerializedName("description")
     val description: String,
-    @SerializedName("category")
-    val category: String,
     @SerializedName("image")
     val imageURL: String,
     @SerializedName("rating")
-    val rating: Rating
+    val rating: Rating,
+    val isFavourite: Boolean = false
 ) : Parcelable
 
 @Parcelize
