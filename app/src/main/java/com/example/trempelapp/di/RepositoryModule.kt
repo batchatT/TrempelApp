@@ -1,15 +1,14 @@
 package com.example.trempelapp.di
-
 import com.example.trempelapp.data_layer.in_memory.shared_preferences.SharedPreferencesManager
 import com.example.trempelapp.data_layer.in_memory.shared_preferences.SharedPreferencesManagerImpl
-import com.example.trempelapp.data_layer.repositories.AuthRepositoryImpl
-import com.example.trempelapp.data_layer.repositories.RecentlyProductsRepositoryImpl
-import com.example.trempelapp.data_layer.repositories.UserInfoRepositoryImpl
-import com.example.trempelapp.data_layer.repositories.FavouritesRepositoryImpl
-import com.example.trempelapp.data_layer.repositories.UserInfoRepository
 import com.example.trempelapp.data_layer.repositories.AuthRepository
-import com.example.trempelapp.data_layer.repositories.RecentlyProductsRepository
+import com.example.trempelapp.data_layer.repositories.AuthRepositoryImpl
 import com.example.trempelapp.data_layer.repositories.FavouritesRepository
+import com.example.trempelapp.data_layer.repositories.FavouritesRepositoryImpl
+import com.example.trempelapp.data_layer.repositories.RecentlyProductsRepository
+import com.example.trempelapp.data_layer.repositories.RecentlyProductsRepositoryImpl
+import com.example.trempelapp.data_layer.repositories.UserInfoRepository
+import com.example.trempelapp.data_layer.repositories.UserInfoRepositoryImpl
 import dagger.Binds
 import dagger.Module
 
