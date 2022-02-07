@@ -7,6 +7,7 @@ import com.example.trempelapp.data_layer.models.Favourite
 import com.example.trempelapp.domain_layer.DeleteFavouriteFromFavouritesUseCaseImpl
 import com.example.trempelapp.domain_layer.FindFavouritesUseCaseImpl
 import com.example.trempelapp.domain_layer.InsertFavouriteToFavouriteDBImpl
+import com.example.trempelapp.domain_layer.execute
 import com.example.trempelapp.utils.SingleLiveEvent
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
