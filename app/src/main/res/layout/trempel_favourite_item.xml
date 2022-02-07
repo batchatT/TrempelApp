@@ -31,7 +31,7 @@
             android:layout_marginStart="@dimen/margin16"
             android:layout_marginTop="@dimen/margin14"
             android:layout_marginBottom="@dimen/margin14"
-            app:imageUrl="@{favourite.favouriteDB.imageURL}"
+            app:imageUrl="@{favourite.favourite.imageURL}"
             app:layout_constraintBottom_toBottomOf="@id/view"
             app:layout_constraintEnd_toStartOf="@id/title"
             app:layout_constraintStart_toStartOf="@id/view"
@@ -46,7 +46,9 @@
             android:layout_marginStart="@dimen/margin16"
             android:layout_marginTop="@dimen/margin16"
             android:layout_marginEnd="@dimen/margin18"
-            android:text="@{favourite.favouriteDB.title}"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:text="@{favourite.favourite.title}"
             app:layout_constraintBottom_toTopOf="@id/price"
             app:layout_constraintEnd_toEndOf="@id/view"
             app:layout_constraintHorizontal_chainStyle="spread"
@@ -64,7 +66,7 @@
             app:layout_constraintEnd_toEndOf="@id/view"
             app:layout_constraintStart_toEndOf="@id/image"
             app:layout_constraintTop_toBottomOf="@id/title"
-            app:setPrice="@{favourite.favouriteDB.price}" />
+            app:setPrice="@{favourite.favourite.price}" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/increase_counter"

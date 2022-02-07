@@ -1,6 +1,7 @@
 package com.example.trempelapp.presentation_layer.main_screen.main_fragments.favourites
 
 import SwipeToDeleteCallback
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,8 +10,10 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.example.trempelapp.BaseFragment
+import com.example.trempelapp.R
 import com.example.trempelapp.TrempelApplication
 import com.example.trempelapp.databinding.FragmentFavouritesPageBinding
+import com.google.android.material.snackbar.Snackbar
 
 class FavouritesPageFragment : BaseFragment() {
 
@@ -56,7 +59,7 @@ class FavouritesPageFragment : BaseFragment() {
     }
 
     private fun setUpObservers() {
-        viewModel.favouriteDBListLiveData.observe(viewLifecycleOwner) {
+        viewModel.favouriteListLiveData.observe(viewLifecycleOwner) {
             viewModel.adapter.updateItems(it)
         }
         viewModel.changeStatusFavouriteLiveData.observe(viewLifecycleOwner) {
@@ -70,10 +73,24 @@ class FavouritesPageFragment : BaseFragment() {
     private fun setUpSwipeHandlerForFavouriteRecycler() {
         val swipeHandler = object : SwipeToDeleteCallback() {
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                viewModel.adapter.removeItem(viewHolder.bindingAdapterPosition)
+                val removedItemPosition = viewHolder.bindingAdapterPosition
+                viewModel.adapter.removeItem(removedItemPosition)
+                showUndoSnackBar(removedItemPosition)
             }
         }
         val itemTouchHelper = ItemTouchHelper(swipeHandler)
         itemTouchHelper.attachToRecyclerView(binding.favouritesRecycler)
+    }
+
+    private fun showUndoSnackBar(position: Int) {
+        val snackBar = Snackbar.make(
+            binding.constraintLayout, R.string.undo_deletion,
+            Snackbar.LENGTH_LONG
+        )
+        snackBar.setAction(R.string.undo_string) {
+            viewModel.insertFavourite(position)
+        }
+        snackBar.setActionTextColor(Color.WHITE)
+        snackBar.show()
     }
 }

@@ -8,13 +8,13 @@ import com.example.trempelapp.data_layer.models.Favourite
 private const val TAG = "FavouriteRecyclerItem"
 
 class FavouriteRecyclerItem(
-    val favouriteDB: Favourite,
+    val favourite: Favourite,
     private val changeStatusFavouriteLiveData: MutableLiveData<Favourite>
 ) : DefaultLifecycleObserver {
 
-    val quantityLiveData = MutableLiveData(favouriteDB.count.toString())
-    val isIncreasableLiveData = MutableLiveData(favouriteDB.count <= 10)
-    val isDecreasableLiveData = MutableLiveData(favouriteDB.count > 1)
+    val quantityLiveData = MutableLiveData(favourite.count.toString())
+    val isIncreasableLiveData = MutableLiveData(favourite.count <= 10)
+    val isDecreasableLiveData = MutableLiveData(favourite.count > 1)
 
     private val count
         get() = quantityLiveData.value?.toInt() ?: 0
@@ -42,8 +42,8 @@ class FavouriteRecyclerItem(
     }
 
     fun onAddToCartClick() {
-        favouriteDB.isChecked = !favouriteDB.isChecked
-        changeStatusFavouriteLiveData.value = favouriteDB
-        Log.d(TAG, "onAddToCartClick: $favouriteDB ${favouriteDB.isChecked}")
+        favourite.isChecked = !favourite.isChecked
+        changeStatusFavouriteLiveData.value = favourite
+        Log.d(TAG, "onAddToCartClick: $favourite ${favourite.isChecked}")
     }
 }

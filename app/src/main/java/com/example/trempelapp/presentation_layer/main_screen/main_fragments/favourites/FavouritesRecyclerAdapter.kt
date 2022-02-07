@@ -13,11 +13,12 @@ import com.example.trempelapp.utils.SingleLiveEvent
 
 class FavouritesRecyclerAdapter(
     private val changeStatus: MutableLiveData<Favourite>,
-    private val favouriteDBToRemove: SingleLiveEvent<Favourite>
+    private val favouriteToRemove: SingleLiveEvent<Favourite>
 ) : RecyclerView.Adapter<FavouritesRecyclerAdapter.ViewHolder>() {
 
     private lateinit var onFavouriteListener: OnFavouriteListener
     private val favouritesList = mutableListOf<Favourite>()
+    private var recentlyRemovedItem: Favourite? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -45,9 +46,17 @@ class FavouritesRecyclerAdapter(
     }
 
     fun removeItem(position: Int) {
-        favouriteDBToRemove.value = favouritesList[position]
+        favouriteToRemove.value = favouritesList[position]
+        recentlyRemovedItem = favouriteToRemove.value
         favouritesList.removeAt(position)
         notifyItemRemoved(position)
+    }
+
+    fun insertItem(position: Int) {
+        recentlyRemovedItem?.let {
+            favouritesList.add(position, it)
+        }
+        notifyItemInserted(position)
     }
 
     class ViewHolder(
