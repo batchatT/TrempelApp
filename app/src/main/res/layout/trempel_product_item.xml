@@ -43,9 +43,9 @@
             android:layout_marginStart="@dimen/margin16"
             android:layout_marginEnd="@dimen/margin16"
             android:layout_marginBottom="@dimen/margin8"
+            android:text="@{product.title}"
             android:ellipsize="end"
             android:maxLines="2"
-            android:text="@{product.title}"
             app:layout_constraintBottom_toTopOf="@id/price_view"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -98,6 +98,17 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin24"
+            android:layout_marginEnd="@dimen/margin8"
+            android:background="@drawable/ic_favourite_product_list_active"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:setProductListFavouriteImage="@{product.favourite}"
+            tools:background="@drawable/ic_favourite_product_list_active" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -6,6 +6,14 @@
 
     <fragment
         android:id="@+id/favouritesPageFragment"
-        android:name="com.example.trempelapp.presentation_layer.mainScreen.main_fragments.favourites.FavouritesPageFragment"
-        android:label="FavouritesPageFragment" />
+        android:name="com.example.trempelapp.presentation_layer.main_screen.main_fragments.favourites.FavouritesPageFragment"
+        android:label="FavouritesPageFragment" >
+        <action
+            android:id="@+id/action_favouritesPageFragment_to_productDetailsPageFragment"
+            app:destination="@id/productDetailsPageFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/productDetailsPageFragment"
+        android:name="com.example.trempelapp.presentation_layer.main_screen.main_fragments.pdp.ProductDetailsPageFragment"
+        android:label="ProductDetailsPageFragment" />
 </navigation>

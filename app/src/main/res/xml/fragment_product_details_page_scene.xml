@@ -20,7 +20,6 @@
             android:layout_marginTop="@dimen/margin40"
             android:layout_marginEnd="@dimen/margin76"
             android:layout_marginBottom="@dimen/margin32"
-            android:visibility="visible"
             app:layout_constraintBottom_toTopOf="@id/product_view"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -34,19 +33,6 @@
             app:layout_constraintTop_toBottomOf="@id/product_image" />
 
         <Constraint
-            android:id="@+id/description_text_scroll"
-            android:layout_marginStart="@dimen/margin32"
-            android:layout_marginTop="@dimen/margin24"
-            android:layout_marginEnd="@dimen/margin32"
-            android:layout_marginBottom="@dimen/margin16"
-            android:visibility="invisible"
-            app:layout_constraintBottom_toTopOf="@id/add_to_cart_button"
-            app:layout_constraintEnd_toEndOf="@id/product_view"
-            app:layout_constraintStart_toStartOf="@id/product_view"
-            app:layout_constraintTop_toBottomOf="@id/rating_bar" />
-
-
-        <Constraint
             android:id="@+id/description_text"
             android:layout_marginStart="@dimen/margin32"
             android:layout_marginTop="@dimen/margin24"
@@ -57,6 +43,17 @@
             app:layout_constraintEnd_toEndOf="@id/product_view"
             app:layout_constraintStart_toStartOf="@id/product_view"
             app:layout_constraintTop_toBottomOf="@id/rating_bar" />
+
+        <Constraint
+            android:id="@+id/scroll"
+            android:layout_marginStart="@dimen/margin32"
+            android:layout_marginTop="@dimen/margin24"
+            android:layout_marginEnd="@dimen/margin32"
+            android:layout_marginBottom="@dimen/margin16"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="@id/product_view"
+            app:layout_constraintStart_toStartOf="@id/product_view"
+            app:layout_constraintTop_toTopOf="@id/rating_bar" />
 
 
     </ConstraintSet>
@@ -91,7 +88,18 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <Constraint
-            android:id="@+id/description_text_scroll"
+            android:id="@+id/description_text"
+            android:layout_marginStart="@dimen/margin32"
+            android:layout_marginTop="@dimen/margin24"
+            android:layout_marginEnd="@dimen/margin32"
+            android:layout_marginBottom="@dimen/margin16"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="@id/product_view"
+            app:layout_constraintStart_toStartOf="@id/product_view"
+            app:layout_constraintTop_toBottomOf="@id/rating_bar" />
+
+        <Constraint
+            android:id="@+id/scroll"
             android:layout_marginStart="@dimen/margin32"
             android:layout_marginTop="@dimen/margin24"
             android:layout_marginEnd="@dimen/margin32"
@@ -103,16 +111,13 @@
             app:layout_constraintTop_toBottomOf="@id/rating_bar" />
 
         <Constraint
-            android:id="@+id/description_text"
-            android:layout_marginStart="@dimen/margin32"
-            android:layout_marginTop="@dimen/margin24"
-            android:layout_marginEnd="@dimen/margin32"
-            android:layout_marginBottom="@dimen/margin16"
+            android:id="@+id/favourite"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="26dp"
             android:visibility="invisible"
-            app:layout_constraintBottom_toTopOf="@id/add_to_cart_button"
-            app:layout_constraintEnd_toEndOf="@id/product_view"
-            app:layout_constraintStart_toStartOf="@id/product_view"
-            app:layout_constraintTop_toBottomOf="@id/rating_bar" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
     </ConstraintSet>
 
     <Transition

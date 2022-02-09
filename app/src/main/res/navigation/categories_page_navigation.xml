@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/categoriesPage"
-        android:name="com.example.trempelapp.presentation_layer.mainScreen.main_fragments.category.CategoriesPageFragment"
+        android:name="com.example.trempelapp.presentation_layer.main_screen.main_fragments.category.CategoriesPageFragment"
         android:label="CategoriesPageFragment"
         tools:layout="@layout/fragment_categories_page">
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/productListFragment"
-        android:name="com.example.trempelapp.presentation_layer.mainScreen.main_fragments.product.ProductListFragment"
+        android:name="com.example.trempelapp.presentation_layer.main_screen.main_fragments.product.ProductListFragment"
         android:label="ProductListFragment"
         tools:layout="@layout/fragment_product_list">
         <action
@@ -25,7 +25,11 @@
     </fragment>
     <fragment
         android:id="@+id/productDetailsPageFragment"
-        android:name="com.example.trempelapp.presentation_layer.mainScreen.main_fragments.pdp.ProductDetailsPageFragment"
+        android:name="com.example.trempelapp.presentation_layer.main_screen.main_fragments.pdp.ProductDetailsPageFragment"
         android:label="ProductDetailsPageFragment"
-        tools:layout="@layout/fragment_product_details_page"/>
+        tools:layout="@layout/fragment_product_details_page">
+        <action
+            android:id="@+id/action_productDetailsPageFragment_self"
+            app:destination="@id/productDetailsPageFragment" />
+    </fragment>
 </navigation>

@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/homePageFragment"
-        android:name="com.example.trempelapp.presentation_layer.mainScreen.main_fragments.home.HomePageFragment"
+        android:name="com.example.trempelapp.presentation_layer.main_screen.main_fragments.home.HomePageFragment"
         android:label="HomePageFragment"
         tools:layout="@layout/fragment_home_page">
         <action
@@ -20,7 +20,7 @@
     </fragment>
     <fragment
         android:id="@+id/categoriesPageFragment"
-        android:name="com.example.trempelapp.presentation_layer.mainScreen.main_fragments.category.CategoriesPageFragment"
+        android:name="com.example.trempelapp.presentation_layer.main_screen.main_fragments.category.CategoriesPageFragment"
         android:label="CategoriesPageFragment"
         tools:layout="@layout/fragment_categories_page">
         <action
@@ -29,7 +29,7 @@
     </fragment>
     <fragment
         android:id="@+id/productListFragment"
-        android:name="com.example.trempelapp.presentation_layer.mainScreen.main_fragments.product.ProductListFragment"
+        android:name="com.example.trempelapp.presentation_layer.main_screen.main_fragments.product.ProductListFragment"
         android:label="ProductListFragment"
         tools:layout="@layout/fragment_product_list" >
         <action
@@ -38,7 +38,11 @@
     </fragment>
     <fragment
         android:id="@+id/productDetailsPageFragment"
-        android:name="com.example.trempelapp.presentation_layer.mainScreen.main_fragments.pdp.ProductDetailsPageFragment"
-        android:label="ProductDetailsPageFragment" />
+        android:name="com.example.trempelapp.presentation_layer.main_screen.main_fragments.pdp.ProductDetailsPageFragment"
+        android:label="ProductDetailsPageFragment" >
+        <action
+            android:id="@+id/action_productDetailsPageFragment_self"
+            app:destination="@id/productDetailsPageFragment" />
+    </fragment>
 
 </navigation>

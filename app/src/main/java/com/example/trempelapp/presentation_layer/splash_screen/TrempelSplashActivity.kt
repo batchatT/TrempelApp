@@ -7,8 +7,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.trempelapp.BaseActivity
 import com.example.trempelapp.TrempelApplication
 import com.example.trempelapp.databinding.SplashActivityBinding
-import com.example.trempelapp.presentation_layer.logInScreen.TrempelLogInActivity
-import com.example.trempelapp.presentation_layer.mainScreen.HomeScreenActivity
+import com.example.trempelapp.presentation_layer.logIn_screen.TrempelLogInActivity
+import com.example.trempelapp.presentation_layer.main_screen.HomeScreenActivity
 
 @SuppressLint("CustomSplashScreen")
 class TrempelSplashActivity : BaseActivity() {
@@ -34,13 +34,13 @@ class TrempelSplashActivity : BaseActivity() {
 
     private fun setUpViewModel() {
         trempelSplashViewModel.checkUserStatus()
-        trempelSplashViewModel.errorLiveData.observe(this, {
+        trempelSplashViewModel.errorLiveData.observe(this) {
             handleErrors(it)
-        })
+        }
 
-        trempelSplashViewModel.isLoggedInLiveData.observe(this, {
+        trempelSplashViewModel.isLoggedInLiveData.observe(this) {
             startActivityByStatus(it)
-        })
+        }
     }
 
     private fun startActivityByStatus(isLoggedIn: Boolean) {

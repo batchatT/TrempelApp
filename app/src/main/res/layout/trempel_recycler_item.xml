@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="category"
             type="com.example.trempelapp.domain_layer.Category" />
@@ -17,7 +16,7 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/card"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:cardCornerRadius="@dimen/corner_radius10"
             app:cardElevation="0dp"

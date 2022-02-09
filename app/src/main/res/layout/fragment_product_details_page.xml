@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.example.trempelapp.presentation_layer.mainScreen.main_fragments.pdp.ProductDetailsPageViewModel" />
+            type="com.example.trempelapp.presentation_layer.main_screen.main_fragments.pdp.ProductDetailsPageViewModel" />
     </data>
 
     <androidx.constraintlayout.motion.widget.MotionLayout
@@ -15,14 +15,26 @@
         android:layout_height="match_parent"
         android:animateLayoutChanges="true"
         app:layoutDescription="@xml/fragment_product_details_page_scene"
-        tools:context=".presentation_layer.mainScreen.main_fragments.pdp.ProductDetailsPageFragment">
+        tools:context=".presentation_layer.main_screen.main_fragments.pdp.ProductDetailsPageFragment">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/favourite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin20"
+            android:layout_marginEnd="@dimen/margin26"
+            android:background="@drawable/ic_favourite_product_list_active"
+            android:onClick="@{() -> viewModel.onFavouriteClick()}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:setPdpFavouriteImage="@{viewModel.productLiveData.favourite}" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/product_image"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:contentDescription="@{null}"
-            app:imageUrl="@{viewModel.product.imageURL}" />
+            app:imageUrl="@{viewModel.productLiveData.imageURL}" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/add_to_cart_button"
@@ -52,7 +64,7 @@
             android:layout_marginEnd="@dimen/margin32"
             app:layout_constraintEnd_toEndOf="@id/product_view"
             app:layout_constraintTop_toTopOf="@id/product_view"
-            app:setPrice="@{viewModel.product.price}" />
+            app:setPrice="@{viewModel.productLiveData.price}" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/title_text"
@@ -62,7 +74,7 @@
             android:layout_marginStart="@dimen/margin32"
             android:layout_marginTop="@dimen/margin32"
             android:layout_marginEnd="@dimen/margin23"
-            android:text="@{viewModel.product.title}"
+            android:text="@{viewModel.productLiveData.title}"
             app:layout_constraintEnd_toStartOf="@id/price_text"
             app:layout_constraintStart_toStartOf="@id/product_view"
             app:layout_constraintTop_toTopOf="@id/product_view" />
@@ -74,7 +86,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin32"
             android:layout_marginTop="@dimen/margin12"
-            android:rating="@{viewModel.product.rating.rate}"
+            android:rating="@{viewModel.productLiveData.rating.rate}"
             android:theme="@style/customRatingBar"
             app:layout_constraintStart_toStartOf="@id/product_view"
             app:layout_constraintTop_toBottomOf="@id/title_text" />
@@ -82,7 +94,7 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/rating_text"
             style="@style/ratingText"
-            setRating="@{viewModel.product.rating.rate}"
+            setRating="@{viewModel.productLiveData.rating.rate}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin8"
@@ -96,30 +108,57 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin8"
-            android:text="@{@string/reviews_count(viewModel.product.rating.commentsCount)}"
+            android:text="@{@string/reviews_count(viewModel.productLiveData.rating.commentsCount)}"
             app:layout_constraintBottom_toBottomOf="@id/rating_text"
             app:layout_constraintStart_toEndOf="@id/rating_text"
             app:layout_constraintTop_toTopOf="@id/rating_text" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/description_text_scroll"
-            style="@style/descriptionText"
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/scroll"
             android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:isScrollContainer="true"
-            android:scrollbars="none"
-            android:text="@{viewModel.product.description}"
-            app:scrollable="@{true}" />
+            android:layout_height="0dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/description_text_scroll"
+                    style="@style/descriptionText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin16"
+                    android:text="@{viewModel.productLiveData.description}" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recently_recycler"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/height_220"
+                    android:adapter="@{viewModel.adapter}"
+                    android:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/description_text"
             style="@style/descriptionText"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:ellipsize="end"
-            android:fontFamily="@font/montserrat_regular"
-            android:text="@{viewModel.product.description}" />
+            android:text="@{viewModel.productLiveData.description}" />
 
-
+        <ProgressBar
+            android:id="@+id/progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:setVisibility="@{viewModel.isLoadingLiveData}" />
     </androidx.constraintlayout.motion.widget.MotionLayout>
 </layout>

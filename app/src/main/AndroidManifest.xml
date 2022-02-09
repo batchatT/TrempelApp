@@ -13,10 +13,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TrempelApp">
         <activity
-            android:name=".presentation_layer.logInScreen.TrempelLogInActivity"
+            android:name=".presentation_layer.logIn_screen.TrempelLogInActivity"
             android:exported="false" />
         <activity
-            android:name=".presentation_layer.mainScreen.HomeScreenActivity"
+            android:name=".presentation_layer.main_screen.HomeScreenActivity"
             android:exported="false" />
         <activity
             android:name=".presentation_layer.splash_screen.TrempelSplashActivity"

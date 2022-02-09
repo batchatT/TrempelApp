@@ -1,6 +1,8 @@
 package com.example.trempelapp.utils
 
+import android.annotation.SuppressLint
 import android.text.method.ScrollingMovementMethod
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
@@ -59,4 +61,34 @@ fun setScrollable(view: TextView, scrollable: Boolean) {
     if (scrollable) {
         view.movementMethod = ScrollingMovementMethod()
     }
+}
+
+@SuppressLint("UseCompatLoadingForDrawables")
+@BindingAdapter("setPdpFavouriteImage")
+fun setPdpImage(imageView: ImageView, isFavourite: Boolean) {
+    if (isFavourite) {
+        imageView.background = imageView.context.getDrawable(R.drawable.ic_favorite_pdp_active)
+    } else {
+        imageView.background = imageView.context.getDrawable(R.drawable.ic_favorite_button)
+    }
+}
+
+@SuppressLint("UseCompatLoadingForDrawables")
+@BindingAdapter("setProductListFavouriteImage")
+fun setProductListImage(imageView: ImageView, isFavourite: Boolean) {
+    if (isFavourite) {
+        imageView.visibility = ImageView.VISIBLE
+    } else {
+        imageView.visibility = ImageView.INVISIBLE
+    }
+}
+
+@BindingAdapter("setCount")
+fun setCount(textView: TextView, count: Int) {
+    textView.text = count.toString()
+}
+
+@BindingAdapter("setEnabled")
+fun setEnabled(button: Button, isEnabled: Boolean) {
+    button.isEnabled = isEnabled
 }
