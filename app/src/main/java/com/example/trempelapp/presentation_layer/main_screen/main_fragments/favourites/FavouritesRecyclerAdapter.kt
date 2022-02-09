@@ -7,24 +7,24 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.findViewTreeLifecycleOwner
 import androidx.recyclerview.widget.RecyclerView
 import com.example.trempelapp.BR
-import com.example.trempelapp.data_layer.models.Favourite
+import com.example.trempelapp.data_layer.models.Product
 import com.example.trempelapp.databinding.TrempelFavouriteItemBinding
 import com.example.trempelapp.utils.SingleLiveEvent
 
 class FavouritesRecyclerAdapter(
-    private val changeStatus: MutableLiveData<Favourite>,
-    private val favouriteToRemove: SingleLiveEvent<Favourite>
+    private val changeStatusLiveData: MutableLiveData<Product>,
+    private val favouriteToRemove: SingleLiveEvent<Product>
 ) : RecyclerView.Adapter<FavouritesRecyclerAdapter.ViewHolder>() {
 
     private lateinit var onFavouriteListener: OnFavouriteListener
-    private val favouritesList = mutableListOf<Favourite>()
-    private var recentlyRemovedItem: Favourite? = null
+    private val favouritesList = mutableListOf<Product>()
+    private var recentlyRemovedItem: Product? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val binding = TrempelFavouriteItemBinding.inflate(layoutInflater, parent, false)
         binding.lifecycleOwner = parent.findViewTreeLifecycleOwner()
-        return ViewHolder(binding, changeStatus)
+        return ViewHolder(binding, changeStatusLiveData)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -39,7 +39,7 @@ class FavouritesRecyclerAdapter(
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun updateItems(_favouritesList: List<Favourite>) {
+    fun updateItems(_favouritesList: List<Product>) {
         favouritesList.clear()
         favouritesList.addAll(_favouritesList)
         notifyDataSetChanged()
@@ -61,17 +61,17 @@ class FavouritesRecyclerAdapter(
 
     class ViewHolder(
         private val binding: TrempelFavouriteItemBinding,
-        private val changeStatus: MutableLiveData<Favourite>
+        private val changeStatusLiveData: MutableLiveData<Product>
     ) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(favourite: Favourite, listener: OnFavouriteListener) {
+        fun bind(favourite: Product, listener: OnFavouriteListener) {
             itemView.setOnClickListener {
                 listener.onFavouriteListener(favourite)
             }
-            binding.setVariable(BR.favourite, FavouriteRecyclerItem(favourite, changeStatus))
+            binding.setVariable(BR.favourite, FavouriteRecyclerItem(favourite, changeStatusLiveData))
         }
     }
 
     interface OnFavouriteListener {
-        fun onFavouriteListener(favourite: Favourite)
+        fun onFavouriteListener(favourite: Product)
     }
 }

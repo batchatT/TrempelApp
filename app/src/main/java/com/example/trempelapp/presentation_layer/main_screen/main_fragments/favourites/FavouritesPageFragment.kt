@@ -7,12 +7,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.example.trempelapp.BaseFragment
 import com.example.trempelapp.R
 import com.example.trempelapp.TrempelApplication
 import com.example.trempelapp.databinding.FragmentFavouritesPageBinding
+import com.example.trempelapp.utils.PRODUCT_TO_DETAILS_KEY
 import com.google.android.material.snackbar.Snackbar
 
 class FavouritesPageFragment : BaseFragment() {
@@ -65,8 +67,16 @@ class FavouritesPageFragment : BaseFragment() {
         viewModel.changeStatusFavouriteLiveData.observe(viewLifecycleOwner) {
             viewModel.updateCartButton()
         }
-        viewModel.favouriteToRemove.observe(viewLifecycleOwner) {
+        viewModel.favouriteToRemoveLiveData.observe(viewLifecycleOwner) {
             viewModel.removeFavouriteItem(it)
+        }
+        viewModel.onProductClickedLiveData.observe(viewLifecycleOwner) {
+            val bundle = Bundle()
+            viewModel.product?.id?.let { id -> bundle.putInt(PRODUCT_TO_DETAILS_KEY, id) }
+            findNavController().navigate(
+                R.id.action_favouritesPageFragment_to_productDetailsPageFragment,
+                bundle
+            )
         }
     }
 

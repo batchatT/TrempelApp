@@ -3,13 +3,13 @@ package com.example.trempelapp.presentation_layer.main_screen.main_fragments.fav
 import android.util.Log
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.MutableLiveData
-import com.example.trempelapp.data_layer.models.Favourite
+import com.example.trempelapp.data_layer.models.Product
 
 private const val TAG = "FavouriteRecyclerItem"
 
 class FavouriteRecyclerItem(
-    val favourite: Favourite,
-    private val changeStatusFavouriteLiveData: MutableLiveData<Favourite>
+    val favourite: Product,
+    private val changeStatusFavouriteLiveData: MutableLiveData<Product>
 ) : DefaultLifecycleObserver {
 
     val quantityLiveData = MutableLiveData(favourite.count.toString())

@@ -13,19 +13,22 @@ data class Product(
     @SerializedName("price")
     val price: Float,
     @SerializedName("description")
-    val description: String,
+    val description: String?,
     @SerializedName("image")
     val imageURL: String,
     @SerializedName("rating")
-    val rating: Rating,
-    val isFavourite: Boolean = false
-) : Parcelable
+    val rating: Rating?,
+    val isFavourite: Boolean = false,
+    val count: Int = 1,
+    val timestamp: Long = 0
+) : Parcelable {
+    var isChecked = false
+}
 
 @Parcelize
 data class Rating(
     @SerializedName("rate")
     val rate: Float,
     @SerializedName("count")
-    val commentsCount: Int
-
+    val commentsCount: Int,
 ) : Parcelable

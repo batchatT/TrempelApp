@@ -1,12 +1,11 @@
 package com.example.trempelapp.presentation_layer.main_screen.main_fragments.favourites
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.example.trempelapp.BaseViewModel
-import com.example.trempelapp.data_layer.models.Favourite
-import com.example.trempelapp.domain_layer.DeleteFavouriteFromFavouritesUseCaseImpl
+import com.example.trempelapp.data_layer.models.Product
+import com.example.trempelapp.domain_layer.DeleteFavouriteUseCaseImpl
 import com.example.trempelapp.domain_layer.FindFavouritesUseCaseImpl
-import com.example.trempelapp.domain_layer.InsertFavouriteToFavouriteDBImpl
+import com.example.trempelapp.domain_layer.InsertFavouriteUseCaseImpl
 import com.example.trempelapp.domain_layer.execute
 import com.example.trempelapp.utils.SingleLiveEvent
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -17,33 +16,40 @@ private const val TAG = "FavouritesPageViewModel"
 
 class FavouritesPageViewModel @Inject constructor(
     private val findFavourites: FindFavouritesUseCaseImpl,
-    private val deleteFavourite: DeleteFavouriteFromFavouritesUseCaseImpl,
-    private val insertFavourite: InsertFavouriteToFavouriteDBImpl
+    private val deleteFavourite: DeleteFavouriteUseCaseImpl,
+    private val insertFavourite: InsertFavouriteUseCaseImpl
 ) : BaseViewModel() {
 
     val adapter by lazy {
-        FavouritesRecyclerAdapter(changeStatusFavouriteLiveData, favouriteToRemove).apply {
+        FavouritesRecyclerAdapter(changeStatusFavouriteLiveData, favouriteToRemoveLiveData).apply {
             setOnProductListener(object : FavouritesRecyclerAdapter.OnFavouriteListener {
-                override fun onFavouriteListener(favourite: Favourite) {
-                    Log.d(TAG, "onFavouriteListener: clicked")
+                override fun onFavouriteListener(favourite: Product) {
+                    _product = favourite
+                    _onProductClickedLiveData.call()
                 }
             })
         }
     }
 
-    val changeStatusFavouriteLiveData = MutableLiveData<Favourite>()
-    val favouriteToRemove = SingleLiveEvent<Favourite>()
-    val isAddToCartButtonEnabled: SingleLiveEvent<Boolean>
-        get() = _isAddToCartButtonEnabled
-    val favouriteListLiveData: SingleLiveEvent<List<Favourite>>
+    val product: Product?
+        get() = _product
+
+    val changeStatusFavouriteLiveData = MutableLiveData<Product>()
+    val favouriteToRemoveLiveData = SingleLiveEvent<Product>()
+    val isAddToCartButtonEnabledLiveData: SingleLiveEvent<Boolean>
+        get() = _isAddToCartButtonEnabledLiveData
+    val favouriteListLiveData: SingleLiveEvent<List<Product>>
         get() = _favouriteListLiveData
-    private val _isAddToCartButtonEnabled = SingleLiveEvent<Boolean>()
+    val onProductClickedLiveData: SingleLiveEvent<Void>
+        get() = _onProductClickedLiveData
+    private val _isAddToCartButtonEnabledLiveData = SingleLiveEvent<Boolean>()
         .apply {
             value = false
         }
-    private val _favouriteListLiveData = SingleLiveEvent<List<Favourite>>()
-
-    private val favouriteList = mutableListOf<Favourite>()
+    private var _product: Product? = null
+    private val _favouriteListLiveData = SingleLiveEvent<List<Product>>()
+    private val _onProductClickedLiveData = SingleLiveEvent<Void>()
+    private val favouriteList = mutableListOf<Product>()
 
     fun getAllFavourites() {
         findFavourites
@@ -61,21 +67,24 @@ class FavouritesPageViewModel @Inject constructor(
             .run(compositeDisposable::add)
     }
 
-    private fun deleteFavouriteFromDB(favourite: Favourite) {
+    private fun deleteFavouriteFromDB(favourite: Product) {
         deleteFavourite
             .execute(favourite)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe()
+            .subscribe({
+                favouriteList.remove(favourite)
+                updateCartButton()
+            }, {})
             .run(compositeDisposable::add)
     }
 
     fun updateCartButton() {
-        _isAddToCartButtonEnabled.value = favouriteList.any { it.isChecked }
+        _isAddToCartButtonEnabledLiveData.value = favouriteList.any { it.isChecked }
     }
 
     fun insertFavourite(position: Int) {
-        favouriteToRemove.value?.let {
+        favouriteToRemoveLiveData.value?.let {
             insertFavourite
                 .execute(it)
                 .subscribeOn(Schedulers.io())
@@ -88,9 +97,7 @@ class FavouritesPageViewModel @Inject constructor(
         updateCartButton()
     }
 
-    fun removeFavouriteItem(favourite: Favourite) {
+    fun removeFavouriteItem(favourite: Product) {
         deleteFavouriteFromDB(favourite)
-        favouriteList.remove(favourite)
-        updateCartButton()
     }
 }

@@ -10,23 +10,23 @@ import io.reactivex.Single
 interface RecentlyProductDAO {
     @Query(
         """
-        select * from recentlyproduct 
-        where :id <> id 
-        order by timestamp desc """
+        SELECT * FROM recentlyproductdb 
+        WHERE :id <> id 
+        ORDER BY timestamp DESC """
     )
-    fun getAll(id: Int): Single<List<RecentlyProduct>>
+    fun getAll(id: Int): Single<List<RecentlyProductDB>>
 
     @Insert(onConflict = REPLACE)
-    fun insertProduct(product: RecentlyProduct)
+    fun insertProduct(product: RecentlyProductDB)
 
-    @Query("select count(id) from recentlyproduct")
+    @Query("SELECT count(id) FROM recentlyproductdb")
     fun getCountOfRows(): Single<Int>
 
     @Query(
         """
-        delete from recentlyproduct 
-        where timestamp = (select min(timestamp) 
-                           from recentlyproduct)"""
+        DELETE FROM recentlyproductdb 
+        WHERE timestamp = (SELECT min(timestamp) 
+                           FROM recentlyproductdb)"""
     )
     fun deleteTheLatest()
 }

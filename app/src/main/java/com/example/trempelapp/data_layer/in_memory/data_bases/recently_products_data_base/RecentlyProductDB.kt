@@ -4,7 +4,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity
-data class RecentlyProduct(
+data class RecentlyProductDB(
     @PrimaryKey
     val id: Int,
     val title: String,

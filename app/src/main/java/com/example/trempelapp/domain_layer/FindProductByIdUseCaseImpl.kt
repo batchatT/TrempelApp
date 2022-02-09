@@ -1,7 +1,6 @@
 package com.example.trempelapp.domain_layer
 
 import com.example.trempelapp.data_layer.models.Product
-import com.example.trempelapp.data_layer.models.Rating
 import com.example.trempelapp.data_layer.repositories.FavouritesRepository
 import com.example.trempelapp.data_layer.repositories.ProductRepository
 import io.reactivex.Single
@@ -15,7 +14,7 @@ class FindProductByIdUseCaseImpl @Inject constructor(
     override fun execute(params: Int): Single<Product> {
         return Single.zip(
             productRepository.fetchProductById(params),
-            favouriteRepository.fetchIsFavouriteById(params)
+            favouriteRepository.isProductFavourite(params)
         ) { product, isFavourite ->
             Product(
                 id = product.id,
@@ -23,7 +22,7 @@ class FindProductByIdUseCaseImpl @Inject constructor(
                 price = product.price,
                 description = product.description,
                 imageURL = product.imageURL,
-                rating = Rating(product.rating.rate, product.rating.commentsCount),
+                rating = product.rating,
                 isFavourite = isFavourite
             )
         }

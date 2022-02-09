@@ -1,7 +1,7 @@
 package com.example.trempelapp.utils
 
 import com.example.trempelapp.data_layer.in_memory.data_bases.recently_products_data_base.FavouriteDB
-import com.example.trempelapp.data_layer.models.Favourite
+import com.example.trempelapp.data_layer.in_memory.data_bases.recently_products_data_base.RecentlyProductDB
 import com.example.trempelapp.data_layer.models.Product
 
 fun Product.toFavouriteDB(): FavouriteDB {
@@ -13,22 +13,34 @@ fun Product.toFavouriteDB(): FavouriteDB {
     )
 }
 
-fun Favourite.toFavouriteDB(): FavouriteDB {
-    return FavouriteDB(
+fun FavouriteDB.toProduct(): Product {
+    return Product(
         id = this.id,
         title = this.title,
         price = this.price,
         imageURL = this.imageURL,
-        count = this.count
+        description = null,
+        rating = null
     )
 }
 
-fun FavouriteDB.toFavourite(): Favourite {
-    return Favourite(
+fun RecentlyProductDB.toProduct(): Product {
+    return Product(
+        id = this.id,
+        title = this.title,
+        price = this.price,
+        description = null,
+        imageURL = this.imageURL,
+        rating = null
+    )
+}
+
+fun Product.toRecentlyProductDB(): RecentlyProductDB {
+    return RecentlyProductDB(
         id = this.id,
         title = this.title,
         price = this.price,
         imageURL = this.imageURL,
-        count = this.count
+        timestamp = System.currentTimeMillis()
     )
 }

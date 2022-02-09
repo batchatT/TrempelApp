@@ -1,7 +1,6 @@
 package com.example.trempelapp.domain_layer
 
 import com.example.trempelapp.data_layer.models.Product
-import com.example.trempelapp.data_layer.models.Rating
 import com.example.trempelapp.data_layer.repositories.FavouritesRepository
 import com.example.trempelapp.data_layer.repositories.ProductRepository
 import com.example.trempelapp.utils.CATEGORY_ALL
@@ -27,7 +26,7 @@ class FindProductsByCategoryUseCaseImpl @Inject constructor(
                         price = product.price,
                         description = product.description,
                         imageURL = product.imageURL,
-                        rating = Rating(product.rating.rate, product.rating.commentsCount),
+                        rating = product.rating,
                         isFavourite = favourites.any { it.id == product.id }
                     )
                 }
@@ -44,7 +43,7 @@ class FindProductsByCategoryUseCaseImpl @Inject constructor(
                             price = product.price,
                             description = product.description,
                             imageURL = product.imageURL,
-                            rating = Rating(product.rating.rate, product.rating.commentsCount),
+                            rating = product.rating,
                             isFavourite = favourites.any { it.id == product.id }
                         )
                     }

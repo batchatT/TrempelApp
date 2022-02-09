@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="category"
             type="com.example.trempelapp.domain_layer.Category" />
