@@ -75,7 +75,9 @@ class FavouritesPageViewModel @Inject constructor(
             .subscribe({
                 favouriteList.remove(favourite)
                 updateCartButton()
-            }, {})
+            }, {
+                handleError(it)
+            })
             .run(compositeDisposable::add)
     }
 

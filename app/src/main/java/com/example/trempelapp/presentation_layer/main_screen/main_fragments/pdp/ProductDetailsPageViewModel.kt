@@ -35,6 +35,8 @@ class ProductDetailsPageViewModel @Inject constructor(
         get() = _productLiveData
     private val _productLiveData = SingleLiveEvent<Product>()
 
+    private var currentProduct: Product? = null
+
     var recentlyProduct: Product? = null
 
     private fun loadRecentlyProducts(id: Int): Single<List<Product>> {
@@ -47,9 +49,9 @@ class ProductDetailsPageViewModel @Inject constructor(
             .execute(id)
             .map {
                 _productLiveData.postValue(it)
+                currentProduct = it
                 return@map it.id
             }
-            .delay(100, TimeUnit.MILLISECONDS)
             .flatMap { recentlySingle(it) }
             .doOnSubscribe {
                 isLoadingLiveData.postValue(true)
@@ -78,7 +80,7 @@ class ProductDetailsPageViewModel @Inject constructor(
     }
 
     fun insertRecently(): Completable? {
-        return productLiveData.value?.let {
+        return currentProduct?.let {
             insertRecentlyProduct
                 .execute(it)
         }
