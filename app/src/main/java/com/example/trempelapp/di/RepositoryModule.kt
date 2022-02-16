@@ -3,6 +3,8 @@ import com.example.trempelapp.data_layer.in_memory.shared_preferences.SharedPref
 import com.example.trempelapp.data_layer.in_memory.shared_preferences.SharedPreferencesManagerImpl
 import com.example.trempelapp.data_layer.repositories.AuthRepository
 import com.example.trempelapp.data_layer.repositories.AuthRepositoryImpl
+import com.example.trempelapp.data_layer.repositories.CartRepository
+import com.example.trempelapp.data_layer.repositories.CartRepositoryImpl
 import com.example.trempelapp.data_layer.repositories.FavouritesRepository
 import com.example.trempelapp.data_layer.repositories.FavouritesRepositoryImpl
 import com.example.trempelapp.data_layer.repositories.RecentlyProductsRepository
@@ -29,4 +31,7 @@ abstract class RepositoryModule {
 
     @Binds
     abstract fun provideFavouritesRepository(favouritesRepositoryImpl: FavouritesRepositoryImpl): FavouritesRepository
+
+    @Binds
+    abstract fun provideCartRepository(cartRepositoryImpl: CartRepositoryImpl): CartRepository
 }

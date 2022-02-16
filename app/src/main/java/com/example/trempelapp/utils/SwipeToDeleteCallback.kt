@@ -1,3 +1,5 @@
+package com.example.trempelapp.utils
+
 import android.graphics.Canvas
 import android.graphics.Color
 import androidx.recyclerview.widget.ItemTouchHelper

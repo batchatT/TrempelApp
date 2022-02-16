@@ -13,7 +13,11 @@ interface FavouritesRepository {
 
     fun insertFavourite(favouriteDB: FavouriteDB): Completable
 
-    fun deleteFavourites(favouriteDB: FavouriteDB): Completable
+    suspend fun deleteListOfFavouritesFromDB(favouriteDB: List<FavouriteDB>)
+
+    fun deleteFavourite(favouriteDB: FavouriteDB): Completable
 
     fun updateFavourites(favouriteDBS: List<FavouriteDB>): Completable
+
+    suspend fun clearFavouritesTable()
 }

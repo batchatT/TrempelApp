@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.trempelapp.presentation_layer.ViewModelProviderFactory
 import com.example.trempelapp.presentation_layer.logIn_screen.TrempelLogInViewModel
-import com.example.trempelapp.presentation_layer.main_screen.main_fragments.cart.CartPageViewModel
+import com.example.trempelapp.presentation_layer.main_screen.main_fragments.cart.CartPageViewModelController
 import com.example.trempelapp.presentation_layer.main_screen.main_fragments.category.CategoriesPageViewModel
 import com.example.trempelapp.presentation_layer.main_screen.main_fragments.favourites.FavouritesPageViewModel
 import com.example.trempelapp.presentation_layer.main_screen.main_fragments.home.HomePageViewModel
@@ -34,8 +34,8 @@ abstract class ViewModelModule {
 
     @Binds
     @IntoMap
-    @ViewModelKey(CartPageViewModel::class)
-    abstract fun cartPageViewModel(viewModel: CartPageViewModel): ViewModel
+    @ViewModelKey(CartPageViewModelController::class)
+    abstract fun cartPageViewModel(viewModel: CartPageViewModelController): ViewModel
 
     @Binds
     @IntoMap

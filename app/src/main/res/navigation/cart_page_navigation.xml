@@ -7,5 +7,17 @@
     <fragment
         android:id="@+id/cartPageFragment"
         android:name="com.example.trempelapp.presentation_layer.main_screen.main_fragments.cart.CartPageFragment"
-        android:label="CartPageFragment" />
+        android:label="CartPageFragment" >
+        <action
+            android:id="@+id/action_cartPageFragment_to_productDetailsPageFragment"
+            app:destination="@id/productDetailsPageFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/productDetailsPageFragment"
+        android:name="com.example.trempelapp.presentation_layer.main_screen.main_fragments.pdp.ProductDetailsPageFragment"
+        android:label="ProductDetailsPageFragment" >
+        <action
+            android:id="@+id/action_productDetailsPageFragment_self"
+            app:destination="@id/productDetailsPageFragment" />
+    </fragment>
 </navigation>

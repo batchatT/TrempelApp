@@ -19,11 +19,9 @@ data class Product(
     @SerializedName("rating")
     val rating: Rating?,
     val isFavourite: Boolean = false,
-    val count: Int = 1,
+    var count: Int = 1,
     val timestamp: Long = 0
-) : Parcelable {
-    var isChecked = false
-}
+) : Parcelable
 
 @Parcelize
 data class Rating(

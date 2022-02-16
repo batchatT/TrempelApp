@@ -1,4 +1,4 @@
-package com.example.trempelapp.domain_layer
+package com.example.trempelapp.domain_layer.rxjava
 
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes

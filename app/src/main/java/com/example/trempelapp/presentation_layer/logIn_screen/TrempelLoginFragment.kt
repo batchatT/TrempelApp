@@ -49,23 +49,23 @@ class TrempelLoginFragment : BaseFragment() {
     }
 
     private fun setUpObserves() {
-        trempelLogInViewModel.errorLiveData.observe(this, {
+        trempelLogInViewModel.errorLiveData.observe(viewLifecycleOwner) {
             handleErrors(it)
-        })
+        }
 
-        trempelLogInViewModel.tokenLiveData.observe(this, {
+        trempelLogInViewModel.tokenLiveData.observe(viewLifecycleOwner) {
             val intent = Intent(context, HomeScreenActivity::class.java)
             startActivity(intent)
             activity?.finish()
-        })
+        }
 
-        trempelLogInViewModel.editLoginTextLiveData.observe(viewLifecycleOwner, {
+        trempelLogInViewModel.editLoginTextLiveData.observe(viewLifecycleOwner) {
             trempelLogInViewModel.clearLoginError()
-        })
+        }
 
-        trempelLogInViewModel.editPassWordTextLiveData.observe(viewLifecycleOwner, {
+        trempelLogInViewModel.editPassWordTextLiveData.observe(viewLifecycleOwner) {
             trempelLogInViewModel.clearPasswordLiveData()
-        })
+        }
     }
 
     override fun injectDagger() {

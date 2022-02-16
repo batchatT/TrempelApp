@@ -7,7 +7,7 @@ import androidx.room.Query
 import io.reactivex.Single
 
 @Dao
-interface RecentlyProductDAO {
+interface RecentlyProductDao {
     @Query(
         """
         SELECT * FROM recentlyproductdb 
@@ -29,4 +29,7 @@ interface RecentlyProductDAO {
                            FROM recentlyproductdb)"""
     )
     fun deleteTheLatest()
+
+    @Query("DELETE FROM recentlyproductdb")
+    suspend fun clearRecentlyProductsTable()
 }

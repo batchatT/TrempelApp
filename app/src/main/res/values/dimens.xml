@@ -46,6 +46,7 @@
     <dimen name="height_220">220dp</dimen>
 
     <dimen name="height_24">24dp</dimen>
+    <dimen name="height38">38dp</dimen>
     <dimen name="height_128">128dp</dimen>
     <dimen name="width_24">24dp</dimen>
     <dimen name="width_62">62dp</dimen>

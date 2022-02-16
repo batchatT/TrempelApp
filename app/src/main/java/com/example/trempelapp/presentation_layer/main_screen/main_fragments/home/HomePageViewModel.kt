@@ -1,7 +1,7 @@
 package com.example.trempelapp.presentation_layer.main_screen.main_fragments.home
 
 import com.example.trempelapp.BaseViewModel
-import com.example.trempelapp.domain_layer.FindProductsUseCaseImpl
+import com.example.trempelapp.domain_layer.rxjava.FindProductsUseCaseImpl
 import com.example.trempelapp.utils.SingleLiveEvent
 import javax.inject.Inject
 

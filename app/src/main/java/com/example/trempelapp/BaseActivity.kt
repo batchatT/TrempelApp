@@ -42,7 +42,6 @@ abstract class BaseActivity : AppCompatActivity(), AppBarHandler {
         supportFragmentManager
             .beginTransaction()
             .replace(containerViewId, fragment, tag)
-            .addToBackStack(tag)
             .commit()
     }
 

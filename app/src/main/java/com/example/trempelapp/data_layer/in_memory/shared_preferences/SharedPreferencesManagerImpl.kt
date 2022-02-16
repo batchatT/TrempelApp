@@ -27,4 +27,11 @@ class SharedPreferencesManagerImpl @Inject constructor(
             .putString(TOKEN, token)
             .apply()
     }
+
+    override suspend fun logOut() {
+        val editor = preferences.edit()
+        editor
+            .clear()
+            .apply()
+    }
 }

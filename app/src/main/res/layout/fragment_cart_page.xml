@@ -3,17 +3,73 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.appcompat.widget.LinearLayoutCompat
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.trempelapp.presentation_layer.main_screen.main_fragments.cart.CartPageViewModelController" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraint_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".presentation_layer.main_screen.main_fragments.cart.CartPageFragment">
+        tools:context=".presentation_layer.main_screen.main_fragments.favourites.FavouritesPageFragment">
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
+            style="@style/empty_list_style"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/margin136"
+            android:layout_marginBottom="@dimen/margin94"
+            android:drawableTop="@drawable/ic_empty_cart"
+            android:text="@string/no_items_yet"
+            app:layout_constraintBottom_toBottomOf="@id/cart_recycler"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="gone"
+            app:visibile="@{viewModel.listSizeLiveData}" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/cart_recycler"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:text="Cart" />
+            android:layout_height="0dp"
+            android:layout_marginBottom="@dimen/margin24"
+            android:adapter="@{viewModel.adapter}"
+            tools:itemCount="4"
+            tools:listitem="@layout/trempel_cart_item"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toTopOf="@id/cart_view"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    </androidx.appcompat.widget.LinearLayoutCompat>
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/add_to_cart_button"
+            style="@style/addToCartButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin24"
+            android:layout_marginEnd="@dimen/margin24"
+            android:layout_marginBottom="@dimen/margin24"
+            android:text="@string/checkout"
+            app:isEnabled="@{viewModel.listSizeLiveData}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <include
+            layout="@layout/total_sum_layout"
+            android:id="@+id/cart_view"
+            android:layout_marginStart="@dimen/margin24"
+            android:layout_marginEnd="@dimen/margin24"
+            android:layout_marginBottom="@dimen/margin20"
+            android:layout_width="0dp"
+            app:viewModel="@{viewModel}"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@id/add_to_cart_button"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

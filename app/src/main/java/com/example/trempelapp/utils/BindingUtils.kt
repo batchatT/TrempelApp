@@ -1,13 +1,14 @@
 package com.example.trempelapp.utils
 
 import android.annotation.SuppressLint
-import android.text.method.ScrollingMovementMethod
+import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.annotation.StringRes
 import androidx.databinding.BindingAdapter
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.bumptech.glide.Glide
 import com.example.trempelapp.R
 import com.google.android.material.textfield.TextInputLayout
@@ -19,14 +20,11 @@ fun setError(textInputLayout: TextInputLayout, errorText: String?) {
 
 @BindingAdapter("setVisibility")
 fun setVisibility(progressBar: ProgressBar, isVisible: Boolean) {
-    if (isVisible) {
-        progressBar.visibility = ProgressBar.VISIBLE
-    } else {
-        progressBar.visibility = ProgressBar.GONE
-    }
+    progressBar.scaleX = if (isVisible) 1f else 0f
 }
 
 private const val TAG = "IMAGE"
+
 @BindingAdapter("imageUrl")
 fun loadImage(view: ImageView, url: String?) {
     Glide
@@ -46,21 +44,9 @@ fun setRating(view: TextView, rating: Float?) {
     view.text = rating.toString()
 }
 
-@BindingAdapter("setFirstUpperCase")
-fun setFirstUpperCase(view: TextView, title: String) {
-    title.replaceFirstChar { it.uppercaseChar() }
-}
-
 @BindingAdapter("titleResId")
 fun setTitleResId(view: TextView, @StringRes title: Int) {
     view.setText(title)
-}
-
-@BindingAdapter("scrollable")
-fun setScrollable(view: TextView, scrollable: Boolean) {
-    if (scrollable) {
-        view.movementMethod = ScrollingMovementMethod()
-    }
 }
 
 @SuppressLint("UseCompatLoadingForDrawables")
@@ -83,12 +69,41 @@ fun setProductListImage(imageView: ImageView, isFavourite: Boolean) {
     }
 }
 
-@BindingAdapter("setCount")
-fun setCount(textView: TextView, count: Int) {
-    textView.text = count.toString()
+@BindingAdapter("setEnabled")
+fun setEnabled(view: View, isEnabled: Boolean) {
+    view.isEnabled = isEnabled
 }
 
-@BindingAdapter("setEnabled")
-fun setEnabled(button: Button, isEnabled: Boolean) {
-    button.isEnabled = isEnabled
+@BindingAdapter("itemsCount")
+fun setItemsCount(textView: TextView, count: Int) {
+    textView.text = textView.context.getString(R.string.items_count, count)
+}
+
+@BindingAdapter("visibile")
+fun setVisibility(textView: TextView, count: Int) {
+    if (count == 0) {
+        textView.visibility = TextView.VISIBLE
+    } else {
+        textView.visibility = TextView.INVISIBLE
+    }
+}
+
+@BindingAdapter("isEnabled")
+fun setIsEnabled(button: Button, count: Int) {
+    button.isEnabled = count != 0
+}
+
+@BindingAdapter("onRefresh")
+fun setRefreshListener(
+    swipeRefreshLayout: SwipeRefreshLayout,
+    onRefresh: () -> Unit,
+) {
+    swipeRefreshLayout.setOnRefreshListener {
+        onRefresh()
+    }
+}
+
+@BindingAdapter("isRefreshing")
+fun isRefreshing(refreshLayout: SwipeRefreshLayout, refreshing: Boolean) {
+    refreshLayout.isRefreshing = refreshing
 }

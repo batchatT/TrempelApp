@@ -9,7 +9,7 @@ import androidx.room.Update
 import io.reactivex.Single
 
 @Dao
-interface FavouritesDAO {
+interface FavouritesDao {
 
     @Query("SELECT * FROM favouritedb")
     fun getAllFavourites(): Single<List<FavouriteDB>>
@@ -17,12 +17,18 @@ interface FavouritesDAO {
     @Query("SELECT EXISTS (SELECT * FROM favouritedb WHERE id = :id )")
     fun getIsFavourite(id: Int): Single<Boolean>
 
+    @Query("DELETE FROM favouritedb")
+    suspend fun clearFavouriteTable()
+
     @Insert(onConflict = REPLACE)
-    fun insertFavourite(favouriteDB: FavouriteDB)
+    fun insertFavourite(vararg favouriteDB: FavouriteDB)
 
     @Update
     fun updateFavourites(favouriteDBS: List<FavouriteDB>)
 
     @Delete
     fun delete(favouriteDB: FavouriteDB)
+
+    @Delete
+    suspend fun deleteListOfFavourites(favouriteDB: List<FavouriteDB>)
 }

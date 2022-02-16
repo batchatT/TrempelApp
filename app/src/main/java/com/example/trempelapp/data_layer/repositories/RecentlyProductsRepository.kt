@@ -12,4 +12,6 @@ interface RecentlyProductsRepository {
     fun insertRecentlyProduct(product: RecentlyProductDB): Single<Int>
 
     fun deleteItem(): Completable
+
+    suspend fun clearRecentlyTable()
 }

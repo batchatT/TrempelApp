@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.trempelapp.BaseFragment
@@ -37,7 +39,7 @@ class ProductDetailsPageFragment : BaseFragment() {
         super.handleArguments()
         arguments?.let { bundle ->
             bundle.getInt(PRODUCT_TO_DETAILS_KEY).takeIf { it != 0 }?.let {
-                viewModel.findProductById(it)
+                viewModel.currentProductId = it
             }
         }
     }
@@ -53,10 +55,11 @@ class ProductDetailsPageFragment : BaseFragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
         super.onCreateView(inflater, container, savedInstanceState)
         setUpBinding()
+        viewModel.findProductById()
         viewModel.insertRecently()
         setUpObservers()
         return binding.root
@@ -65,20 +68,52 @@ class ProductDetailsPageFragment : BaseFragment() {
     private fun setUpBinding() {
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
+
+        binding.motion.addTransitionListener(object : MotionLayout.TransitionListener {
+            override fun onTransitionStarted(
+                motionLayout: MotionLayout?,
+                startId: Int,
+                endId: Int,
+            ) {}
+
+            override fun onTransitionChange(
+                motionLayout: MotionLayout?,
+                startId: Int,
+                endId: Int,
+                progress: Float,
+            ) {}
+
+            override fun onTransitionCompleted(motionLayout: MotionLayout?, currentId: Int) {
+                binding.swiper.isEnabled = currentId == R.id.start
+            }
+
+            override fun onTransitionTrigger(
+                motionLayout: MotionLayout?,
+                triggerId: Int,
+                positive: Boolean,
+                progress: Float,
+            ) {}
+        })
     }
 
     private fun setUpObservers() {
         viewModel.recentlyProductListLiveData.observe(viewLifecycleOwner) {
             viewModel.adapter.updateItems(it)
         }
-
+        viewModel.onAddToCartClicked.observe(viewLifecycleOwner) {
+            Toast.makeText(context, getString(R.string.item_added_to_the_cart), Toast.LENGTH_SHORT)
+                .show()
+        }
         viewModel.onProductClickedLiveData.observe(viewLifecycleOwner) {
             val bundle = Bundle()
-            viewModel.recentlyProduct?.id?.let { id -> bundle.putInt(PRODUCT_TO_DETAILS_KEY, id) }
+            bundle.putInt(PRODUCT_TO_DETAILS_KEY, it.id)
             findNavController().navigate(
                 R.id.action_productDetailsPageFragment_self,
                 bundle
             )
+        }
+        viewModel.errorLiveData.observe(viewLifecycleOwner) {
+            handleErrors(it)
         }
     }
 }

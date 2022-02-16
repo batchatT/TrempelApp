@@ -16,6 +16,20 @@
         android:layout_height="match_parent"
         tools:context=".presentation_layer.main_screen.main_fragments.favourites.FavouritesPageFragment">
 
+        <androidx.appcompat.widget.AppCompatTextView
+            style="@style/empty_list_style"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/margin136"
+            android:layout_marginBottom="@dimen/margin94"
+            android:drawableTop="@drawable/ic_empty_favourites"
+            android:text="@string/no_items_yet"
+            app:layout_constraintBottom_toBottomOf="@id/favourites_recycler"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:visibile="@{viewModel.listSizeLiveData}" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/favourites_recycler"
             android:layout_width="match_parent"
@@ -33,11 +47,12 @@
             android:layout_marginStart="@dimen/margin24"
             android:layout_marginEnd="@dimen/margin24"
             android:layout_marginBottom="@dimen/margin24"
+            android:onClick="@{() -> viewModel.onAddToCartButtonClick()}"
             android:text="@string/add_to_cart"
-            app:setEnabled="@{viewModel.isAddToCartButtonEnabledLiveData}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:setEnabled="@{viewModel.isAddToCartButtonEnabledLiveData}" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

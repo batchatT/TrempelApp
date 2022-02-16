@@ -13,15 +13,15 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/height_128"
-        android:layout_marginTop="@dimen/margin20">
+        android:background="@color/white">
 
         <View
             android:id="@+id/view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginEnd="@dimen/margin26"
             android:layout_marginStart="@dimen/margin26"
             android:layout_marginTop="@dimen/margin20"
-            android:layout_marginEnd="@dimen/margin26"
             android:background="@drawable/favourite_item_background" />
 
         <androidx.appcompat.widget.AppCompatImageView
@@ -110,7 +110,7 @@
             android:layout_width="@dimen/width_24"
             android:layout_height="@dimen/height_24"
             android:button="@drawable/ic_add_to_cart_checkbox"
-            android:onClick="@{() -> favourite.onAddToCartClick()}"
+            android:checked="@={favourite.isCheckedLiveData}"
             app:layout_constraintBottom_toTopOf="@id/view"
             app:layout_constraintEnd_toEndOf="@id/view"
             app:layout_constraintStart_toEndOf="@id/view"

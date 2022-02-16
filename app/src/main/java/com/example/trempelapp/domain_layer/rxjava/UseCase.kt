@@ -1,4 +1,4 @@
-package com.example.trempelapp.domain_layer
+package com.example.trempelapp.domain_layer.rxjava
 
 interface UseCase<in P, out T> {
 

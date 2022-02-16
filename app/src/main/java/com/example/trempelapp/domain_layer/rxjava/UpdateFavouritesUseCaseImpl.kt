@@ -1,4 +1,4 @@
-package com.example.trempelapp.domain_layer
+package com.example.trempelapp.domain_layer.rxjava
 
 import com.example.trempelapp.data_layer.in_memory.data_bases.recently_products_data_base.FavouriteDB
 import com.example.trempelapp.data_layer.repositories.FavouritesRepository
