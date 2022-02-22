@@ -13,33 +13,35 @@ class RecentlyProductsRepositoryImpl @Inject constructor(
 ) : RecentlyProductsRepository {
 
     override fun getAllRecentlyProducts(id: Int): Single<List<Product>> {
-        return dataBase.productDao().getAll(id)
+        return dataBase.recentlyProductDao().getAll(id)
             .map { list ->
-                list
-                    .map { item ->
-                        item
-                            .toProduct()
-                    }
+                list.map { item ->
+                    item.toProduct()
+                }
             }
     }
 
     override fun insertRecentlyProduct(product: RecentlyProductDB): Single<Int> {
         return Completable.fromAction {
-            dataBase.productDao().insertProduct(product)
+            dataBase.recentlyProductDao().insertProduct(product)
         }
             .andThen(getCount())
     }
 
     private fun getCount(): Single<Int> {
         return dataBase
-            .productDao()
+            .recentlyProductDao()
             .getCountOfRows()
     }
 
     override fun deleteItem(): Completable {
         return Completable
             .fromAction {
-                dataBase.productDao().deleteTheLatest()
+                dataBase.recentlyProductDao().deleteTheLatest()
             }
+    }
+
+    override suspend fun clearRecentlyTable() {
+        dataBase.recentlyProductDao().clearRecentlyProductsTable()
     }
 }

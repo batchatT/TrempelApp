@@ -15,5 +15,9 @@
     <fragment
         android:id="@+id/productDetailsPageFragment"
         android:name="com.example.trempelapp.presentation_layer.main_screen.main_fragments.pdp.ProductDetailsPageFragment"
-        android:label="ProductDetailsPageFragment" />
+        android:label="ProductDetailsPageFragment" >
+        <action
+            android:id="@+id/action_productDetailsPageFragment_self"
+            app:destination="@id/productDetailsPageFragment" />
+    </fragment>
 </navigation>

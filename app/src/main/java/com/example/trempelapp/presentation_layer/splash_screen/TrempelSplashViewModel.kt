@@ -1,8 +1,8 @@
 package com.example.trempelapp.presentation_layer.splash_screen
 
 import com.example.trempelapp.BaseViewModel
-import com.example.trempelapp.domain_layer.LoginStatusUseCaseImpl
-import com.example.trempelapp.domain_layer.execute
+import com.example.trempelapp.domain_layer.rxjava.LoginStatusUseCaseImpl
+import com.example.trempelapp.domain_layer.rxjava.execute
 import com.example.trempelapp.utils.SingleLiveEvent
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers

@@ -7,7 +7,7 @@
 
         <variable
             name="product"
-            type="com.example.trempelapp.data_layer.models.Product" />
+            type="com.example.trempelapp.presentation_layer.main_screen.main_fragments.product.ProductListItem" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -31,7 +31,7 @@
                 android:id="@+id/image"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:imageUrl="@{product.imageURL}"
+                app:imageUrl="@{product.product.imageURL}"
                 tools:src="@drawable/jewelery" />
         </androidx.cardview.widget.CardView>
 
@@ -43,7 +43,7 @@
             android:layout_marginStart="@dimen/margin16"
             android:layout_marginEnd="@dimen/margin16"
             android:layout_marginBottom="@dimen/margin8"
-            android:text="@{product.title}"
+            android:text="@{product.product.title}"
             android:ellipsize="end"
             android:maxLines="2"
             app:layout_constraintBottom_toTopOf="@id/price_view"
@@ -56,6 +56,7 @@
             android:id="@+id/price_view"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:onClick="@{() -> product.onAddToCartClick()}"
             android:background="@drawable/ic_price_text_background"
             app:layout_constraintBottom_toBottomOf="@id/layout_view"
             app:layout_constraintEnd_toEndOf="@id/layout_view"
@@ -75,7 +76,7 @@
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toStartOf="@id/price_view"
             app:layout_constraintTop_toTopOf="@id/price_view"
-            app:setPrice="@{product.price}"
+            app:setPrice="@{product.product.price}"
             tools:text="@string/electronics" />
 
         <ImageView
@@ -102,12 +103,12 @@
         <androidx.appcompat.widget.AppCompatImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin24"
+            android:layout_marginTop="@dimen/margin16"
             android:layout_marginEnd="@dimen/margin8"
             android:background="@drawable/ic_favourite_product_list_active"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:setProductListFavouriteImage="@{product.favourite}"
+            app:setProductListFavouriteImage="@{product.product.favourite}"
             tools:background="@drawable/ic_favourite_product_list_active" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -42,17 +42,22 @@ class CategoriesPageFragment : BaseFragment() {
         (requireActivity().application as TrempelApplication).trempelApp.inject(this)
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        viewModel.getAllCategories()
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
         super.onCreateView(inflater, container, savedInstanceState)
         setUpBinding()
         setUpObservers()
-
         return binding.root
     }
+
     private fun setUpBinding() {
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
@@ -65,6 +70,10 @@ class CategoriesPageFragment : BaseFragment() {
                 bundle.putString(CATEGORY_TO_PRODUCT_KEY, getString(it))
             }
             findNavController().navigate(R.id.action_categoriesPage_to_productListFragment, bundle)
+        }
+
+        viewModel.errorLiveData.observe(viewLifecycleOwner) {
+            handleErrors(it)
         }
 
         viewModel.categoryListLiveData.observe(viewLifecycleOwner) {

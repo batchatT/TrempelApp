@@ -1,11 +1,11 @@
 package com.example.trempelapp.presentation_layer.main_screen.main_fragments.favourites
 
-import SwipeToDeleteCallback
 import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -15,6 +15,7 @@ import com.example.trempelapp.R
 import com.example.trempelapp.TrempelApplication
 import com.example.trempelapp.databinding.FragmentFavouritesPageBinding
 import com.example.trempelapp.utils.PRODUCT_TO_DETAILS_KEY
+import com.example.trempelapp.utils.SwipeToDeleteCallback
 import com.google.android.material.snackbar.Snackbar
 
 class FavouritesPageFragment : BaseFragment() {
@@ -64,15 +65,15 @@ class FavouritesPageFragment : BaseFragment() {
         viewModel.favouriteListLiveData.observe(viewLifecycleOwner) {
             viewModel.adapter.updateItems(it)
         }
-        viewModel.changeStatusFavouriteLiveData.observe(viewLifecycleOwner) {
-            viewModel.updateCartButton()
-        }
         viewModel.favouriteToRemoveLiveData.observe(viewLifecycleOwner) {
-            viewModel.removeFavouriteItem(it)
+            viewModel.removeFavouriteItem(it.favourite)
+        }
+        viewModel.onAddToCartClicked.observe(viewLifecycleOwner) {
+            Toast.makeText(context, getString(R.string.item_added_to_the_cart), Toast.LENGTH_SHORT).show()
         }
         viewModel.onProductClickedLiveData.observe(viewLifecycleOwner) {
             val bundle = Bundle()
-            viewModel.product?.id?.let { id -> bundle.putInt(PRODUCT_TO_DETAILS_KEY, id) }
+            bundle.putInt(PRODUCT_TO_DETAILS_KEY, it.id)
             findNavController().navigate(
                 R.id.action_favouritesPageFragment_to_productDetailsPageFragment,
                 bundle

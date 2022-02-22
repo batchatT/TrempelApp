@@ -3,8 +3,9 @@ package com.example.trempelapp.data_layer.in_memory.data_bases.recently_products
 import androidx.room.Database
 import androidx.room.RoomDatabase
 
-@Database(entities = [RecentlyProductDB::class, FavouriteDB::class], version = 1)
+@Database(entities = [RecentlyProductDB::class, FavouriteDB::class, CartDB::class], version = 1)
 abstract class TrempelDataBase : RoomDatabase() {
-    abstract fun productDao(): RecentlyProductDAO
-    abstract fun favouritesDao(): FavouritesDAO
+    abstract fun recentlyProductDao(): RecentlyProductDao
+    abstract fun favouritesDao(): FavouritesDao
+    abstract fun cartDao(): CartDao
 }

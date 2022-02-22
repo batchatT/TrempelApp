@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.trempelapp.BaseFragment
@@ -42,6 +43,7 @@ class ProductListFragment : BaseFragment() {
         super.handleArguments()
         arguments?.let {
             title = it.getString(CATEGORY_TO_PRODUCT_KEY).toString()
+            viewModel.title = title
         }
     }
 
@@ -73,12 +75,6 @@ class ProductListFragment : BaseFragment() {
         binding.lifecycleOwner = this
     }
 
-    private fun settingTitle() {
-        title.let {
-            viewModel.fetchProductsByCategory(it)
-        }
-    }
-
     private fun setUpObservers() {
         viewModel.productListLiveData.observe(viewLifecycleOwner) {
             viewModel.adapter.updateItems(it)
@@ -86,16 +82,25 @@ class ProductListFragment : BaseFragment() {
 
         viewModel.onProductClickedLiveData.observe(viewLifecycleOwner) {
             val bundle = Bundle()
-            bundle.putInt(PRODUCT_TO_DETAILS_KEY, viewModel.productItem.id)
+            bundle.putInt(PRODUCT_TO_DETAILS_KEY, it.id)
             findNavController().navigate(
                 R.id.action_productListFragment_to_productDetailsPageFragment,
                 bundle
             )
         }
+
+        viewModel.errorLiveData.observe(viewLifecycleOwner) {
+            handleErrors(it)
+        }
+
+        viewModel.onAddProductToCartLiveData.observe(viewLifecycleOwner) {
+            Toast.makeText(context, getString(R.string.item_added_to_the_cart), Toast.LENGTH_SHORT)
+                .show()
+        }
     }
 
     override fun onResume() {
         super.onResume()
-        settingTitle()
+        viewModel.fetchProductsByCategory()
     }
 }

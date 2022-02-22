@@ -7,4 +7,6 @@ interface SharedPreferencesManager {
     fun getUserLoginStatus(): Single<String>
 
     fun writeToken(token: String)
+
+    suspend fun logOut()
 }

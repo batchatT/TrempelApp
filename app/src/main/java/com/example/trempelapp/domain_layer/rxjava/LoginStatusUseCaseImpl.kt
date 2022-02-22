@@ -1,4 +1,4 @@
-package com.example.trempelapp.domain_layer
+package com.example.trempelapp.domain_layer.rxjava
 
 import com.example.trempelapp.data_layer.repositories.UserInfoRepository
 import io.reactivex.Single

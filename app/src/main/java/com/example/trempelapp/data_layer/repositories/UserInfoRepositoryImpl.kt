@@ -11,4 +11,8 @@ class UserInfoRepositoryImpl @Inject constructor(
     override fun getLoginStatusByToken(): Single<String> {
         return preferences.getUserLoginStatus()
     }
+
+    override suspend fun clearUserData() {
+        preferences.logOut()
+    }
 }

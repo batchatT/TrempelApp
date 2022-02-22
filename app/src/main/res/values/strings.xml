@@ -19,4 +19,11 @@
     <string name="reviews_count">(%d reviews)</string>
     <string name="undo_string">undo</string>
     <string name="undo_deletion">Undo deletion!</string>
+    <string name="checkout">Checkout</string>
+    <string name="items_count">Total: %d items</string>
+    <string name="item_added_to_the_cart">Product has been added to the cart!</string>
+    <string name="logout">Log Out</string>
+    <string name="no_items_yet">No items yet</string>
+    <string name="close">Close</string>
+    <string name="error_text">Unfortunately, we are currently having some technical problems. Please try again later.</string>
 </resources>

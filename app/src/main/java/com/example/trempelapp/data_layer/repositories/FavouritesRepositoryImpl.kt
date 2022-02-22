@@ -35,7 +35,11 @@ class FavouritesRepositoryImpl @Inject constructor(
             }
     }
 
-    override fun deleteFavourites(favouriteDB: FavouriteDB): Completable {
+    override suspend fun deleteListOfFavouritesFromDB(favouriteDB: List<FavouriteDB>) {
+        dataBase.favouritesDao().deleteListOfFavourites(favouriteDB)
+    }
+
+    override fun deleteFavourite(favouriteDB: FavouriteDB): Completable {
         return Completable
             .fromAction {
                 dataBase.favouritesDao().delete(favouriteDB)
@@ -47,5 +51,9 @@ class FavouritesRepositoryImpl @Inject constructor(
             .fromAction {
                 dataBase.favouritesDao().updateFavourites(favouriteDBS)
             }
+    }
+
+    override suspend fun clearFavouritesTable() {
+        dataBase.favouritesDao().clearFavouriteTable()
     }
 }

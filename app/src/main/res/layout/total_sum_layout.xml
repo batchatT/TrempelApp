@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout>
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.trempelapp.presentation_layer.main_screen.main_fragments.cart.CartPageViewModelController" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+        <View
+            android:id="@+id/cart_view"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/height38"
+            android:background="@drawable/ic_cart_view_border"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            style="@style/itemsCountStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="12"
+            android:layout_marginStart="@dimen/margin24"
+            app:itemsCount="@{viewModel.itemsCountLiveData}"
+            app:layout_constraintBottom_toBottomOf="@id/cart_view"
+            app:layout_constraintStart_toStartOf="@id/cart_view"
+            app:layout_constraintTop_toTopOf="@id/cart_view" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            style="@style/favouritePriceStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="122"
+            android:layout_marginEnd="@dimen/margin24"
+            app:layout_constraintBottom_toBottomOf="@id/cart_view"
+            app:layout_constraintEnd_toEndOf="@id/cart_view"
+            app:layout_constraintTop_toTopOf="@id/cart_view"
+            app:setPrice="@{viewModel.priceLiveData}" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

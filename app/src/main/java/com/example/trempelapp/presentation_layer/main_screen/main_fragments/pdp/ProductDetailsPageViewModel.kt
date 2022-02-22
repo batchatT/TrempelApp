@@ -1,17 +1,20 @@
 package com.example.trempelapp.presentation_layer.main_screen.main_fragments.pdp
 
+import androidx.lifecycle.viewModelScope
 import com.example.trempelapp.BaseViewModel
 import com.example.trempelapp.data_layer.models.Product
-import com.example.trempelapp.domain_layer.DeleteFavouriteUseCaseImpl
-import com.example.trempelapp.domain_layer.FindProductByIdUseCaseImpl
-import com.example.trempelapp.domain_layer.GetAllRecentlyProductsUseCaseImpl
-import com.example.trempelapp.domain_layer.InsertFavouriteUseCaseImpl
-import com.example.trempelapp.domain_layer.InsertRecentlyProductUseCaseImpl
+import com.example.trempelapp.domain_layer.coroutine.InsertProductToCartDBUseCaseImpl
+import com.example.trempelapp.domain_layer.rxjava.DeleteFavouriteUseCaseImpl
+import com.example.trempelapp.domain_layer.rxjava.FindProductByIdUseCaseImpl
+import com.example.trempelapp.domain_layer.rxjava.GetAllRecentlyProductsUseCaseImpl
+import com.example.trempelapp.domain_layer.rxjava.InsertFavouriteUseCaseImpl
+import com.example.trempelapp.domain_layer.rxjava.InsertRecentlyProductUseCaseImpl
 import com.example.trempelapp.utils.SingleLiveEvent
 import io.reactivex.Completable
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class ProductDetailsPageViewModel @Inject constructor(
@@ -19,12 +22,15 @@ class ProductDetailsPageViewModel @Inject constructor(
     private val insertRecentlyProduct: InsertRecentlyProductUseCaseImpl,
     private val getProductById: FindProductByIdUseCaseImpl,
     private val insertFavourite: InsertFavouriteUseCaseImpl,
-    private val deleteFavourite: DeleteFavouriteUseCaseImpl
+    private val deleteFavourite: DeleteFavouriteUseCaseImpl,
+    private val insertProductToCart: InsertProductToCartDBUseCaseImpl,
 ) : BaseViewModel() {
 
-    val onProductClickedLiveData: SingleLiveEvent<Void>
+    val onAddToCartClicked = SingleLiveEvent<Void>()
+
+    val onProductClickedLiveData: SingleLiveEvent<Product>
         get() = _onProductClickedLiveData
-    private val _onProductClickedLiveData = SingleLiveEvent<Void>()
+    private val _onProductClickedLiveData = SingleLiveEvent<Product>()
 
     val recentlyProductListLiveData: SingleLiveEvent<List<Product>>
         get() = _recentlyProductListLiveData
@@ -36,35 +42,37 @@ class ProductDetailsPageViewModel @Inject constructor(
 
     private var currentProduct: Product? = null
 
-    var recentlyProduct: Product? = null
+    var currentProductId: Int? = null
 
     private fun loadRecentlyProducts(id: Int): Single<List<Product>> {
         return getAllRecentlyProducts
             .execute(id)
     }
 
-    fun findProductById(id: Int) {
-        getProductById
-            .execute(id)
-            .map {
-                _productLiveData.postValue(it)
-                currentProduct = it
-                return@map it.id
-            }
-            .flatMap { recentlySingle(it) }
-            .doOnSubscribe {
-                isLoadingLiveData.postValue(true)
-            }
-            .doFinally {
-                isLoadingLiveData.postValue(false)
-            }
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({
-                _recentlyProductListLiveData.value = it
-            }, {
-                handleError(it)
-            }).run(compositeDisposable::add)
+    fun findProductById() {
+        currentProductId?.let {
+            getProductById
+                .execute(it)
+                .map { product ->
+                    _productLiveData.postValue(product)
+                    currentProduct = product
+                    return@map product.id
+                }
+                .flatMap { id -> recentlySingle(id) }
+                .doOnSubscribe {
+                    isLoadingLiveData.postValue(true)
+                }
+                .doFinally {
+                    isLoadingLiveData.postValue(false)
+                }
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({ productsList ->
+                    _recentlyProductListLiveData.value = productsList
+                }, { error ->
+                    handleError(error)
+                }).run(compositeDisposable::add)
+        }
     }
 
     private fun recentlySingle(id: Int): Single<List<Product>> {
@@ -72,8 +80,7 @@ class ProductDetailsPageViewModel @Inject constructor(
             loadRecentlyProducts(id),
             insertRecently()
                 ?.andThen(Single.just(0))
-        ) {
-            list, _ ->
+        ) { list, _ ->
             return@zip list
         }
     }
@@ -107,12 +114,20 @@ class ProductDetailsPageViewModel @Inject constructor(
         }
     }
 
+    fun onAddToCartClicked() {
+        viewModelScope.launch {
+            currentProduct?.let {
+                insertProductToCart.execute(it)
+            }
+        }
+        onAddToCartClicked.call()
+    }
+
     val adapter by lazy {
         RecentlyProductRecyclerAdapter().apply {
             setOnProductListener(object : RecentlyProductRecyclerAdapter.OnProductListener {
                 override fun onProductListener(product: Product) {
-                    recentlyProduct = product
-                    _onProductClickedLiveData.call()
+                    _onProductClickedLiveData.value = product
                 }
             })
         }

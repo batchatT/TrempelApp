@@ -5,8 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import com.example.trempelapp.BaseViewModel
 import com.example.trempelapp.BuildConfig
 import com.example.trempelapp.data_layer.models.auth.UserCredentials
-import com.example.trempelapp.domain_layer.LogInUseCaseImpl
-import com.example.trempelapp.domain_layer.WriteTokenUseCaseImpl
+import com.example.trempelapp.domain_layer.rxjava.LogInUseCaseImpl
+import com.example.trempelapp.domain_layer.rxjava.WriteTokenUseCaseImpl
 import com.example.trempelapp.utils.EMPTY_STRING
 import com.example.trempelapp.utils.LoginException
 import com.example.trempelapp.utils.SingleLiveEvent

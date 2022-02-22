@@ -14,30 +14,26 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/product_recycler"
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swiper"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_marginStart="@dimen/margin14"
-            android:layout_marginTop="@dimen/margin16"
             android:layout_marginEnd="@dimen/margin13"
-            android:adapter="@{viewModel.adapter}"
-            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:spanCount="2"
-            tools:listitem="@layout/trempel_product_item" />
+            app:onRefresh="@{viewModel::fetchProductsByCategory}"
+            app:isRefreshing="@{viewModel.isLoadingLiveData}">
 
-        <ProgressBar
-            android:id="@+id/progress"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:setVisibility="@{viewModel.isLoadingLiveData}" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/product_recycler"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:adapter="@{viewModel.adapter}"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:spanCount="2"
+                tools:listitem="@layout/trempel_product_item" />
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

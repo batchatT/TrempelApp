@@ -54,8 +54,6 @@
             app:layout_constraintEnd_toEndOf="@id/product_view"
             app:layout_constraintStart_toStartOf="@id/product_view"
             app:layout_constraintTop_toTopOf="@id/rating_bar" />
-
-
     </ConstraintSet>
 
     <ConstraintSet android:id="@+id/end">
@@ -74,7 +72,6 @@
         <Constraint
             android:id="@id/product_image"
             android:visibility="invisible"
-            app:layout_constraintBottom_toTopOf="@id/product_view"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
