@@ -4,13 +4,13 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.viewModelScope
+import com.example.domain_layer.coroutine_use_cases.DeleteProductFromCartDBUseCaseImpl
+import com.example.domain_layer.coroutine_use_cases.GetAllProductsFromCartUseCaseImpl
+import com.example.domain_layer.coroutine_use_cases.InsertProductToCartDBUseCaseImpl
+import com.example.domain_layer.coroutine_use_cases.execute
+import com.example.domain_layer.models.ProductMainModel
 import com.example.trempelapp.BaseViewModel
-import com.example.trempelapp.data_layer.models.Product
-import com.example.trempelapp.domain_layer.coroutine.DeleteProductFromCartDBUseCaseImpl
-import com.example.trempelapp.domain_layer.coroutine.GetAllProductsFromCartUseCaseImpl
-import com.example.trempelapp.domain_layer.coroutine.InsertProductToCartDBUseCaseImpl
-import com.example.trempelapp.domain_layer.coroutine.execute
-import com.example.trempelapp.utils.SingleLiveEvent
+import com.example.utils.SingleLiveEvent
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -31,13 +31,16 @@ class CartPageViewModelController @Inject constructor(
     }
     val itemsCountLiveData = MediatorLiveData<Int>()
     val priceLiveData = SingleLiveEvent<Float>()
-    val cartItemToRemoveLiveData = SingleLiveEvent<CartRecyclerItem>()
+    val cartItemToRemoveLiveData =
+        SingleLiveEvent<CartRecyclerItem>()
     val productsListLiveData: SingleLiveEvent<List<CartRecyclerItem>>
         get() = _productsListLiveData
-    val onProductClickedLiveData: SingleLiveEvent<Product>
+    val onProductClickedLiveData: SingleLiveEvent<ProductMainModel>
         get() = _onProductClickedLiveData
-    private val _onProductClickedLiveData = SingleLiveEvent<Product>()
-    private val _productsListLiveData = SingleLiveEvent<List<CartRecyclerItem>>()
+    private val _onProductClickedLiveData =
+        SingleLiveEvent<ProductMainModel>()
+    private val _productsListLiveData =
+        SingleLiveEvent<List<CartRecyclerItem>>()
 
     val listSizeLiveData: LiveData<Int> = Transformations.map(_productsListLiveData) { it.size }
 
@@ -72,7 +75,7 @@ class CartPageViewModelController @Inject constructor(
             }?.sum()
     }
 
-    fun removeCartItemFromCartDB(product: Product) {
+    fun removeCartItemFromCartDB(product: ProductMainModel) {
         viewModelScope.launch {
             deleteProductFromCartDB.execute(product)
             _productsListLiveData.postValue(

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="all_products">all products</string>
+    <string name="electronics">electronics</string>
+    <string name="womens_clothing">women\'s clothing</string>
+    <string name="mens_clothing">men\'s clothing</string>
+    <string name="jewelery">jewelery</string>
+</resources>

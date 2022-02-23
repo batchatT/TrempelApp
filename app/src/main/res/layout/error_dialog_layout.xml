@@ -11,7 +11,7 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/error_title"
             style="@style/errorTitleStyle"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin32"
             android:layout_marginTop="@dimen/margin24"
@@ -24,7 +24,7 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/error_message"
             style="@style/errorMessageStyle"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin32"
             android:layout_marginTop="@dimen/margin16"

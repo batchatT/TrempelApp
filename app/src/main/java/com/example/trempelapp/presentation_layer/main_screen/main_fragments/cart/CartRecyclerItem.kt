@@ -1,10 +1,10 @@
 package com.example.trempelapp.presentation_layer.main_screen.main_fragments.cart
 
 import androidx.lifecycle.MutableLiveData
-import com.example.trempelapp.data_layer.models.Product
+import com.example.domain_layer.models.ProductMainModel
 
 class CartRecyclerItem(
-    val cartItem: Product,
+    val cartItem: ProductMainModel,
 ) {
 
     val quantityLiveData = MutableLiveData(cartItem.count.toString())

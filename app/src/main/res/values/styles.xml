@@ -41,7 +41,7 @@
         <item name="boxCornerRadiusBottomStart">@dimen/corner_radius10</item>
         <item name="boxCornerRadiusTopEnd">@dimen/corner_radius10</item>
         <item name="boxCornerRadiusTopStart">@dimen/corner_radius10</item>
-        <item name="hintEnabled">false</item>
+        <item name="hintEnabled">true</item>
     </style>
 
     <style name="InputEditText">

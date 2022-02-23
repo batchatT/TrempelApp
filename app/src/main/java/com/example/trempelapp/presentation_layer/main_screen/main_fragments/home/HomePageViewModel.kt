@@ -1,13 +1,10 @@
 package com.example.trempelapp.presentation_layer.main_screen.main_fragments.home
 
 import com.example.trempelapp.BaseViewModel
-import com.example.trempelapp.domain_layer.rxjava.FindProductsUseCaseImpl
-import com.example.trempelapp.utils.SingleLiveEvent
+import com.example.utils.SingleLiveEvent
 import javax.inject.Inject
 
-class HomePageViewModel @Inject constructor(
-    private val findProducts: FindProductsUseCaseImpl,
-) : BaseViewModel() {
+class HomePageViewModel @Inject constructor() : BaseViewModel() {
 
     val moveToCategoriesLiveData: SingleLiveEvent<Boolean>
         get() = _moveToCategoriesLiveData

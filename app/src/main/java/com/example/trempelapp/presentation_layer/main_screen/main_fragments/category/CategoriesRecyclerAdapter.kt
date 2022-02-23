@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.trempelapp.BR
 import com.example.trempelapp.databinding.TrempelRecyclerItemBinding
-import com.example.trempelapp.domain_layer.rxjava.Category
+import com.example.utils.Category
 
 class CategoriesRecyclerAdapter : RecyclerView.Adapter<CategoriesRecyclerAdapter.ViewHolder>() {
 

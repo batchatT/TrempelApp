@@ -2,14 +2,14 @@ package com.example.trempelapp.presentation_layer.logIn_screen
 
 import android.view.View
 import androidx.lifecycle.MutableLiveData
+import com.example.domain_layer.LoginException
+import com.example.domain_layer.models.UserCredentials
+import com.example.domain_layer.rxjava_use_cases.LogInUseCaseImpl
+import com.example.domain_layer.rxjava_use_cases.WriteTokenUseCaseImpl
 import com.example.trempelapp.BaseViewModel
 import com.example.trempelapp.BuildConfig
-import com.example.trempelapp.data_layer.models.auth.UserCredentials
-import com.example.trempelapp.domain_layer.rxjava.LogInUseCaseImpl
-import com.example.trempelapp.domain_layer.rxjava.WriteTokenUseCaseImpl
 import com.example.trempelapp.utils.EMPTY_STRING
-import com.example.trempelapp.utils.LoginException
-import com.example.trempelapp.utils.SingleLiveEvent
+import com.example.utils.SingleLiveEvent
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject

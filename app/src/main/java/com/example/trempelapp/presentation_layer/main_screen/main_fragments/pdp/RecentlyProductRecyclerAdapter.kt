@@ -3,15 +3,15 @@ package com.example.trempelapp.presentation_layer.main_screen.main_fragments.pdp
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.domain_layer.models.ProductMainModel
 import com.example.trempelapp.BR
-import com.example.trempelapp.data_layer.models.Product
 import com.example.trempelapp.databinding.TrempelRecentlyProductItemBinding
 
 class RecentlyProductRecyclerAdapter : RecyclerView.Adapter<RecentlyProductRecyclerAdapter.ViewHolder>() {
 
     private lateinit var onProductListener: OnProductListener
 
-    private val productsList = mutableListOf<Product>()
+    private val productsList = mutableListOf<ProductMainModel>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -30,7 +30,7 @@ class RecentlyProductRecyclerAdapter : RecyclerView.Adapter<RecentlyProductRecyc
         this.onProductListener = onProductListener
     }
 
-    fun updateItems(_productsList: List<Product>) {
+    fun updateItems(_productsList: List<ProductMainModel>) {
         productsList.clear()
         productsList.addAll(_productsList)
         notifyDataSetChanged()
@@ -38,7 +38,7 @@ class RecentlyProductRecyclerAdapter : RecyclerView.Adapter<RecentlyProductRecyc
 
     class ViewHolder(private val binding: TrempelRecentlyProductItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(product: Product, listener: OnProductListener) {
+        fun bind(product: ProductMainModel, listener: OnProductListener) {
             itemView.setOnClickListener {
                 listener.onProductListener(product)
             }
@@ -47,6 +47,6 @@ class RecentlyProductRecyclerAdapter : RecyclerView.Adapter<RecentlyProductRecyc
     }
 
     interface OnProductListener {
-        fun onProductListener(product: Product)
+        fun onProductListener(product: ProductMainModel)
     }
 }

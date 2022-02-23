@@ -88,6 +88,15 @@ fun setVisibility(textView: TextView, count: Int) {
     }
 }
 
+@BindingAdapter("searchResultVisibility")
+fun setVisibility(textView: TextView, isEmpty: Boolean) {
+    if (isEmpty) {
+        textView.visibility = TextView.VISIBLE
+    } else {
+        textView.visibility = TextView.INVISIBLE
+    }
+}
+
 @BindingAdapter("isEnabled")
 fun setIsEnabled(button: Button, count: Int) {
     button.isEnabled = count != 0
@@ -106,4 +115,13 @@ fun setRefreshListener(
 @BindingAdapter("isRefreshing")
 fun isRefreshing(refreshLayout: SwipeRefreshLayout, refreshing: Boolean) {
     refreshLayout.isRefreshing = refreshing
+}
+
+@BindingAdapter("isErrorVisible")
+fun isErrorVisible(textView: TextView, isError: Boolean) {
+    if (isError) {
+        textView.visibility = TextView.VISIBLE
+    } else {
+        textView.visibility = TextView.INVISIBLE
+    }
 }
