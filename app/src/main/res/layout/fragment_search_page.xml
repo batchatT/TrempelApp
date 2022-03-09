@@ -10,88 +10,90 @@
             type="com.example.trempelapp.presentation_layer.main_screen.main_fragments.search.SearchPageFragmentViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swiper"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".presentation_layer.main_screen.main_fragments.search.SearchPageFragment">
+        app:isRefreshing="@{viewModel.isLoadingLiveData}"
+        app:layout_constraintTop_toBottomOf="@id/search_edit"
+        app:onRefreshSearch="@{() -> viewModel.getFilteredListOfProducts(viewModel.queryTextLiveData)}">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/search_edit"
-            style="@style/InputLayoutHomePage"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin24"
-            android:layout_marginTop="@dimen/margin32"
-            app:errorText="@{viewModel.errorQueryLiveData}"
-            android:layout_marginEnd="@dimen/margin24"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:layout_height="match_parent"
+            tools:context=".presentation_layer.main_screen.main_fragments.search.SearchPageFragment">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/search"
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/search_edit"
+                style="@style/InputLayoutHomePage"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawableStart="@drawable/ic_search"
-                android:drawablePadding="@dimen/padding16"
-                android:hint="@string/what_are_you_looking_for"
-                android:inputType="text"
-                android:imeOptions="actionDone"
-                android:text="@={viewModel.queryTextLiveData}" />
+                android:layout_marginStart="@dimen/margin24"
+                android:layout_marginTop="@dimen/margin32"
+                android:layout_marginEnd="@dimen/margin24"
+                app:errorText="@{viewModel.errorQueryLiveData}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-        </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/search"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_search"
+                    android:drawablePadding="@dimen/padding16"
+                    android:hint="@string/what_are_you_looking_for"
+                    android:imeOptions="actionDone"
+                    android:inputType="text"
+                    android:text="@={viewModel.queryTextLiveData}" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/search_result_recycler"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:adapter="@{viewModel.adapter}"
-            android:paddingStart="@dimen/padding16"
-            android:paddingEnd="@dimen/padding16"
-            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/search_edit"
-            app:spanCount="2" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-        <ProgressBar
-            android:id="@+id/progress"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="visible"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:setVisibility="@{viewModel.isLoadingLiveData}" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/search_result_recycler"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:adapter="@{viewModel.adapter}"
+                android:paddingStart="@dimen/padding16"
+                android:paddingEnd="@dimen/padding16"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/search_edit"
+                app:spanCount="2" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            style="@style/empty_list_style"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginTop="@dimen/margin136"
-            android:drawableTop="@drawable/ic_empty_search"
-            android:text="@string/no_search_results"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/search_edit"
-            app:searchResultVisibility="@{viewModel.isSearchEmptyLiveData}" />
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/empty_list_style"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="@dimen/margin136"
+                android:drawableTop="@drawable/ic_empty_search"
+                android:text="@string/no_search_results"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/search_edit"
+                app:searchResultVisibility="@{viewModel.isSearchEmptyLiveData}" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            style="@style/empty_list_style"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:paddingTop="@dimen/margin136"
-            android:drawableTop="@drawable/ic_empty_search"
-            android:background="@color/white"
-            android:text="@string/smth_went_wrong"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:isErrorVisible="@{viewModel.isErrorLiveData}"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/search_edit"/>
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/empty_list_style"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@color/white"
+                android:drawableTop="@drawable/ic_empty_search"
+                android:paddingTop="@dimen/margin136"
+                android:text="@string/smth_went_wrong"
+                app:isErrorVisible="@{viewModel.isErrorLiveData}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/search_edit" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
 </layout>

@@ -112,6 +112,16 @@ fun setRefreshListener(
     }
 }
 
+@BindingAdapter("onRefreshSearch")
+fun onRefreshSearch(
+    swipeRefreshLayout: SwipeRefreshLayout,
+    onRefreshSearch: Runnable
+) {
+    swipeRefreshLayout.setOnRefreshListener {
+        onRefreshSearch.run()
+    }
+}
+
 @BindingAdapter("isRefreshing")
 fun isRefreshing(refreshLayout: SwipeRefreshLayout, refreshing: Boolean) {
     refreshLayout.isRefreshing = refreshing
