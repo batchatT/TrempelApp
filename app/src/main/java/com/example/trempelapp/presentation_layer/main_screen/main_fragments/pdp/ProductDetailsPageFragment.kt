@@ -52,6 +52,12 @@ class ProductDetailsPageFragment : BaseFragment() {
         hideAppBar()
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        viewModel.findProductById()
+        viewModel.insertRecently()
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -59,8 +65,6 @@ class ProductDetailsPageFragment : BaseFragment() {
     ): View {
         super.onCreateView(inflater, container, savedInstanceState)
         setUpBinding()
-        viewModel.findProductById()
-        viewModel.insertRecently()
         setUpObservers()
         return binding.root
     }
@@ -114,6 +118,9 @@ class ProductDetailsPageFragment : BaseFragment() {
         }
         viewModel.errorLiveData.observe(viewLifecycleOwner) {
             handleErrors(it)
+        }
+        viewModel.favouritesListLiveData.observe(viewLifecycleOwner) {
+            viewModel.checkFavourites()
         }
     }
 }

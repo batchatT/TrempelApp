@@ -52,11 +52,17 @@ class ProductListFragment : BaseFragment() {
     }
 
     override fun configureAppBar() {
+        showAppBar()
         changeAppBarTitle(
             title.replaceFirstChar {
                 it.uppercaseChar()
             }
         )
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        viewModel.fetchProductsByCategory()
     }
 
     override fun onCreateView(
@@ -97,10 +103,9 @@ class ProductListFragment : BaseFragment() {
             Toast.makeText(context, getString(R.string.item_added_to_the_cart), Toast.LENGTH_SHORT)
                 .show()
         }
-    }
 
-    override fun onResume() {
-        super.onResume()
-        viewModel.fetchProductsByCategory()
+        viewModel.favouritesListLiveData.observe(viewLifecycleOwner) {
+            viewModel.checkFavourites()
+        }
     }
 }

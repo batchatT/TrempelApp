@@ -31,9 +31,11 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/search"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawableStart="@drawable/ic_search"
+                    android:inputType="text"
                     android:drawablePadding="@dimen/padding16"
                     android:hint="@string/what_are_you_looking_for" />
 
@@ -93,7 +95,7 @@
                 app:layout_constraintTop_toBottomOf="@id/sale_banner_1"
                 app:layout_constraintVertical_weight="0.08" />
 
-            <Button
+                <Button
                 android:id="@+id/categories_button"
                 style="@style/CategoriesButtonStyle"
                 android:layout_width="0dp"

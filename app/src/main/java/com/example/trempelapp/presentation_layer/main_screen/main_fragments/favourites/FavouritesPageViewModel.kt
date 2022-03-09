@@ -4,15 +4,15 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.viewModelScope
+import com.example.domain_layer.coroutine_use_cases.DeleteFavouritesListFromFavouriteDBUseCaseImpl
+import com.example.domain_layer.coroutine_use_cases.InsertListOfProductsToCartUseCaseImpl
+import com.example.domain_layer.models.ProductMainModel
+import com.example.domain_layer.rxjava_use_cases.DeleteFavouriteUseCaseImpl
+import com.example.domain_layer.rxjava_use_cases.FindFavouritesUseCaseImpl
+import com.example.domain_layer.rxjava_use_cases.InsertFavouriteUseCaseImpl
+import com.example.domain_layer.rxjava_use_cases.execute
 import com.example.trempelapp.BaseViewModel
-import com.example.trempelapp.data_layer.models.Product
-import com.example.trempelapp.domain_layer.coroutine.DeleteFavouritesListFromFavouriteDBUseCaseImpl
-import com.example.trempelapp.domain_layer.coroutine.InsertListOfProductsToCartUseCaseImpl
-import com.example.trempelapp.domain_layer.rxjava.DeleteFavouriteUseCaseImpl
-import com.example.trempelapp.domain_layer.rxjava.FindFavouritesUseCaseImpl
-import com.example.trempelapp.domain_layer.rxjava.InsertFavouriteUseCaseImpl
-import com.example.trempelapp.domain_layer.rxjava.execute
-import com.example.trempelapp.utils.SingleLiveEvent
+import com.example.utils.SingleLiveEvent
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.coroutines.launch
@@ -47,11 +47,11 @@ class FavouritesPageViewModel @Inject constructor(
 
     val favouriteListLiveData: SingleLiveEvent<List<FavouriteRecyclerItem>>
         get() = _favouriteListLiveData
-    val onProductClickedLiveData: SingleLiveEvent<Product>
+    val onProductClickedLiveData: SingleLiveEvent<ProductMainModel>
         get() = _onProductClickedLiveData
 
     private val _favouriteListLiveData = SingleLiveEvent<List<FavouriteRecyclerItem>>()
-    private val _onProductClickedLiveData = SingleLiveEvent<Product>()
+    private val _onProductClickedLiveData = SingleLiveEvent<ProductMainModel>()
 
     val listSizeLiveData: LiveData<Int> = Transformations.map(_favouriteListLiveData) { it.size }
 
@@ -95,7 +95,7 @@ class FavouritesPageViewModel @Inject constructor(
             .run(compositeDisposable::add)
     }
 
-    private fun deleteFavouriteFromDB(favourite: Product) {
+    private fun deleteFavouriteFromDB(favourite: ProductMainModel) {
         deleteFavourite
             .execute(favourite)
             .subscribeOn(Schedulers.io())
@@ -132,7 +132,7 @@ class FavouritesPageViewModel @Inject constructor(
         updateCartButton()
     }
 
-    fun removeFavouriteItem(favourite: Product) {
+    fun removeFavouriteItem(favourite: ProductMainModel) {
         deleteFavouriteFromDB(favourite)
     }
 }

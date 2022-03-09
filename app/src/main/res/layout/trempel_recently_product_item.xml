@@ -7,7 +7,7 @@
 
         <variable
             name="recentlyProduct"
-            type="com.example.trempelapp.data_layer.models.Product" />
+            type="com.example.domain_layer.models.ProductMainModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

@@ -1,15 +1,18 @@
 package com.example.trempelapp.presentation_layer.main_screen.main_fragments.pdp
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
+import com.example.domain_layer.coroutine_use_cases.InsertProductToCartDBUseCaseImpl
+import com.example.domain_layer.models.ProductMainModel
+import com.example.domain_layer.rxjava_use_cases.DeleteFavouriteUseCaseImpl
+import com.example.domain_layer.rxjava_use_cases.FindProductByIdUseCaseImpl
+import com.example.domain_layer.rxjava_use_cases.GetAllFavouritesUseCaseImpl
+import com.example.domain_layer.rxjava_use_cases.GetAllRecentlyProductsUseCaseImpl
+import com.example.domain_layer.rxjava_use_cases.InsertFavouriteUseCaseImpl
+import com.example.domain_layer.rxjava_use_cases.InsertRecentlyProductUseCaseImpl
+import com.example.domain_layer.rxjava_use_cases.execute
 import com.example.trempelapp.BaseViewModel
-import com.example.trempelapp.data_layer.models.Product
-import com.example.trempelapp.domain_layer.coroutine.InsertProductToCartDBUseCaseImpl
-import com.example.trempelapp.domain_layer.rxjava.DeleteFavouriteUseCaseImpl
-import com.example.trempelapp.domain_layer.rxjava.FindProductByIdUseCaseImpl
-import com.example.trempelapp.domain_layer.rxjava.GetAllRecentlyProductsUseCaseImpl
-import com.example.trempelapp.domain_layer.rxjava.InsertFavouriteUseCaseImpl
-import com.example.trempelapp.domain_layer.rxjava.InsertRecentlyProductUseCaseImpl
-import com.example.trempelapp.utils.SingleLiveEvent
+import com.example.utils.SingleLiveEvent
 import io.reactivex.Completable
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -24,29 +27,44 @@ class ProductDetailsPageViewModel @Inject constructor(
     private val insertFavourite: InsertFavouriteUseCaseImpl,
     private val deleteFavourite: DeleteFavouriteUseCaseImpl,
     private val insertProductToCart: InsertProductToCartDBUseCaseImpl,
+    private val fetchAllFavourites: GetAllFavouritesUseCaseImpl
 ) : BaseViewModel() {
 
     val onAddToCartClicked = SingleLiveEvent<Void>()
 
-    val onProductClickedLiveData: SingleLiveEvent<Product>
+    val onProductClickedLiveData: SingleLiveEvent<ProductMainModel>
         get() = _onProductClickedLiveData
-    private val _onProductClickedLiveData = SingleLiveEvent<Product>()
+    private val _onProductClickedLiveData = SingleLiveEvent<ProductMainModel>()
 
-    val recentlyProductListLiveData: SingleLiveEvent<List<Product>>
+    val recentlyProductListLiveData: SingleLiveEvent<List<ProductMainModel>>
         get() = _recentlyProductListLiveData
-    private val _recentlyProductListLiveData = SingleLiveEvent<List<Product>>()
+    private val _recentlyProductListLiveData = SingleLiveEvent<List<ProductMainModel>>()
 
-    val productLiveData: SingleLiveEvent<Product>
+    val productLiveData: SingleLiveEvent<ProductMainModel>
         get() = _productLiveData
-    private val _productLiveData = SingleLiveEvent<Product>()
+    private val _productLiveData = SingleLiveEvent<ProductMainModel>()
 
-    private var currentProduct: Product? = null
+    val favouritesListLiveData: LiveData<List<ProductMainModel>>
+        get() = _favouritesListLiveData
+    private val _favouritesListLiveData = fetchAllFavourites.execute()
+
+    private var currentProduct: ProductMainModel? = null
 
     var currentProductId: Int? = null
 
-    private fun loadRecentlyProducts(id: Int): Single<List<Product>> {
+    private fun loadRecentlyProducts(id: Int): Single<List<ProductMainModel>> {
         return getAllRecentlyProducts
             .execute(id)
+    }
+
+    fun checkFavourites() {
+        val favouriteIds = _favouritesListLiveData.value?.map {
+            it.id
+        }
+        favouriteIds?.let {
+            val isFavourite = favouriteIds.contains(currentProductId)
+            _productLiveData.value = productLiveData.value?.copy(isFavourite = isFavourite)
+        }
     }
 
     fun findProductById() {
@@ -75,7 +93,7 @@ class ProductDetailsPageViewModel @Inject constructor(
         }
     }
 
-    private fun recentlySingle(id: Int): Single<List<Product>> {
+    private fun recentlySingle(id: Int): Single<List<ProductMainModel>> {
         return Single.zip(
             loadRecentlyProducts(id),
             insertRecently()
@@ -126,7 +144,7 @@ class ProductDetailsPageViewModel @Inject constructor(
     val adapter by lazy {
         RecentlyProductRecyclerAdapter().apply {
             setOnProductListener(object : RecentlyProductRecyclerAdapter.OnProductListener {
-                override fun onProductListener(product: Product) {
+                override fun onProductListener(product: ProductMainModel) {
                     _onProductClickedLiveData.value = product
                 }
             })

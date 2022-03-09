@@ -7,7 +7,7 @@
 
         <variable
             name="category"
-            type="com.example.trempelapp.domain_layer.rxjava.Category" />
+            type="com.example.utils.Category" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -30,15 +30,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:scaleType="centerCrop"
-                app:imageResource="@{category.image}"
-                tools:src="@drawable/jewelery" />
+                app:imageResource="@{category.image}"/>
 
         </androidx.cardview.widget.CardView>
 
         <TextView
             style="@style/categoryTitle"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="20dp"
             android:layout_marginTop="@dimen/margin8"
             android:layout_marginBottom="@dimen/margin8"
             android:gravity="center"
@@ -46,8 +45,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/card"
-            app:titleResId="@{category.stringId}"
-            tools:text="@string/electronics" />
+            app:titleResId="@{category.stringId}" />
 
         <View
             android:layout_width="0dp"

@@ -1,12 +1,13 @@
 package com.example.trempelapp
 
 import androidx.lifecycle.ViewModel
-import com.example.trempelapp.utils.SingleLiveEvent
+import com.example.utils.SingleLiveEvent
 import io.reactivex.disposables.CompositeDisposable
 
 abstract class BaseViewModel : ViewModel() {
     protected val compositeDisposable: CompositeDisposable = CompositeDisposable()
-    val errorLiveData: SingleLiveEvent<String> = SingleLiveEvent()
+    val errorLiveData: SingleLiveEvent<String> =
+        SingleLiveEvent()
     val isLoadingLiveData = SingleLiveEvent<Boolean>()
 
     protected fun handleError(throwable: Throwable) {

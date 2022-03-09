@@ -17,6 +17,9 @@
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_homePageFragment_to_searchPageFragment"
+            app:destination="@id/searchPageFragment" />
     </fragment>
     <fragment
         android:id="@+id/categoriesPageFragment"
@@ -42,6 +45,14 @@
         android:label="ProductDetailsPageFragment" >
         <action
             android:id="@+id/action_productDetailsPageFragment_self"
+            app:destination="@id/productDetailsPageFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchPageFragment"
+        android:name="com.example.trempelapp.presentation_layer.main_screen.main_fragments.search.SearchPageFragment"
+        android:label="SearchPageFragment" >
+        <action
+            android:id="@+id/action_searchPageFragment_to_productDetailsPageFragment"
             app:destination="@id/productDetailsPageFragment" />
     </fragment>
 

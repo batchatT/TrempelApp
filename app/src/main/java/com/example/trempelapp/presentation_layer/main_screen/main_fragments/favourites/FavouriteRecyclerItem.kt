@@ -1,12 +1,12 @@
 package com.example.trempelapp.presentation_layer.main_screen.main_fragments.favourites
 
 import androidx.lifecycle.MutableLiveData
-import com.example.trempelapp.data_layer.models.Product
+import com.example.domain_layer.models.ProductMainModel
 
 private const val TAG = "FavouriteRecyclerItem"
 
 class FavouriteRecyclerItem(
-    val favourite: Product,
+    val favourite: ProductMainModel,
 ) {
 
     val isCheckedLiveData = MutableLiveData(false)

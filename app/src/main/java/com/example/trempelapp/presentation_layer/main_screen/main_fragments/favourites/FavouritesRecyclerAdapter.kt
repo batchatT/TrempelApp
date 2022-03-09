@@ -7,7 +7,7 @@ import androidx.lifecycle.findViewTreeLifecycleOwner
 import androidx.recyclerview.widget.RecyclerView
 import com.example.trempelapp.BR
 import com.example.trempelapp.databinding.TrempelFavouriteItemBinding
-import com.example.trempelapp.utils.SingleLiveEvent
+import com.example.utils.SingleLiveEvent
 
 class FavouritesRecyclerAdapter(
     private val favouriteToRemoveLiveData: SingleLiveEvent<FavouriteRecyclerItem>,
