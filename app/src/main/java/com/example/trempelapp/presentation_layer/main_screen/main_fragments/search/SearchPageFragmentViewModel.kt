@@ -147,7 +147,7 @@ class SearchPageFragmentViewModel @Inject constructor(
 
     private fun handleSearchQueryError(error: SearchQueryException) {
         error.queryError?.let {
-            errorQueryLiveData.value
+            errorQueryLiveData.value = it
         }
     }
 

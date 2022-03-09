@@ -4,14 +4,14 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
-import com.example.trempelapp.BaseActivity
+import com.example.trempelapp.BaseDiActivity
 import com.example.trempelapp.TrempelApplication
 import com.example.trempelapp.databinding.SplashActivityBinding
 import com.example.trempelapp.presentation_layer.logIn_screen.TrempelLogInActivity
 import com.example.trempelapp.presentation_layer.main_screen.HomeScreenActivity
 
 @SuppressLint("CustomSplashScreen")
-class TrempelSplashActivity : BaseActivity() {
+class TrempelSplashActivity : BaseDiActivity() {
 
     override fun injectDagger() {
         (application as TrempelApplication).trempelApp.inject(this)

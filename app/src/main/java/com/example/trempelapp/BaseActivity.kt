@@ -44,11 +44,4 @@ abstract class BaseActivity : AppCompatActivity(), AppBarHandler {
             .replace(containerViewId, fragment, tag)
             .commit()
     }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        injectDagger()
-        super.onCreate(savedInstanceState)
-    }
-
-    protected open fun injectDagger() {}
 }
