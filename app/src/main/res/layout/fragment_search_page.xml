@@ -22,8 +22,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin24"
             android:layout_marginTop="@dimen/margin32"
-            app:errorText="@{viewModel.errorQueryLiveData}"
             android:layout_marginEnd="@dimen/margin24"
+            app:errorText="@{viewModel.errorQueryLiveData}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -35,8 +35,8 @@
                 android:drawableStart="@drawable/ic_search"
                 android:drawablePadding="@dimen/padding16"
                 android:hint="@string/what_are_you_looking_for"
-                android:inputType="text"
                 android:imeOptions="actionDone"
+                android:inputType="text"
                 android:text="@={viewModel.queryTextLiveData}" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -46,8 +46,8 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:adapter="@{viewModel.adapter}"
-            android:paddingStart="@dimen/padding16"
-            android:paddingEnd="@dimen/padding16"
+            android:clipToPadding="false"
+            android:padding="@dimen/margin8"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -83,15 +83,15 @@
             style="@style/empty_list_style"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:paddingTop="@dimen/margin136"
-            android:drawableTop="@drawable/ic_empty_search"
             android:background="@color/white"
+            android:drawableTop="@drawable/ic_empty_search"
+            android:paddingTop="@dimen/margin136"
             android:text="@string/smth_went_wrong"
+            app:isErrorVisible="@{viewModel.isErrorLiveData}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:isErrorVisible="@{viewModel.isErrorLiveData}"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/search_edit"/>
+            app:layout_constraintTop_toBottomOf="@id/search_edit" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
