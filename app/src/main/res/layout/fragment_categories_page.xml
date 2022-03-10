@@ -19,18 +19,19 @@
             android:id="@+id/swiper"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_marginStart="@dimen/margin23"
-            android:layout_marginEnd="@dimen/margin22"
+            app:isRefreshing="@{viewModel.isLoadingLiveData}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:onRefresh="@{viewModel::getAllCategories}"
-            app:isRefreshing="@{viewModel.isLoadingLiveData}">
+            app:onRefresh="@{viewModel::getAllCategories}">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/category_recycler"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:adapter="@{viewModel.adapter}"
+                android:clipToPadding="false"
+                android:paddingStart="@dimen/margin23"
+                android:paddingEnd="@dimen/margin22"
                 app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
                 app:spanCount="2"
                 tools:listitem="@layout/trempel_recycler_item" />

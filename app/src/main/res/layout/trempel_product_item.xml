@@ -13,7 +13,10 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp">
+        android:layout_marginStart="@dimen/margin14"
+        android:layout_marginTop="@dimen/margin8"
+        android:layout_marginEnd="@dimen/margin14"
+        android:layout_marginBottom="@dimen/margin8">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/card"
@@ -43,9 +46,9 @@
             android:layout_marginStart="@dimen/margin16"
             android:layout_marginEnd="@dimen/margin16"
             android:layout_marginBottom="@dimen/margin8"
-            android:text="@{product.product.title}"
             android:ellipsize="end"
             android:maxLines="2"
+            android:text="@{product.product.title}"
             app:layout_constraintBottom_toTopOf="@id/price_view"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -56,8 +59,8 @@
             android:id="@+id/price_view"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:onClick="@{() -> product.onAddToCartClick()}"
             android:background="@drawable/ic_price_text_background"
+            android:onClick="@{() -> product.onAddToCartClick()}"
             app:layout_constraintBottom_toBottomOf="@id/layout_view"
             app:layout_constraintEnd_toEndOf="@id/layout_view"
             app:layout_constraintStart_toStartOf="@id/layout_view"
