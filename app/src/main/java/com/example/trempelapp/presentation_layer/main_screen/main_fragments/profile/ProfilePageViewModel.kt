@@ -31,6 +31,10 @@ class ProfilePageViewModel @Inject constructor(
         get() = _onLogOutButtonClicked
     private val _onLogOutButtonClicked = SingleLiveEvent<Void>()
 
+    val onImageSaved: SingleLiveEvent<Void>
+        get() = _onImageSaved
+    private val _onImageSaved = SingleLiveEvent<Void>()
+
     fun onLogOutClick() {
         viewModelScope.launch {
             logOut.execute()
@@ -68,7 +72,11 @@ class ProfilePageViewModel @Inject constructor(
             .execute(uri)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({}, {})
+            .subscribe({
+                _onImageSaved.call()
+            }, {
+                handleError(it)
+            })
             .run(compositeDisposable::add)
     }
 

@@ -9,10 +9,6 @@ import com.example.trempelapp.utils.TOKEN_PREFERENCES_FILE
 import io.reactivex.Single
 import javax.inject.Inject
 
-private const val TOKEN = "token"
-private const val LOGIN = "login"
-private const val IMAGE = "image"
-
 class SharedPreferencesManagerImpl @Inject constructor(
     context: Context,
 ) : SharedPreferencesManager {
@@ -34,24 +30,15 @@ class SharedPreferencesManagerImpl @Inject constructor(
     }
 
     override fun writeToken(token: String) {
-        val editor = preferences.edit()
-        editor
-            .putString(TOKEN, token)
-            .apply()
+        saveString(TOKEN, token)
     }
 
     override fun writeUserLogin(login: String) {
-        val editor = preferences.edit()
-        editor
-            .putString(LOGIN, login)
-            .apply()
+        saveString(LOGIN, login)
     }
 
     override fun writeUserImage(image: String) {
-        val editor = preferences.edit()
-        editor
-            .putString(IMAGE, image)
-            .apply()
+        saveString(IMAGE, image)
     }
 
     override suspend fun logOut() {
@@ -59,5 +46,18 @@ class SharedPreferencesManagerImpl @Inject constructor(
         editor
             .clear()
             .apply()
+    }
+
+    private fun saveString(key: String, value: String) {
+        val editor = preferences.edit()
+        editor
+            .putString(key, value)
+            .apply()
+    }
+
+    companion object {
+        private const val TOKEN = "token"
+        private const val LOGIN = "login"
+        private const val IMAGE = "image"
     }
 }

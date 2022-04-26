@@ -11,6 +11,7 @@ import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.activity.compose.ManagedActivityResultLauncher
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
@@ -96,6 +97,10 @@ class ProfilePageFragment : BaseFragment() {
             val intent = Intent(context, TrempelLogInActivity::class.java)
             startActivity(intent)
             activity?.finish()
+        }
+
+        viewModel.onImageSaved.observe(viewLifecycleOwner) {
+            Toast.makeText(context, getString(R.string.on_image_saved), Toast.LENGTH_SHORT).show()
         }
     }
 
