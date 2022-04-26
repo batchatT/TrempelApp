@@ -1,7 +1,7 @@
 package com.example.di.di
 
 import com.example.data.network.Retrofit
-import com.example.data.services.UserService
+import com.example.data.network.user.UserService
 import dagger.Module
 import dagger.Provides
 

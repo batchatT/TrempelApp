@@ -23,4 +23,8 @@
     <string name="close">Close</string>
     <string name="smth_went_wrong">Something went wrong</string>
     <string name="error_text">Unfortunately, we are currently having some technical problems. Please try again later.</string>
+    <string name="name">Name</string>
+    <string name="username">Username</string>
+    <string name="phone">Phone number</string>
+    <string name="address">Address</string>
 </resources>

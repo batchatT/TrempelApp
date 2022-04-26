@@ -15,6 +15,7 @@ import com.google.android.material.textfield.TextInputLayout
 
 @BindingAdapter("errorText")
 fun setError(textInputLayout: TextInputLayout, errorText: String?) {
+    textInputLayout.isErrorEnabled = !errorText.isNullOrEmpty()
     textInputLayout.error = errorText
 }
 
