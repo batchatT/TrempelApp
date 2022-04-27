@@ -12,6 +12,9 @@ const val MAX_COUNT_OF_ONE_PRODUCT = 10
 
 // Strings
 const val EMPTY_STRING = ""
+const val GALLERY_PATH = "image/*"
+const val USER_IMAGE = "image.jpg"
+const val USER_IMAGE_PATH = "images"
 
 // Categories
 const val CATEGORY_ALL = "all products"

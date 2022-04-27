@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.trempelapp.BR
 import com.example.trempelapp.databinding.TrempelCartItemBinding
 import com.example.utils.SingleLiveEvent
-import kotlinx.android.synthetic.main.trempel_cart_item.view.view
 
 class CartItemRecyclerAdapter(
     private val cartItemToRemoveLiveData: SingleLiveEvent<CartRecyclerItem>,
@@ -56,7 +55,7 @@ class CartItemRecyclerAdapter(
             cartItem: CartRecyclerItem,
             listener: OnCartItemListener,
         ) {
-            itemView.view.setOnClickListener {
+            itemView.setOnClickListener {
                 listener.onCartItemListener(cartItem)
             }
             binding.setVariable(BR.product, cartItem)

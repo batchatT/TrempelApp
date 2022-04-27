@@ -1,6 +1,6 @@
 package com.example.data.repositories
 
-import com.example.data.services.UserService
+import com.example.data.network.user.UserService
 import com.example.data.shared_preferences.SharedPreferencesManager
 import com.example.domain_layer.models.LoginResponse
 import com.example.domain_layer.models.UserCredentials
@@ -18,6 +18,7 @@ class AuthRepositoryImpl @Inject constructor(
     }
 
     override fun logInUser(userCredentials: UserCredentials): Single<LoginResponse> {
+        sharedPreferencesManager.writeUserLogin(userCredentials.login)
         return userService.loginUser(userCredentials.login, userCredentials.password)
     }
 
