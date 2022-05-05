@@ -4,5 +4,5 @@ import android.net.Uri
 
 data class AdditionalUserInfo(
     val login: String,
-    val imageUri: Uri
+    val imageUri: Uri? = null
 )

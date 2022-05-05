@@ -2,6 +2,8 @@ package com.example.di.di
 
 import com.example.data.internal_storage.InternalStorageManager
 import com.example.data.internal_storage.InternalStorageManagerImpl
+import com.example.data.location.UserLocationManager
+import com.example.data.location.UserLocationManagerImpl
 import com.example.data.repositories.AuthRepositoryImpl
 import com.example.data.repositories.CartRepositoryImpl
 import com.example.data.repositories.FavouritesRepositoryImpl
@@ -40,4 +42,7 @@ abstract class RepositoryModule {
 
     @Binds
     abstract fun provideInternalStorageManager(internalStorageManagerImpl: InternalStorageManagerImpl): InternalStorageManager
+
+    @Binds
+    abstract fun provideUserLocationManager(userLocationManagerImpl: UserLocationManagerImpl): UserLocationManager
 }
