@@ -24,7 +24,7 @@ class SharedPreferencesManagerImpl @Inject constructor(
     override fun getAdditionalUserInfo(): Single<AdditionalUserInfo> {
         val data = AdditionalUserInfo(
             login = preferences.getString(LOGIN, EMPTY_STRING) ?: EMPTY_STRING,
-            imageUri = preferences.getString(IMAGE, EMPTY_STRING)?.toUri() ?: EMPTY_STRING.toUri()
+            imageUri = preferences.getString(IMAGE, null)?.toUri()
         )
         return Single.just(data)
     }

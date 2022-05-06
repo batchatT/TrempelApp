@@ -17,6 +17,8 @@ interface UserInfoRepository {
 
     fun writeUserImageUri(uri: Uri): Completable
 
+    suspend fun isGpsEnabled(): Boolean
+
     suspend fun saveUserImage(image: Bitmap): Uri
 
     suspend fun clearUserData()

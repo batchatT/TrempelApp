@@ -39,6 +39,7 @@ dependencies {
     //dagger
     implementation "com.google.dagger:dagger:2.40"
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'com.google.android.gms:play-services-location:19.0.1'
     kapt "com.google.dagger:dagger-compiler:2.40"
 
 
@@ -55,6 +56,9 @@ dependencies {
     //retrofit2 implementation
     implementation 'com.squareup.okhttp3:logging-interceptor:3.9.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+
+    //maps
+    implementation "com.google.android.gms:play-services-maps:18.0.2"
 
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.4.1'

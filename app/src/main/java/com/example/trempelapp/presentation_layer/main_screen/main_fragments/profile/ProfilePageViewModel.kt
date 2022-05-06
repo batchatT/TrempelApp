@@ -2,13 +2,14 @@ package com.example.trempelapp.presentation_layer.main_screen.main_fragments.pro
 
 import android.graphics.Bitmap
 import android.net.Uri
-import androidx.compose.runtime.mutableStateOf
-import androidx.lifecycle.MutableLiveData
+import androidx.fragment.app.FragmentActivity
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
+import com.example.domain_layer.coroutine_use_cases.GetGpsStatusUseCaseImpl
 import com.example.domain_layer.coroutine_use_cases.LogOutUseCaseImpl
 import com.example.domain_layer.coroutine_use_cases.SaveUserImageUseCaseImpl
 import com.example.domain_layer.coroutine_use_cases.execute
-import com.example.domain_layer.models.MainUserInfo
+import com.example.domain_layer.models.ProfileState
 import com.example.domain_layer.rxjava_use_cases.GetUserDataUseCaseImpl
 import com.example.domain_layer.rxjava_use_cases.WriteUserImageUseCaseImpl
 import com.example.domain_layer.rxjava_use_cases.execute
@@ -24,16 +25,25 @@ class ProfilePageViewModel @Inject constructor(
     private val logOut: LogOutUseCaseImpl,
     private val getUserData: GetUserDataUseCaseImpl,
     private val writeUserImageUri: WriteUserImageUseCaseImpl,
-    private val saveUserImage: SaveUserImageUseCaseImpl
+    private val saveUserImage: SaveUserImageUseCaseImpl,
+    private val gpsStatus: GetGpsStatusUseCaseImpl,
+    private val fusedLocationProviderManager: FusedLocationProviderManager
 ) : BaseViewModel() {
 
     val onLogOutButtonClicked: SingleLiveEvent<Void>
         get() = _onLogOutButtonClicked
     private val _onLogOutButtonClicked = SingleLiveEvent<Void>()
 
-    val onImageSaved: SingleLiveEvent<Void>
-        get() = _onImageSaved
-    private val _onImageSaved = SingleLiveEvent<Void>()
+    val gpsStatusLiveData: LiveData<Boolean>
+        get() = _gpsStatusLiveData
+    private val _gpsStatusLiveData = SingleLiveEvent<Boolean>()
+
+    val profileState: LiveData<ProfileState>
+        get() = _profileState
+    private val _profileState = SingleLiveEvent<ProfileState>()
+        .apply {
+            value = ProfileState()
+        }
 
     fun onLogOutClick() {
         viewModelScope.launch {
@@ -42,12 +52,22 @@ class ProfilePageViewModel @Inject constructor(
         _onLogOutButtonClicked.call()
     }
 
-    val userData = MutableLiveData<MainUserInfo>()
+    fun getGpsStatus() {
+        viewModelScope.launch {
+            _gpsStatusLiveData.value = gpsStatus.execute()
+        }
+    }
 
-    val loading = mutableStateOf(false)
+    fun initFusedLocationProviderManager(activity: FragmentActivity) {
+        fusedLocationProviderManager.create(activity, _profileState)
+    }
+
+    fun getUserLocation() {
+        fusedLocationProviderManager.getLocation(_profileState)
+    }
 
     fun getUserInfo() {
-        loading.value = true
+        _profileState.value = _profileState.value?.copy(isLoading = true)
         getUserData
             .execute()
             .doOnSubscribe {
@@ -59,8 +79,7 @@ class ProfilePageViewModel @Inject constructor(
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
-                userData.value = it
-                loading.value = false
+                _profileState.value = _profileState.value?.copy(user = it, isLoading = false)
             }, {
                 handleError(it)
             })
@@ -72,18 +91,17 @@ class ProfilePageViewModel @Inject constructor(
             .execute(uri)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({
-                _onImageSaved.call()
-            }, {
-                handleError(it)
-            })
+            .subscribe()
             .run(compositeDisposable::add)
     }
 
     fun saveUserImage(image: Bitmap) {
-        val waitFor = viewModelScope.async {
-            return@async saveUserImage.execute(image)
-        }
-        writeUserImageUri(waitFor.getCompleted())
+
+        writeUserImageUri(
+            viewModelScope.async launch@{
+
+                return@launch saveUserImage.execute(image)
+            }.getCompleted()
+        )
     }
 }

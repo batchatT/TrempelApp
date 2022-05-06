@@ -28,4 +28,10 @@
     <string name="phone">Phone number</string>
     <string name="address">Address</string>
     <string name="on_image_saved">Your image have been saved</string>
+    <string name="you_are_here">You are here</string>
+    <string name="asking_for_permission">Resolve location permission in the app settings</string>
+    <string name="resolve_location_permission">Resolve precise location permission</string>
+    <string name="enable_gps">Enable GPS on your device</string>
+    <string name="no_gps">GPS is not enabled</string>
+    <string name="permission_denied">Permission hes been denied</string>
 </resources>

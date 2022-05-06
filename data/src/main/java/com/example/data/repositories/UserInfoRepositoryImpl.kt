@@ -3,6 +3,7 @@ package com.example.data.repositories
 import android.graphics.Bitmap
 import android.net.Uri
 import com.example.data.internal_storage.InternalStorageManager
+import com.example.data.location.UserLocationManager
 import com.example.data.network.user.UserService
 import com.example.data.shared_preferences.SharedPreferencesManager
 import com.example.domain_layer.models.AdditionalUserInfo
@@ -15,7 +16,8 @@ import javax.inject.Inject
 class UserInfoRepositoryImpl @Inject constructor(
     private val preferences: SharedPreferencesManager,
     private val userService: UserService,
-    private val internalStorage: InternalStorageManager
+    private val internalStorage: InternalStorageManager,
+    private val locationManager: UserLocationManager
 ) : UserInfoRepository {
 
     override fun getLoginStatusByToken(): Single<String> {
@@ -34,6 +36,10 @@ class UserInfoRepositoryImpl @Inject constructor(
         return Completable.fromAction {
             preferences.writeUserImage(uri.toString())
         }
+    }
+
+    override suspend fun isGpsEnabled(): Boolean {
+        return locationManager.isGpsEnabled()
     }
 
     override suspend fun saveUserImage(image: Bitmap): Uri {
