@@ -62,8 +62,11 @@ import com.example.trempelapp.BaseFragment
 import com.example.trempelapp.R
 import com.example.trempelapp.TrempelApplication
 import com.example.trempelapp.presentation_layer.logIn_screen.TrempelLogInActivity
+import com.example.trempelapp.utils.DEFAULT_LATITUDE
+import com.example.trempelapp.utils.DEFAULT_LONGITUDE
 import com.example.trempelapp.utils.EMPTY_STRING
 import com.example.trempelapp.utils.GALLERY_PATH
+import com.example.trempelapp.utils.PERMISSION_IS_NOT_GRANTED
 import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
 import com.google.maps.android.compose.CameraPositionState
@@ -217,7 +220,7 @@ class ProfilePageFragment : BaseFragment() {
         val finePermissionStatus =
             ContextCompat.checkSelfPermission(requireContext(), fineLocationPermission)
         if (viewModel.gpsStatusLiveData.value == true) {
-            if (finePermissionStatus == -1) {
+            if (finePermissionStatus == PERMISSION_IS_NOT_GRANTED) {
                 SetMapWithoutPermission(getString(R.string.resolve_location_permission))
                 perLauncher.launch(arrayOf(fineLocationPermission, coarseLocationPermission))
             } else {
@@ -237,9 +240,9 @@ class ProfilePageFragment : BaseFragment() {
                 .clip(RoundedCornerShape(10)),
         ) {
 
-            val singapore = LatLng(1.35, 103.87)
+            val location = LatLng(DEFAULT_LATITUDE, DEFAULT_LONGITUDE)
             val cameraPositionState = rememberCameraPositionState {
-                position = CameraPosition.fromLatLngZoom(singapore, 11f)
+                position = CameraPosition.fromLatLngZoom(location, 11f)
             }
             GoogleMap(
                 cameraPositionState = cameraPositionState,
@@ -247,7 +250,7 @@ class ProfilePageFragment : BaseFragment() {
                     .blur(5.dp)
             ) {
                 Marker(
-                    position = singapore,
+                    position = location,
                     snippet = getString(R.string.you_are_here)
                 )
             }
@@ -281,16 +284,16 @@ class ProfilePageFragment : BaseFragment() {
                 .clip(RoundedCornerShape(10)),
         ) {
 
-            val singapore = remember {
+            val location = remember {
                 mutableStateOf<LatLng?>(null)
             }
 
-            singapore.value = if (latitude != null && longitude != null) {
+            location.value = if (latitude != null && longitude != null) {
                 LatLng(latitude, longitude)
             } else {
-                LatLng(1.35, 103.87)
+                LatLng(DEFAULT_LATITUDE, DEFAULT_LONGITUDE)
             }
-            singapore.value?.let {
+            location.value?.let {
                 GoogleMap(
                     cameraPositionState = CameraPositionState(CameraPosition(it, 10f, 0f, 0f))
                 ) {

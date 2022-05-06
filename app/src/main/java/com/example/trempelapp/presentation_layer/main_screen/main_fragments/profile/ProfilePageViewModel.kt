@@ -59,7 +59,7 @@ class ProfilePageViewModel @Inject constructor(
     }
 
     fun initFusedLocationProviderManager(activity: FragmentActivity) {
-        fusedLocationProviderManager.create(activity)
+        fusedLocationProviderManager.create(activity, _profileState)
     }
 
     fun getUserLocation() {

@@ -2,7 +2,6 @@ package com.example.trempelapp.presentation_layer.main_screen.main_fragments.pro
 
 import android.annotation.SuppressLint
 import android.os.Looper
-import android.util.Log
 import androidx.fragment.app.FragmentActivity
 import com.example.domain_layer.models.ProfileState
 import com.example.domain_layer.models.UserLocation
@@ -16,24 +15,23 @@ import javax.inject.Inject
 
 class FusedLocationProviderManager @Inject constructor() {
     private var fusedLocationProviderClient: FusedLocationProviderClient? = null
-    private var locationRequest: LocationRequest? = null
-    private var locationCallback: LocationCallback? = null
+    private lateinit var locationRequest: LocationRequest
+    private lateinit var locationCallback: LocationCallback
 
-    fun create(activity: FragmentActivity) {
+    fun create(activity: FragmentActivity, profileState: SingleLiveEvent<ProfileState>) {
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(activity)
 
         locationRequest = LocationRequest.create()
-        locationRequest?.interval = 5000
-        locationRequest?.fastestInterval = 5000
-        locationRequest?.priority = LocationRequest.PRIORITY_HIGH_ACCURACY
+        locationRequest.interval = 5000
+        locationRequest.fastestInterval = 5000
+        locationRequest.priority = LocationRequest.PRIORITY_HIGH_ACCURACY
 
         locationCallback = object : LocationCallback() {
             override fun onLocationResult(locationResult: LocationResult) {
                 super.onLocationResult(locationResult)
                 val location = locationResult.locations.last()
-                Log.d(
-                    "locationtag",
-                    "${location.latitude} + \",\" +\n${location.longitude}"
+                profileState.value = profileState.value?.copy(
+                    location = UserLocation(location.latitude, location.longitude)
                 )
             }
         }
@@ -47,13 +45,9 @@ class FusedLocationProviderManager @Inject constructor() {
                 profileState.value = profileState.value?.copy(
                     location = UserLocation(currentLocation.latitude, currentLocation.longitude)
                 )
-                Log.d(
-                    "locationtag",
-                    "${currentLocation.latitude} + \",\" +\n${currentLocation.longitude}"
-                )
             } ?: fusedLocationProviderClient?.requestLocationUpdates(
-                locationRequest!!,
-                locationCallback!!,
+                locationRequest,
+                locationCallback,
                 Looper.getMainLooper()
             )
         }
