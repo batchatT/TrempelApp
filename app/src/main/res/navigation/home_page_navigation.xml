@@ -29,6 +29,9 @@
         <action
             android:id="@+id/action_categoriesPage_to_productListFragment"
             app:destination="@id/productListFragment" />
+        <deepLink
+            android:id="@+id/deepLink3"
+            app:uri="trempelApp://home/categories" />
     </fragment>
     <fragment
         android:id="@+id/productListFragment"

@@ -18,6 +18,7 @@ const val EMPTY_STRING = ""
 const val GALLERY_PATH = "image/*"
 const val USER_IMAGE = "image.jpg"
 const val USER_IMAGE_PATH = "images"
+const val DEEP_LINK = "deepLink"
 
 // Categories
 const val CATEGORY_ALL = "all products"
