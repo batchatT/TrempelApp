@@ -9,6 +9,7 @@ import com.example.trempelapp.TrempelApplication
 import com.example.trempelapp.databinding.SplashActivityBinding
 import com.example.trempelapp.presentation_layer.logIn_screen.TrempelLogInActivity
 import com.example.trempelapp.presentation_layer.main_screen.HomeScreenActivity
+import com.example.trempelapp.utils.DEEP_LINK
 
 @SuppressLint("CustomSplashScreen")
 class TrempelSplashActivity : BaseDiActivity() {
@@ -46,7 +47,13 @@ class TrempelSplashActivity : BaseDiActivity() {
     private fun startActivityByStatus(isLoggedIn: Boolean) {
         val intent: Intent = when (isLoggedIn) {
             true -> {
-                Intent(this, HomeScreenActivity::class.java)
+                if (intent.extras != null) {
+                    val deepLink = intent.extras?.get(DEEP_LINK) as String
+                    val intent = Intent(this, HomeScreenActivity::class.java)
+                    intent.putExtra(DEEP_LINK, deepLink)
+                } else {
+                    Intent(this, HomeScreenActivity::class.java)
+                }
             }
             else -> {
                 Intent(this, TrempelLogInActivity::class.java)

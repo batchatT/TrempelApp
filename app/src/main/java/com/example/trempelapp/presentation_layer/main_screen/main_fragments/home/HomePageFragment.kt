@@ -16,6 +16,8 @@ import com.example.trempelapp.databinding.FragmentHomePageBinding
 import com.example.trempelapp.utils.EMPTY_STRING
 import com.example.trempelapp.utils.HOME_TO_SEARCH_KEY
 
+private const val TAG = "HomePageFragment"
+
 class HomePageFragment : BaseFragment() {
 
     companion object {

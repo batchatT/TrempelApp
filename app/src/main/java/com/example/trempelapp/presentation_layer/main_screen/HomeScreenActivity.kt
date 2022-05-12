@@ -2,13 +2,16 @@ package com.example.trempelapp.presentation_layer.main_screen
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.net.toUri
 import androidx.lifecycle.LiveData
 import androidx.navigation.NavController
+import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
 import com.example.trempelapp.BaseActivity
 import com.example.trempelapp.R
 import com.example.trempelapp.databinding.ActivityHomeScreenBinding
+import com.example.trempelapp.utils.DEEP_LINK
 import com.example.trempelapp.utils.setupWithNavController
 
 class HomeScreenActivity : BaseActivity() {
@@ -37,6 +40,16 @@ class HomeScreenActivity : BaseActivity() {
         setUpNavigation()
 
         supportActionBar?.hide()
+    }
+
+    override fun onStart() {
+        super.onStart()
+        intent.extras?.let { extra ->
+            val deepLink = extra.get(DEEP_LINK) as String?
+            deepLink?.toUri()?.let { uri ->
+                findNavController(R.id.nav_host_fragment).navigate(uri)
+            }
+        }
     }
 
     private fun setUpNavigation() {
